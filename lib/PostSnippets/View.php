@@ -10,17 +10,17 @@ class PostSnippets_View
     /**
      * Render a View.
      * 
-     * @param  string  $filePath  Include path to the view.
+     * @param  string  $view      View to render.
      * @param  array   $data      Data to be used within the view.
-     * @return string  Returns the completed view.
+     * @return string             The processed view.
      */
-    public static function render($file, $data = null)
+    public static function render($view, $data = null)
     {
-        // Check for data
+        // Handle data
         ($data) ? extract($data) : null;
  
         ob_start();
-        include ($file);
+        include(plugin_dir_path(__FILE__).'../../views/'.$view.'.php');
         $view = ob_get_contents();
         ob_end_clean();
 
