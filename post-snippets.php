@@ -503,10 +503,7 @@ function edOpenPostSnippets(myField) {
         }
 
         $data = array('snippets' => get_option(self::OPTION_DB_KEY, array()));
-        echo PostSnippets_View::render(
-            plugin_dir_path(__FILE__).'views/jquery-ui-dialog.php',
-            $data
-        );
+        echo PostSnippets_View::render('jquery-ui-dialog', $data);
     }
 
     /**
