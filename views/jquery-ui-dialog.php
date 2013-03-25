@@ -44,7 +44,7 @@
                     // If no variables and no description available, output a text
                     // to inform the user that it's an insert snippet only.
                     if (empty($snippet['description'])) { ?>
-                        <p class="howto"><?php _e('This snippet is insert only, no variables defined.', 'post-snippets'); ?></p>
+                        <p class="howto"><?php _e('This snippet is insert only, no variables defined.', PostSnippets::TEXT_DOMAIN); ?></p>
                     <?php }
                 } ?>
                 </div><!-- #ps-tabs-<?php echo $key; ?> -->

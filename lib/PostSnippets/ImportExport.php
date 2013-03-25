@@ -88,13 +88,13 @@ class PostSnippets_ImportExport
  	 * @return		string			HTML to handle the import
 	 */
 	public function import_snippets() {
-		$import = '<br/><br/><strong>'.__( 'Import', 'post-snippets' ).'</strong><br/>';
+		$import = '<br/><br/><strong>'.__( 'Import', PostSnippets::TEXT_DOMAIN ).'</strong><br/>';
 		if ( !isset($_FILES['postsnippets_import_file']) || empty($_FILES['postsnippets_import_file']) ) {
-			$import .= '<p>'.__( 'Import snippets from a post-snippets-export.zip file. Importing overwrites any existing snippets.', 'post-snippets' ).'</p>';
+			$import .= '<p>'.__( 'Import snippets from a post-snippets-export.zip file. Importing overwrites any existing snippets.', PostSnippets::TEXT_DOMAIN ).'</p>';
 			$import .= '<form method="post" enctype="multipart/form-data">';
 			$import .= '<input type="file" name="postsnippets_import_file"/>';
 			$import .= '<input type="hidden" name="action" value="wp_handle_upload"/>';
-			$import .= '<input type="submit" class="button" value="'.__( 'Import Snippets', 'post-snippets' ).'"/>';
+			$import .= '<input type="submit" class="button" value="'.__( 'Import Snippets', PostSnippets::TEXT_DOMAIN ).'"/>';
 			$import .= '</form>';
 		} else {
 			$file = wp_handle_upload( $_FILES['postsnippets_import_file'] );

@@ -38,7 +38,7 @@ class PostSnippets_Admin
 			);
 
 			update_option( PostSnippets::optionDBKey(), $snippets );
-			$this->message( __( 'A snippet named Untitled has been added.', 'post-snippets' ) );
+			$this->message( __( 'A snippet named Untitled has been added.', PostSnippets::TEXT_DOMAIN ) );
 		}
 	}
 
@@ -54,7 +54,7 @@ class PostSnippets_Admin
 			$snippets = get_option( PostSnippets::optionDBKey() );
 
 			if ( empty($snippets) || !isset($_POST['checked']) ) {
-				$this->message( __( 'Nothing selected to delete.', 'post-snippets' ) );
+				$this->message( __( 'Nothing selected to delete.', PostSnippets::TEXT_DOMAIN ) );
 				return;
 			}
 
@@ -67,7 +67,7 @@ class PostSnippets_Admin
 			}
 
 			update_option( PostSnippets::optionDBKey(), $newsnippets );
-			$this->message( __( 'Selected snippets have been deleted.', 'post-snippets' ) );
+			$this->message( __( 'Selected snippets have been deleted.', PostSnippets::TEXT_DOMAIN ) );
 		}
 	}
 
@@ -98,7 +98,7 @@ class PostSnippets_Admin
 					$new_snippets[$key]['description'] = wp_specialchars_decode( trim(stripslashes($_POST[$key.'_description'])), ENT_NOQUOTES);
 				}
 				update_option( PostSnippets::optionDBKey(), $new_snippets );
-				$this->message( __( 'Snippets have been updated.', 'post-snippets' ) );
+				$this->message( __( 'Snippets have been updated.', PostSnippets::TEXT_DOMAIN ) );
 			}
 		}
 	}
@@ -191,7 +191,7 @@ class PostSnippets_Admin
 		// Tabs
 		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'snippets';
 		$base_url = '?page=post-snippets/post-snippets.php&amp;tab=';
-		$tabs = array( 'snippets' => __( 'Manage Snippets', 'post-snippets' ), 'tools' => __( 'Import/Export', 'post-snippets' ) );
+		$tabs = array( 'snippets' => __( 'Manage Snippets', PostSnippets::TEXT_DOMAIN ), 'tools' => __( 'Import/Export', PostSnippets::TEXT_DOMAIN ) );
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $tabs as $tab => $title ) {
 			$active = ( $active_tab == $tab ) ? ' nav-tab-active' : '';
@@ -199,7 +199,7 @@ class PostSnippets_Admin
 		}
 		echo '</h2>';
 		echo '<p class="description">';
-		_e( 'Use the help dropdown button for additional information.', 'post-snippets' );
+		_e( 'Use the help dropdown button for additional information.', PostSnippets::TEXT_DOMAIN );
 		echo '</p>';
 
 		// Tab content
@@ -227,18 +227,18 @@ class PostSnippets_Admin
         <thead>
         <tr>
             <th scope="col" class="check-column"><input type="checkbox" /></th>
-            <th scope="col" style="width: 180px;"><?php _e( 'Title', 'post-snippets' ) ?></th>
-            <th scope="col" style="width: 180px;"><?php _e( 'Variables', 'post-snippets' ) ?></th>
-            <th scope="col"><?php _e( 'Snippet', 'post-snippets' ) ?></th>
+            <th scope="col" style="width: 180px;"><?php _e( 'Title', PostSnippets::TEXT_DOMAIN ) ?></th>
+            <th scope="col" style="width: 180px;"><?php _e( 'Variables', PostSnippets::TEXT_DOMAIN ) ?></th>
+            <th scope="col"><?php _e( 'Snippet', PostSnippets::TEXT_DOMAIN ) ?></th>
         </tr>
         </thead>
     
         <tfoot>
         <tr>
             <th scope="col" class="check-column"><input type="checkbox" /></th>
-            <th scope="col"><?php _e( 'Title', 'post-snippets' ) ?></th>
-            <th scope="col"><?php _e( 'Variables', 'post-snippets' ) ?></th>
-            <th scope="col"><?php _e( 'Snippet', 'post-snippets' ) ?></th>
+            <th scope="col"><?php _e( 'Title', PostSnippets::TEXT_DOMAIN ) ?></th>
+            <th scope="col"><?php _e( 'Variables', PostSnippets::TEXT_DOMAIN ) ?></th>
+            <th scope="col"><?php _e( 'Snippet', PostSnippets::TEXT_DOMAIN ) ?></th>
         </tr>
         </tfoot>
     
@@ -258,13 +258,13 @@ class PostSnippets_Admin
 			<br/>
 			<br/>
 			<?php
-			$this->checkbox(__('Shortcode', 'post-snippets'), $key.'_shortcode',
+			$this->checkbox(__('Shortcode', PostSnippets::TEXT_DOMAIN), $key.'_shortcode',
 							$snippet['shortcode']);
 
 			echo '<br/><strong>Shortcode Options:</strong><br/>';
 
 			if ( PostSnippets::canExecutePHP() ) {
-				$this->checkbox(__('PHP Code', 'post-snippets'), $key.'_php',
+				$this->checkbox(__('PHP Code', PostSnippets::TEXT_DOMAIN), $key.'_php',
 								$snippet['php']);
 			}
 
@@ -274,7 +274,7 @@ class PostSnippets_Admin
 			</td>
 			<td class='desc'>
 			<textarea name="<?php echo $key; ?>_snippet" class="large-text" style='width: 100%;' rows="5"><?php echo htmlspecialchars($snippet['snippet'], ENT_NOQUOTES); ?></textarea>
-			<?php _e( 'Description', 'post-snippets' ) ?>:
+			<?php _e( 'Description', PostSnippets::TEXT_DOMAIN ) ?>:
 			<input type='text' style='width: 100%;' name='<?php echo $key; ?>_description' value='<?php if (isset( $snippet['description'] ) ) echo esc_html($snippet['description']); ?>' /><br/>
 			</td>
 			</tr>
@@ -286,9 +286,9 @@ class PostSnippets_Admin
 	</table>
 
 <?php
-		$this->submit( 'update-snippets', __('Update Snippets', 'post-snippets') );
-		$this->submit( 'add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false );
-		$this->submit( 'delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false );
+		$this->submit( 'update-snippets', __('Update Snippets', PostSnippets::TEXT_DOMAIN) );
+		$this->submit( 'add-snippet', __('Add New Snippet', PostSnippets::TEXT_DOMAIN), 'button-secondary', false );
+		$this->submit( 'delete-snippets', __('Delete Selected', PostSnippets::TEXT_DOMAIN), 'button-secondary', false );
 		echo '</form>';
 	}
 
@@ -302,13 +302,13 @@ class PostSnippets_Admin
 		$ie = new PostSnippets_ImportExport();
 
 		// Create header and export html form
-		printf( "<h3>%s</h3>", __( 'Import/Export', 'post-snippets' ));
-		printf( "<h4>%s</h4>", __( 'Export', 'post-snippets' ));
+		printf( "<h3>%s</h3>", __( 'Import/Export', PostSnippets::TEXT_DOMAIN ));
+		printf( "<h4>%s</h4>", __( 'Export', PostSnippets::TEXT_DOMAIN ));
 		echo '<form method="post">';
 		echo '<p>';
-		_e( 'Export your snippets for backup or to import them on another site.', 'post-snippets' );
+		_e( 'Export your snippets for backup or to import them on another site.', PostSnippets::TEXT_DOMAIN );
 		echo '</p>';
-		printf("<input type='submit' class='button' name='postsnippets_export' value='%s' />", __( 'Export Snippets', 'post-snippets') );
+		printf("<input type='submit' class='button' name='postsnippets_export' value='%s' />", __( 'Export Snippets', PostSnippets::TEXT_DOMAIN) );
 		echo '</form>';
 
 		// Export logic, and import html form and logic
@@ -331,7 +331,7 @@ class PostSnippets_Admin
 		echo '<div class="wrap">';
 		echo '<h2>Post Snippets</h2>';
 		echo '<p>';
-		_e( 'This is an overview of all snippets defined for this site. These snippets are inserted into posts from the post editor using the Post Snippets button. You can choose to see the snippets here as-is or as they are actually rendered on the website. Enabling rendered snippets for this overview might look strange if the snippet have dependencies on variables, CSS or other parameters only available on the frontend. If that is the case it is recommended to keep this option disabled.', 'post-snippets' );
+		_e( 'This is an overview of all snippets defined for this site. These snippets are inserted into posts from the post editor using the Post Snippets button. You can choose to see the snippets here as-is or as they are actually rendered on the website. Enabling rendered snippets for this overview might look strange if the snippet have dependencies on variables, CSS or other parameters only available on the frontend. If that is the case it is recommended to keep this option disabled.', PostSnippets::TEXT_DOMAIN );
 		echo '</p>';
 
 		// Form
@@ -341,8 +341,8 @@ class PostSnippets_Admin
 		echo '<form method="post" action="">';
 		wp_nonce_field( 'post_snippets_user_options', 'post_snippets_user_nonce' );
 
-		$this->checkbox(__('Display rendered snippets', 'post-snippets'), 'render', $render  );
-		$this->submit( 'update-post-snippets-user', __('Update', 'post-snippets') );
+		$this->checkbox(__('Display rendered snippets', PostSnippets::TEXT_DOMAIN), 'render', $render  );
+		$this->submit( 'update-post-snippets-user', __('Update', PostSnippets::TEXT_DOMAIN) );
 		echo '</form>';
 
 		// Snippet List
@@ -358,7 +358,7 @@ class PostSnippets_Admin
 				echo "</h3>";
 
 				if ($snippet['vars'])
-					printf( "<strong>%s:</strong> {$snippet['vars']}<br/>", __('Variables', 'post-snippets') );
+					printf( "<strong>%s:</strong> {$snippet['vars']}<br/>", __('Variables', PostSnippets::TEXT_DOMAIN) );
 
 				// echo "<strong>Variables:</strong> {$snippet['vars']}<br/>";
 
@@ -370,9 +370,9 @@ class PostSnippets_Admin
 				if ($snippet['wptexturize'])
 					array_push($options, 'wptexturize');
 				if ($options)
-					printf ( "<strong>%s:</strong> %s<br/>", __('Options', 'post-snippets'), implode(', ', $options) );
+					printf ( "<strong>%s:</strong> %s<br/>", __('Options', PostSnippets::TEXT_DOMAIN), implode(', ', $options) );
 
-				printf( "<br/><strong>%s:</strong><br/>", __('Snippet', 'post-snippets') );
+				printf( "<br/><strong>%s:</strong><br/>", __('Snippet', PostSnippets::TEXT_DOMAIN) );
 				if ( $render ) {
 					echo do_shortcode( $snippet['snippet'] );
 				} else {

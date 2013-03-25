@@ -39,13 +39,13 @@ class PostSnippets
 {
     private static $instance = false;
 
-    const MIN_PHP_VERSION = '5.2.4';
-    const MIN_WP_VERSION  = '3.0';
-    const OPTION_DB_KEY   = 'post_snippets_options';
-    const USER_META_KEY   = 'post_snippets';
-
-    // Constants
+    const MIN_PHP_VERSION     = '5.2.4';
+    const MIN_WP_VERSION      = '3.0';
+    const OPTION_DB_KEY       = 'post_snippets_options';
+    const USER_META_KEY       = 'post_snippets';
     const TINYMCE_PLUGIN_NAME = 'post_snippets';
+    const TEXT_DOMAIN         = 'post-snippets';
+    const FILE                = __FILE__;
 
     /**
      * Singleton class
@@ -137,7 +137,7 @@ class PostSnippets
      */
     public function textDomain()
     {
-        $domain = 'post-snippets';
+        $domain = PostSnippets::TEXT_DOMAIN;
         $locale = apply_filters('plugin_locale', get_locale(), $domain);
         load_textdomain(
             $domain,
@@ -175,7 +175,7 @@ class PostSnippets
      */
     function plugin_action_links( $links, $file ) {
         if ( $file == plugin_basename( dirname(__FILE__).'/post-snippets.php' ) ) {
-            $links[] = '<a href="options-general.php?page=post-snippets/post-snippets.php">'.__('Settings', 'post-snippets').'</a>';
+            $links[] = '<a href="options-general.php?page=post-snippets/post-snippets.php">'.__('Settings', PostSnippets::TEXT_DOMAIN).'</a>';
          }
         return $links;
     }
