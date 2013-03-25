@@ -114,7 +114,7 @@ class PostSnippets
      */
     public static function autoload($className)
     {
-        if ('PostSnippets' !== mb_substr($className, 0, 12)) {
+        if (__CLASS__ !== mb_substr($className, 0, strlen(__CLASS__))) {
             return;
         }
         $className = ltrim($className, '\\');
