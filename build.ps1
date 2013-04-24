@@ -167,10 +167,11 @@ function svn
     cp wp-humans-txt.php build/tags/$version/
     cp readme.txt build/tags/$version/
 
-    cp assets/ -Destination build/tags/$version/assets/ -Recurse
-    cp lang/   -Destination build/tags/$version/lang/   -Recurse
-    cp lib/    -Destination build/tags/$version/lib/    -Recurse
-    cp views/  -Destination build/tags/$version/views/  -Recurse
+    cp assets/  -Destination build/tags/$version/assets/  -Recurse
+    cp lang/    -Destination build/tags/$version/lang/    -Recurse
+    cp lib/     -Destination build/tags/$version/lib/     -Recurse
+    cp tinymce/ -Destination build/tags/$version/tinymce/ -Recurse
+    cp views/   -Destination build/tags/$version/views/   -Recurse
 
     # # Add and commit
     svn.exe add build/tags/$version
