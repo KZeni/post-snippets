@@ -1,12 +1,9 @@
 <?php
 /**
- * Post Snippets Help.
+ * Handles the plugin help screen.
  *
- * Class to handle the help texts and tabs on the settings screen.
- *
- * @package		Post Snippets
- * @author		Johan Steen <artstorm at gmail dot com>
- * @since		Post Snippets 1.8.9
+ * @author  Johan Steen <artstorm at gmail dot com>
+ * @link    http://johansteen.se/
  */
 class PostSnippets_Help
 {
