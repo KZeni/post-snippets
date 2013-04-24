@@ -40,7 +40,7 @@ class PostSnippets
     private static $instance = false;
 
     const MIN_PHP_VERSION     = '5.2.4';
-    const MIN_WP_VERSION      = '3.0';
+    const MIN_WP_VERSION      = '3.3';
     const OPTION_DB_KEY       = 'post_snippets_options';
     const USER_META_KEY       = 'post_snippets';
     const TINYMCE_PLUGIN_NAME = 'post_snippets';
