@@ -87,18 +87,11 @@ class PostSnippets
         add_action( 'admin_footer', array(&$this,'addJqueryUiDialog') );
         
         // Add Editor QuickTag button:
-        // IF WordPress is 3.3 or higher, use the new refactored method to add
-        // the quicktag button.
-        // Start showing a deprecated message from version 1.9 of the plugin for
-        // the old method. And remove it completely when the plugin hits 2.0.
-        global $wp_version;
-        if ( version_compare($wp_version, '3.3', '>=') ) {
-            add_action( 'admin_print_footer_scripts', 
-                        array(&$this,'addQuicktagButton'), 100 );
-        } else {
-            add_action( 'edit_form_advanced', array(&$this,'addQuicktagButtonPre33') );
-            add_action( 'edit_page_form', array(&$this,'addQuicktagButtonPre33') );
-        }
+        add_action(
+            'admin_print_footer_scripts',
+            array(&$this,'addQuicktagButton'),
+            100
+        );
     }
 
     /**
@@ -292,46 +285,6 @@ class PostSnippets
         <?php
         echo "\n<!-- END: Add QuickTag button for Post Snippets -->\n";
     }
-
-
-    /**
-     * Adds a QuickTag button to the HTML editor.
-     *
-     * Used when running on WordPress lower than version 3.3.
-     *
-     * @see         wp-includes/js/quicktags.dev.js
-     * @since       Post Snippets 1.7
-     * @deprecated  Since 1.8.6
-     */
-    function addQuicktagButtonPre33() {
-        // Only run the function on post edit screens
-        if ( function_exists( 'get_current_screen' ) ) {
-            $screen = get_current_screen();
-            if ($screen->base != 'post')
-                return;
-        }
-
-        echo "\n<!-- START: Post Snippets QuickTag button -->\n";
-        ?>
-        <script type="text/javascript" charset="utf-8">
-        // <![CDATA[
-            //edButton(id, display, tagStart, tagEnd, access, open)
-            edbuttonlength = edButtons.length;
-            edButtons[edbuttonlength++] = new edButton('ed_postsnippets', 'Post Snippets', '', '', '', -1);
-           (function(){
-                  if (typeof jQuery === 'undefined') {
-                         return;
-                  }
-                  jQuery(document).ready(function(){
-                         jQuery("#ed_toolbar").append('<input type="button" value="Post Snippets" id="ed_postsnippets" class="ed_button" onclick="edOpenPostSnippets(edCanvas);" title="Post Snippets" />');
-                  });
-            }());
-        // ]]>
-        </script>
-        <?php
-        echo "\n<!-- END: Post Snippets QuickTag button -->\n";
-    }
-
 
     // -------------------------------------------------------------------------
     // JavaScript / jQuery handling for the post editor
