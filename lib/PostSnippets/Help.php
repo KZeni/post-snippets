@@ -15,15 +15,7 @@ class PostSnippets_Help
 	 */
 	public function __construct( $option_page )
 	{
-		// parent::__construct();
-		// If WordPress is 3.3 or higher, use the new Help API, otherwise call
-		// the old contextual help action.
-		global $wp_version;
-		if ( version_compare($wp_version, '3.3', '>=') ) {
-			add_action( 'load-' . $option_page, array(&$this,'addHelpTabs') );
-		} else {
-			add_action( 'contextual_help', array(&$this,'addHelp'), 10, 3 );
-		}
+		add_action( 'load-' . $option_page, array(&$this,'addHelpTabs') );
 	}
 
 	/**
@@ -235,33 +227,5 @@ class PostSnippets_Help
 			echo $my_snippet;<br/>
 		?&gt;
 		</code></p>';
-	}
-
-
-	// -------------------------------------------------------------------------
-	// For compability with WordPress before v3.3.
-	// -------------------------------------------------------------------------
-
-	/**
-	 * Contextual Help for WP < v3.3.
-	 *
-	 * Combines the help tabs above into one long help text for the help tab
-	 * when run on WordPress versions before v3.3.
-	 *
-	 * @since		Post Snippets 1.7.1
-	 * @return		string		The Contextual Help
-	 */
-	public function addHelp($contextual_help, $screen_id, $screen) {
-		if ( $screen->id == 'settings_page_post-snippets/post-snippets' ) {
-			$contextual_help  = '<h1>'.__( 'Basic', PostSnippets::TEXT_DOMAIN ).'</h1>';
-			$contextual_help .= $this->help_basic();
-			$contextual_help .= '<h1>'.__( 'Shortcode', PostSnippets::TEXT_DOMAIN ).'</h1>';
-			$contextual_help .= $this->help_shortcode();
-			$contextual_help .= '<h1>'.__( 'PHP', PostSnippets::TEXT_DOMAIN ).'</h1>';
-			$contextual_help .= $this->help_php();
-			$contextual_help .= '<h1>'.__( 'Advanced', PostSnippets::TEXT_DOMAIN ).'</h1>';
-			$contextual_help .= $this->help_advanced();
-		}
-		return $contextual_help;
 	}
 }
