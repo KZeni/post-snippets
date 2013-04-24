@@ -71,20 +71,20 @@ class PostSnippets
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
 
         // Add TinyMCE button
-        add_action('init', array(&$this, 'addTinymceButton') );
+        add_action('init', array(&$this, 'addTinymceButton'));
 
         // Settings link on plugins list
-        add_filter( 'plugin_action_links', array(&$this, 'actionLinks'), 10, 2 );
+        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
         // Options Page
-        add_action( 'admin_menu', array(&$this,'wpAdmin') );
+        add_action('admin_menu', array(&$this,'wpAdmin'));
 
         $this->createShortcodes();
 
         // Adds the JS and HTML code in the header and footer for the jQuery
         // insert UI dialog in the editor
-        add_action( 'admin_init', array(&$this,'enqueueAssets') );
-        add_action( 'admin_head', array(&$this,'jqueryUiDialog') );
-        add_action( 'admin_footer', array(&$this,'addJqueryUiDialog') );
+        add_action('admin_init', array(&$this,'enqueueAssets'));
+        add_action('admin_head', array(&$this,'jqueryUiDialog'));
+        add_action('admin_footer', array(&$this,'addJqueryUiDialog'));
         
         // Add Editor QuickTag button:
         add_action(
@@ -147,7 +147,7 @@ class PostSnippets
         // Delete all snippets
         delete_option('post_snippets_options');
 
-        // Delete any per user settings 
+        // Delete any per user settings
         global $wpdb;
         $wpdb->query(
             "
@@ -162,10 +162,11 @@ class PostSnippets
      *
      * @return  Array with all the plugin's action links
      */
-    function actionLinks( $links, $file ) {
-        if ( $file == plugin_basename( dirname(__FILE__).'/post-snippets.php' ) ) {
+    public function actionLinks($links, $file)
+    {
+        if ($file == plugin_basename(dirname(__FILE__).'/post-snippets.php')) {
             $links[] = '<a href="options-general.php?page=post-snippets/post-snippets.php">'.__('Settings', PostSnippets::TEXT_DOMAIN).'</a>';
-         }
+        }
         return $links;
     }
 
@@ -175,15 +176,16 @@ class PostSnippets
      *
      * @since       Post Snippets 1.7
      */
-    function enqueueAssets() {
-        wp_enqueue_script( 'jquery-ui-dialog' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
-        wp_enqueue_style( 'wp-jquery-ui-dialog' );
+    public function enqueueAssets()
+    {
+        wp_enqueue_script('jquery-ui-dialog');
+        wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_style('wp-jquery-ui-dialog');
 
         # Adds the CSS stylesheet for the jQuery UI dialog
-        $style_url = plugins_url( '/assets/post-snippets.css', __FILE__ );
-        wp_register_style( 'post-snippets', $style_url, false, '2.0' );
-        wp_enqueue_style( 'post-snippets' );
+        $style_url = plugins_url('/assets/post-snippets.css', __FILE__);
+        wp_register_style('post-snippets', $style_url, false, '2.0');
+        wp_enqueue_style('post-snippets');
     }
     
 
@@ -202,16 +204,20 @@ class PostSnippets
     public function addTinymceButton()
     {
         // Don't bother doing this stuff if the current user lacks permissions
-        if ( !current_user_can('edit_posts') &&
-             !current_user_can('edit_pages') )
+        if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) {
             return;
+        }
 
         // Add only in Rich Editor mode
-        if ( get_user_option('rich_editing') == 'true') {
-            add_filter('mce_external_plugins', 
-                        array(&$this, 'registerTinymcePlugin') );
-            add_filter('mce_buttons',
-                        array(&$this, 'registerTinymceButton') );
+        if (get_user_option('rich_editing') == 'true') {
+            add_filter(
+                'mce_external_plugins',
+                array(&$this, 'registerTinymcePlugin')
+            );
+            add_filter(
+                'mce_buttons',
+                array(&$this, 'registerTinymceButton')
+            );
         }
     }
 
@@ -229,9 +235,9 @@ class PostSnippets
      * @param   array   $buttons    Filter supplied array of buttons to modify
      * @return  array               The modified array with buttons
      */
-    public function registerTinymceButton( $buttons )
+    public function registerTinymceButton($buttons)
     {
-        array_push( $buttons, 'separator', self::TINYMCE_PLUGIN_NAME );
+        array_push($buttons, 'separator', self::TINYMCE_PLUGIN_NAME);
         return $buttons;
     }
 
@@ -247,10 +253,10 @@ class PostSnippets
      * @param   array   $plugins    Filter supplied array of plugins to modify
      * @return  array               The modified array with plugins
      */
-    public function registerTinymcePlugin( $plugins )
+    public function registerTinymcePlugin($plugins)
     {
         // Load the TinyMCE plugin, editor_plugin.js, into the array
-        $plugins[self::TINYMCE_PLUGIN_NAME] = 
+        $plugins[self::TINYMCE_PLUGIN_NAME] =
             plugins_url('/tinymce/editor_plugin.js?ver=1.9', __FILE__);
 
         return $plugins;
@@ -267,10 +273,11 @@ class PostSnippets
     public function addQuicktagButton()
     {
         // Only run the function on post edit screens
-        if ( function_exists( 'get_current_screen' ) ) {
+        if (function_exists('get_current_screen')) {
             $screen = get_current_screen();
-            if ($screen->base != 'post')
+            if ($screen->base != 'post') {
                 return;
+            }
         }
 
         echo "\n<!-- START: Add QuickTag button for Post Snippets -->\n";
@@ -298,10 +305,11 @@ class PostSnippets
     public function jqueryUiDialog()
     {
         // Only run the function on post edit screens
-        if ( function_exists( 'get_current_screen' ) ) {
+        if (function_exists('get_current_screen')) {
             $screen = get_current_screen();
-            if ($screen->base != 'post')
+            if ($screen->base != 'post') {
                 return;
+            }
         }
 
         echo "\n<!-- START: Post Snippets jQuery UI and related functions -->\n";
@@ -310,17 +318,17 @@ class PostSnippets
         # Prepare the snippets and shortcodes into javascript variables
         # so they can be inserted into the editor, and get the variables replaced
         # with user defined strings.
-        $snippets = get_option( self::OPTION_DB_KEY, array() );
+        $snippets = get_option(self::OPTION_DB_KEY, array());
         foreach ($snippets as $key => $snippet) {
             if ($snippet['shortcode']) {
                 # Build a long string of the variables, ie: varname1={varname1} varname2={varname2}
                 # so {varnameX} can be replaced at runtime.
-                $var_arr = explode(",",$snippet['vars']);
+                $var_arr = explode(",", $snippet['vars']);
                 $variables = '';
                 if (!empty($var_arr[0])) {
                     foreach ($var_arr as $var) {
                         // '[test2 yet="{yet}" mupp=per="{mupp=per}" content="{content}"]';
-                        $var = $this->stripDefaultVal( $var );
+                        $var = $this->stripDefaultVal($var);
 
                         $variables .= ' ' . $var . '="{' . $var . '}"';
                     }
@@ -332,12 +340,12 @@ class PostSnippets
                 // rename to js_snippet or something?
                 $snippet = $snippet['snippet'];
                 # Fixes for potential collisions:
-                /* Replace <> with char codes, otherwise </script> in a snippet will break it */ 
-                $snippet = str_replace( '<', '\x3C', str_replace( '>', '\x3E', $snippet ) );
+                /* Replace <> with char codes, otherwise </script> in a snippet will break it */
+                $snippet = str_replace('<', '\x3C', str_replace('>', '\x3E', $snippet));
                 /* Escape " with \" */
-                $snippet = str_replace( '"', '\"', $snippet );
+                $snippet = str_replace('"', '\"', $snippet);
                 /* Remove CR and replace LF with \n to keep formatting */
-                $snippet = str_replace( chr(13), '', str_replace( chr(10), '\n', $snippet ) );
+                $snippet = str_replace(chr(13), '', str_replace(chr(10), '\n', $snippet));
                 # Print out the variable containing the snippet
                 echo "var postsnippet_{$key} = \"" . $snippet . "\";\n";
             }
@@ -345,18 +353,18 @@ class PostSnippets
         ?>
         
         jQuery(document).ready(function($){
-            <?php
-            # Create js variables for all form fields
-            foreach ($snippets as $key => $snippet) {
-                $var_arr = explode(",",$snippet['vars']);
-                if (!empty($var_arr[0])) {
-                    foreach ($var_arr as $key_2 => $var) {
-                        $varname = "var_" . $key . "_" . $key_2;
-                        echo "var {$varname} = $( \"#{$varname}\" );\n";
-                    }
+        <?php
+        # Create js variables for all form fields
+        foreach ($snippets as $key => $snippet) {
+            $var_arr = explode(",", $snippet['vars']);
+            if (!empty($var_arr[0])) {
+                foreach ($var_arr as $key_2 => $var) {
+                    $varname = "var_" . $key . "_" . $key_2;
+                    echo "var {$varname} = $( \"#{$varname}\" );\n";
                 }
             }
-            ?>
+        }
+        ?>
             
             var $tabs = $("#post-snippets-tabs").tabs();
             
@@ -372,26 +380,28 @@ class PostSnippets
                         "Insert": function() {
                             $( this ).dialog( "close" );
                             var selected = $tabs.tabs('option', 'selected');
-                            <?php
-                            foreach ($snippets as $key => $snippet) {
-                            ?>
+                        <?php
+        foreach ($snippets as $key => $snippet) {
+                        ?>
                                 if (selected == <?php echo $key; ?>) {
                                     insert_snippet = postsnippet_<?php echo $key; ?>;
                                     <?php
-                                    $var_arr = explode(",",$snippet['vars']);
-                                    if (!empty($var_arr[0])) {
-                                        foreach ($var_arr as $key_2 => $var) {
-                                            $varname = "var_" . $key . "_" . $key_2; ?>
-                                            insert_snippet = insert_snippet.replace(/\{<?php echo $this->stripDefaultVal( $var ); ?>\}/g, <?php echo $varname; ?>.val());
-                                    <?php
-                                            echo "\n";
-                                        }
-                                    }
-                                    ?>
+                                    $var_arr = explode(",", $snippet['vars']);
+            if (!empty($var_arr[0])) {
+                foreach ($var_arr as $key_2 => $var) {
+                    $varname = "var_" . $key . "_" . $key_2; ?>
+                                            insert_snippet = insert_snippet.replace(/\{<?php
+                                            echo $this->stripDefaultVal($var);
+                                            ?>\}/g, <?php echo $varname; ?>.val());
+            <?php
+                    echo "\n";
+                }
+            }
+            ?>
                                 }
-                            <?php
-                            }
-                            ?>
+        <?php
+        }
+        ?>
 
                             // Decide what method to use to insert the snippet depending
                             // from what editor the window was opened from
@@ -466,13 +476,13 @@ function edOpenPostSnippets(myField) {
      * @param   string  $variable   The variable to check for default value
      * @return  string              The variable without any default value
      */
-    public function stripDefaultVal( $variable )
+    public function stripDefaultVal($variable)
     {
         // Check if variable contains a default defintion
-        $def_pos = strpos( $variable, '=' );
+        $def_pos = strpos($variable, '=');
 
-        if ( $def_pos !== false ) {
-            $split = str_split( $variable, $def_pos );
+        if ($def_pos !== false) {
+            $split = str_split($variable, $def_pos);
             $variable = $split[0];
         }
         return $variable;
@@ -485,14 +495,15 @@ function edOpenPostSnippets(myField) {
     /**
      * Create the functions for shortcodes dynamically and register them
      */
-    function createShortcodes() {
-        $snippets = get_option( self::OPTION_DB_KEY );
+    public function createShortcodes()
+    {
+        $snippets = get_option(self::OPTION_DB_KEY);
         if (!empty($snippets)) {
             foreach ($snippets as $snippet) {
                 // If shortcode is enabled for the snippet, and a snippet has been entered, register it as a shortcode.
-                if ( $snippet['shortcode'] && !empty($snippet['snippet']) ) {
+                if ($snippet['shortcode'] && !empty($snippet['snippet'])) {
                     
-                    $vars = explode(",",$snippet['vars']);
+                    $vars = explode(",", $snippet['vars']);
                     $vars_str = "";
                     foreach ($vars as $var) {
                         $attribute = explode('=', $var);
@@ -500,7 +511,7 @@ function edOpenPostSnippets(myField) {
                         $vars_str .= "\"{$attribute[0]}\" => \"{$default_value}\",";
                     }
 
-                    // Get the wptexturize setting 
+                    // Get the wptexturize setting
                     $texturize = isset( $snippet["wptexturize"] ) ? $snippet["wptexturize"] : false;
 
                     add_shortcode($snippet['title'], create_function('$atts,$content=null', 
