@@ -77,46 +77,7 @@ class PostSnippets_Help
      */
     public function helpBasic()
     {
-        return '<h2>'.
-        __( 'Title', PostSnippets::TEXT_DOMAIN ).
-        '</h2>
-        <p>'.
-        __( 'Give the snippet a title that helps you identify it in the post editor. This also becomes the name of the shortcode if you enable that option', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-
-        <h2>'.
-        __( 'Variables', PostSnippets::TEXT_DOMAIN ).
-        '</h2>
-        <p>'.
-        __( 'A comma separated list of custom variables you can reference in your snippet. A variable can also be assigned a default value that will be used in the insert window by using the equal sign, variable=default.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p><strong>'.
-        __( 'Example', PostSnippets::TEXT_DOMAIN ).
-        '</strong><br/>
-        <code>url,name,role=user,title</code></p>'.
-
-        '<h2>'.
-        __( 'Snippet', PostSnippets::TEXT_DOMAIN ).
-        '</h2>
-        <p>'.
-        __('This is the block of text, HTML or PHP to insert in the post or as a shortcode. If you have entered predefined variables you can reference them from the snippet by enclosing them in {} brackets.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p><strong>'.
-        __( 'Example', PostSnippets::TEXT_DOMAIN ).
-        '</strong><br/>'.
-        __( 'To reference the variables in the example above, you would enter {url} and {name}. So if you enter this snippet:', PostSnippets::TEXT_DOMAIN ).
-        '<br/>
-        <code>This is the website of &lt;a href="{url}"&gt;{name}&lt;/a&gt;</code>
-        <br/>'.
-        __( 'You will get the option to replace url and name on insert if they are defined as variables.', PostSnippets::TEXT_DOMAIN).
-        '</p>
-        
-        <h2>'
-        . __( 'Description', PostSnippets::TEXT_DOMAIN ).
-        '</h2>
-        <p>'.
-        __( 'An optional description for the Snippet. If filled out, the description will be displayed in the snippets insert window in the post editor.', PostSnippets::TEXT_DOMAIN).
-        '</p>';
+        return PostSnippets_View::render('help_basic');
     }
 
     /**
