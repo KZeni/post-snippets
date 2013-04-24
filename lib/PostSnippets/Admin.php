@@ -312,8 +312,8 @@ class PostSnippets_Admin
 		echo '</form>';
 
 		// Export logic, and import html form and logic
-		$ie->export_snippets();
-		echo $ie->import_snippets();
+		$ie->exportSnippets();
+		echo $ie->importSnippets();
 	}
 
 
