@@ -72,7 +72,6 @@ class PostSnippets_Help
     /**
      * The basic help tab.
      * 
-     * @since   Post Snippets 1.9.1
      * @return  string  The help text
      */
     public function helpBasic()
@@ -83,37 +82,16 @@ class PostSnippets_Help
     /**
      * The shortcode help tab.
      * 
-     * @since   Post Snippets 1.9.1
      * @return  string  The help text
      */
     public function helpShortcode()
     {
-        return '<p>'.
-        __( 'When enabling the shortcode checkbox, the snippet is no longer inserted directly but instead inserted as a shortcode. The obvious advantage of this is of course that you can insert a block of text or code in many places on the site, and update the content from one single place.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-
-        <p>'.
-        __( 'The name to use the shortcode is the same as the title of the snippet (spaces are not allowed). When inserting a shortcode snippet, the shortcode and not the content will be inserted in the post.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p>'.
-        __( 'If you enclose the shortcode in your posts, you can access the enclosed content by using the variable {content} in your snippet. The {content} variable is reserved, so don\'t use it in the variables field.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-
-        <h2>'
-        . __( 'Options', PostSnippets::TEXT_DOMAIN ).
-        '</h2>
-        <p><strong>PHP</strong><br/>'.
-        __( 'See the dedicated help section for information about PHP shortcodes.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p><strong>wptexturize</strong><br/>'.
-        sprintf(__( 'Before the shortcode is outputted, it can optionally be formatted with %s, to transform quotes to smart quotes, apostrophes, dashes, ellipses, the trademark symbol, and the multiplication symbol.', PostSnippets::TEXT_DOMAIN ), '<a href="http://codex.wordpress.org/Function_Reference/wptexturize">wptexturize</a>' ).
-        '</p>';
+        return PostSnippets_View::render('help_shortcode');
     }
 
     /**
      * The PHP help tab.
      * 
-     * @since   Post Snippets 1.9.1
      * @return  string  The help text
      */
     public function helpPhp()
@@ -147,7 +125,6 @@ class PostSnippets_Help
     /**
      * The advanced help tab.
      * 
-     * @since   Post Snippets 1.9.1
      * @return  string  The help text
      */
     public function helpAdvanced()
