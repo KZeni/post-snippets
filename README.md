@@ -1,5 +1,7 @@
 # Post Snippets
 
+[![Build Status](https://travis-ci.org/artstorm/post-snippets.png?branch=develop)](https://travis-ci.org/artstorm/post-snippets)
+
 WordPress Plugin to kKeep a snippet library of text, HTML or PHP code to be used in posts. Variables can be set for more flexibility. Inserts directly or as shortcodes.
 
 * [WordPress Repository](http://wordpress.org/extend/plugins/post-snippets/)
