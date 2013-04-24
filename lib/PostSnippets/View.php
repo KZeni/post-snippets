@@ -1,9 +1,9 @@
 <?php
 /**
- * Class for MVC like View Handling in WordPress.
+ * MVC like View Handling in WordPress.
  *
- * @package  Post Snippets
  * @author   Johan Steen <artstorm at gmail dot com>
+ * @link     http://johansteen.se/
  */
 class PostSnippets_View
 {
