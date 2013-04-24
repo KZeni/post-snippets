@@ -71,20 +71,20 @@ class PostSnippets
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
 
         // Add TinyMCE button
-        add_action('init', array(&$this, 'add_tinymce_button') );
+        add_action('init', array(&$this, 'addTinymceButton') );
 
         // Settings link on plugins list
-        add_filter( 'plugin_action_links', array(&$this, 'plugin_action_links'), 10, 2 );
+        add_filter( 'plugin_action_links', array(&$this, 'actionLinks'), 10, 2 );
         // Options Page
-        add_action( 'admin_menu', array(&$this,'wp_admin') );
+        add_action( 'admin_menu', array(&$this,'wpAdmin') );
 
-        $this->create_shortcodes();
+        $this->createShortcodes();
 
         // Adds the JS and HTML code in the header and footer for the jQuery
         // insert UI dialog in the editor
-        add_action( 'admin_init', array(&$this,'enqueue_assets') );
-        add_action( 'admin_head', array(&$this,'jquery_ui_dialog') );
-        add_action( 'admin_footer', array(&$this,'add_jquery_ui_dialog') );
+        add_action( 'admin_init', array(&$this,'enqueueAssets') );
+        add_action( 'admin_head', array(&$this,'jqueryUiDialog') );
+        add_action( 'admin_footer', array(&$this,'addJqueryUiDialog') );
         
         // Add Editor QuickTag button:
         // IF WordPress is 3.3 or higher, use the new refactored method to add
@@ -94,10 +94,10 @@ class PostSnippets
         global $wp_version;
         if ( version_compare($wp_version, '3.3', '>=') ) {
             add_action( 'admin_print_footer_scripts', 
-                        array(&$this,'add_quicktag_button'), 100 );
+                        array(&$this,'addQuicktagButton'), 100 );
         } else {
-            add_action( 'edit_form_advanced', array(&$this,'add_quicktag_button_pre33') );
-            add_action( 'edit_page_form', array(&$this,'add_quicktag_button_pre33') );
+            add_action( 'edit_form_advanced', array(&$this,'addQuicktagButtonPre33') );
+            add_action( 'edit_page_form', array(&$this,'addQuicktagButtonPre33') );
         }
     }
 
@@ -169,7 +169,7 @@ class PostSnippets
      *
      * @return  Array with all the plugin's action links
      */
-    function plugin_action_links( $links, $file ) {
+    function actionLinks( $links, $file ) {
         if ( $file == plugin_basename( dirname(__FILE__).'/post-snippets.php' ) ) {
             $links[] = '<a href="options-general.php?page=post-snippets/post-snippets.php">'.__('Settings', PostSnippets::TEXT_DOMAIN).'</a>';
          }
@@ -182,7 +182,7 @@ class PostSnippets
      *
      * @since       Post Snippets 1.7
      */
-    function enqueue_assets() {
+    function enqueueAssets() {
         wp_enqueue_script( 'jquery-ui-dialog' );
         wp_enqueue_script( 'jquery-ui-tabs' );
         wp_enqueue_style( 'wp-jquery-ui-dialog' );
@@ -206,7 +206,7 @@ class PostSnippets
      *
      * @since   Post Snippets 1.8.7
      */
-    public function add_tinymce_button()
+    public function addTinymceButton()
     {
         // Don't bother doing this stuff if the current user lacks permissions
         if ( !current_user_can('edit_posts') &&
@@ -216,9 +216,9 @@ class PostSnippets
         // Add only in Rich Editor mode
         if ( get_user_option('rich_editing') == 'true') {
             add_filter('mce_external_plugins', 
-                        array(&$this, 'register_tinymce_plugin') );
+                        array(&$this, 'registerTinymcePlugin') );
             add_filter('mce_buttons',
-                        array(&$this, 'register_tinymce_button') );
+                        array(&$this, 'registerTinymceButton') );
         }
     }
 
@@ -236,7 +236,7 @@ class PostSnippets
      * @param   array   $buttons    Filter supplied array of buttons to modify
      * @return  array               The modified array with buttons
      */
-    public function register_tinymce_button( $buttons )
+    public function registerTinymceButton( $buttons )
     {
         array_push( $buttons, 'separator', self::TINYMCE_PLUGIN_NAME );
         return $buttons;
@@ -254,7 +254,7 @@ class PostSnippets
      * @param   array   $plugins    Filter supplied array of plugins to modify
      * @return  array               The modified array with plugins
      */
-    public function register_tinymce_plugin( $plugins )
+    public function registerTinymcePlugin( $plugins )
     {
         // Load the TinyMCE plugin, editor_plugin.js, into the array
         $plugins[self::TINYMCE_PLUGIN_NAME] = 
@@ -271,7 +271,7 @@ class PostSnippets
      * @see         wp-includes/js/quicktags.dev.js -> qt.addButton()
      * @since       Post Snippets 1.8.6
      */
-    public function add_quicktag_button()
+    public function addQuicktagButton()
     {
         // Only run the function on post edit screens
         if ( function_exists( 'get_current_screen' ) ) {
@@ -303,7 +303,7 @@ class PostSnippets
      * @since       Post Snippets 1.7
      * @deprecated  Since 1.8.6
      */
-    function add_quicktag_button_pre33() {
+    function addQuicktagButtonPre33() {
         // Only run the function on post edit screens
         if ( function_exists( 'get_current_screen' ) ) {
             $screen = get_current_screen();
@@ -342,7 +342,7 @@ class PostSnippets
      *
      * @since       Post Snippets 1.7
      */
-    public function jquery_ui_dialog()
+    public function jqueryUiDialog()
     {
         // Only run the function on post edit screens
         if ( function_exists( 'get_current_screen' ) ) {
@@ -367,7 +367,7 @@ class PostSnippets
                 if (!empty($var_arr[0])) {
                     foreach ($var_arr as $var) {
                         // '[test2 yet="{yet}" mupp=per="{mupp=per}" content="{content}"]';
-                        $var = $this->strip_default_val( $var );
+                        $var = $this->stripDefaultVal( $var );
 
                         $variables .= ' ' . $var . '="{' . $var . '}"';
                     }
@@ -429,7 +429,7 @@ class PostSnippets
                                     if (!empty($var_arr[0])) {
                                         foreach ($var_arr as $key_2 => $var) {
                                             $varname = "var_" . $key . "_" . $key_2; ?>
-                                            insert_snippet = insert_snippet.replace(/\{<?php echo $this->strip_default_val( $var ); ?>\}/g, <?php echo $varname; ?>.val());
+                                            insert_snippet = insert_snippet.replace(/\{<?php echo $this->stripDefaultVal( $var ); ?>\}/g, <?php echo $varname; ?>.val());
                                     <?php
                                             echo "\n";
                                         }
@@ -488,7 +488,7 @@ function edOpenPostSnippets(myField) {
      *
      * @since       Post Snippets 1.7
      */
-    public function add_jquery_ui_dialog()
+    public function addJqueryUiDialog()
     {
         // Only run the function on post edit screens
         if (function_exists('get_current_screen')) {
@@ -513,7 +513,7 @@ function edOpenPostSnippets(myField) {
      * @param   string  $variable   The variable to check for default value
      * @return  string              The variable without any default value
      */
-    public function strip_default_val( $variable )
+    public function stripDefaultVal( $variable )
     {
         // Check if variable contains a default defintion
         $def_pos = strpos( $variable, '=' );
@@ -532,7 +532,7 @@ function edOpenPostSnippets(myField) {
     /**
      * Create the functions for shortcodes dynamically and register them
      */
-    function create_shortcodes() {
+    function createShortcodes() {
         $snippets = get_option( self::OPTION_DB_KEY );
         if (!empty($snippets)) {
             foreach ($snippets as $snippet) {
@@ -571,7 +571,7 @@ function edOpenPostSnippets(myField) {
                                 // Handle PHP shortcodes
                                 $php = "'. $snippet["php"] .'";
                                 if ($php == true) {
-                                    $snippet = PostSnippets::php_eval( $snippet );
+                                    $snippet = PostSnippets::phpEval( $snippet );
                                 }
 
                                 // Strip escaping and execute nested shortcodes
@@ -596,7 +596,7 @@ function edOpenPostSnippets(myField) {
      * @param   string  $content    The snippet to evaluate
      * @return  string              The result of the evaluation
      */
-    public static function php_eval( $content )
+    public static function phpEval( $content )
     {
         if ( !self::canExecutePHP() )
             return $content;
@@ -618,16 +618,16 @@ function edOpenPostSnippets(myField) {
     /**
      * The Admin Page.
      */
-    function wp_admin() {
+    function wpAdmin() {
         if ( current_user_can('manage_options') ) {
             // If user can manage options, display the admin page
-            $option_page = add_options_page( 'Post Snippets Options', 'Post Snippets', 'administrator', __FILE__, array(&$this, 'options_page') );
+            $option_page = add_options_page( 'Post Snippets Options', 'Post Snippets', 'administrator', __FILE__, array(&$this, 'optionsPage') );
             if ( $option_page and class_exists('PostSnippets_Help') ) {
                 $help = new PostSnippets_Help( $option_page );
             }
         } else {
             // If user can't manage options, but can edit posts, display the overview page
-            $option_page = add_options_page( 'Post Snippets', 'Post Snippets', 'edit_posts', __FILE__, array(&$this, 'overview_page') );
+            $option_page = add_options_page( 'Post Snippets', 'Post Snippets', 'edit_posts', __FILE__, array(&$this, 'overviewPage') );
         }
     }
 
@@ -639,7 +639,7 @@ function edOpenPostSnippets(myField) {
      *
      * @since   Post Snippets 1.9.7
      */
-    public function overview_page()
+    public function overviewPage()
     {
         $settings = new PostSnippets_Admin();
         $settings->render( 'overview' );
@@ -650,7 +650,7 @@ function edOpenPostSnippets(myField) {
      *
      * For users with manage_options capability.
      */
-    public function options_page()
+    public function optionsPage()
     {
         $settings = new PostSnippets_Admin();
         $settings->render( 'options' );

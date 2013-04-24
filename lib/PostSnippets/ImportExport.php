@@ -19,18 +19,18 @@ class PostSnippets_ImportExport
 	 *
 	 * @since		Post Snippets 1.8
 	 */
-	public function export_snippets() {
+	public function exportSnippets() {
 		if ( isset($_POST['postsnippets_export']) ) {
-			$url = $this->create_export_file();
+			$url = $this->createExportFile();
 			if ($url) {
 				define('PSURL', $url);
-				function psnippets_footer() {
+				function psnippetsFooter() {
 					$export =  '<script type="text/javascript">
 									document.location = \''.PSURL.'\';
 								</script>';
 					echo $export;
 				}
-				add_action('admin_footer', 'psnippets_footer', 10000);
+				add_action('admin_footer', 'psnippetsFooter', 10000);
 
 			} else {
 				$export .= 'Error: '.$url;
@@ -51,7 +51,7 @@ class PostSnippets_ImportExport
 	 * @since		Post Snippets 1.8
 	 * @return		string			URL to the exported snippets
 	 */
-	private function create_export_file() {
+	private function createExportFile() {
 		$snippets = serialize(get_option( PostSnippets::optionDBKey() ));
 		$snippets = apply_filters( 'post_snippets_export', $snippets );
 		$dir = wp_upload_dir();
@@ -87,7 +87,7 @@ class PostSnippets_ImportExport
 	 * @since		Post Snippets 1.8
  	 * @return		string			HTML to handle the import
 	 */
-	public function import_snippets() {
+	public function importSnippets() {
 		$import = '<br/><br/><strong>'.__( 'Import', PostSnippets::TEXT_DOMAIN ).'</strong><br/>';
 		if ( !isset($_FILES['postsnippets_import_file']) || empty($_FILES['postsnippets_import_file']) ) {
 			$import .= '<p>'.__( 'Import snippets from a post-snippets-export.zip file. Importing overwrites any existing snippets.', PostSnippets::TEXT_DOMAIN ).'</p>';

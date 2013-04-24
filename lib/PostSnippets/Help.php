@@ -23,9 +23,9 @@ class PostSnippets_Help
 		// the old contextual help action.
 		global $wp_version;
 		if ( version_compare($wp_version, '3.3', '>=') ) {
-			add_action( 'load-' . $option_page, array(&$this,'add_help_tabs') );
+			add_action( 'load-' . $option_page, array(&$this,'addHelpTabs') );
 		} else {
-			add_action( 'contextual_help', array(&$this,'add_help'), 10, 3 );
+			add_action( 'contextual_help', array(&$this,'addHelp'), 10, 3 );
 		}
 	}
 
@@ -34,30 +34,30 @@ class PostSnippets_Help
 	 *
 	 * @since	Post Snippets 1.8.9
 	 */
-	public function add_help_tabs() {
+	public function addHelpTabs() {
 		$screen = get_current_screen();
-		$screen->set_help_sidebar( $this->help_sidebar() );
+		$screen->set_help_sidebar( $this->helpSidebar() );
 		$screen->add_help_tab( array(
 			'id'      => 'basic-plugin-help',
 			'title'   => __( 'Basic', PostSnippets::TEXT_DOMAIN ),
-			'content' => $this->help_basic()
+			'content' => $this->helpBasic()
 		) );
 		$screen->add_help_tab( array(
 			'id'      => 'shortcode-plugin-help',
 			'title'   => __( 'Shortcode', PostSnippets::TEXT_DOMAIN ),
-			'content' => $this->help_shortcode()
+			'content' => $this->helpShortcode()
 		) );
 		if ( PostSnippets::canExecutePHP() ) {
 			$screen->add_help_tab( array(
 				'id'      => 'php-plugin-help',
 				'title'   => __( 'PHP', PostSnippets::TEXT_DOMAIN ),
-				'content' => $this->help_php()
+				'content' => $this->helpPhp()
 			) );
 		}
 		$screen->add_help_tab( array(
 			'id'      => 'advanced-plugin-help',
 			'title'   => __( 'Advanced', PostSnippets::TEXT_DOMAIN ),
-			'content' => $this->help_advanced()
+			'content' => $this->helpAdvanced()
 		) );
 	}
 
@@ -67,7 +67,7 @@ class PostSnippets_Help
 	 * @since	Post Snippets 1.8.9
 	 * @return	string	The help text
 	 */
-	public function help_sidebar()
+	public function helpSidebar()
 	{
 		return '<p><strong>'.
 		__( 'For more information:', PostSnippets::TEXT_DOMAIN ).
@@ -88,7 +88,7 @@ class PostSnippets_Help
 	 * @since	Post Snippets 1.9.1
 	 * @return	string	The help text
 	 */
-	public function help_basic()
+	public function helpBasic()
 	{
 		return '<h2>'.
 		__( 'Title', PostSnippets::TEXT_DOMAIN ).
@@ -138,7 +138,7 @@ class PostSnippets_Help
 	 * @since	Post Snippets 1.9.1
 	 * @return	string	The help text
 	 */
-	public function help_shortcode()
+	public function helpShortcode()
 	{
 		return '<p>'.
 		__( 'When enabling the shortcode checkbox, the snippet is no longer inserted directly but instead inserted as a shortcode. The obvious advantage of this is of course that you can insert a block of text or code in many places on the site, and update the content from one single place.', PostSnippets::TEXT_DOMAIN ).
@@ -168,7 +168,7 @@ class PostSnippets_Help
 	 * @since	Post Snippets 1.9.1
 	 * @return	string	The help text
 	 */
-	public function help_php()
+	public function helpPhp()
 	{
 		return '<p>'.
 		__('Snippets defined as shortcodes can optionally also be evaluated as PHP Code by enabling the PHP checkbox. PHP snippets is only available when treating the snippet as a shortcode.', PostSnippets::TEXT_DOMAIN ).
@@ -202,7 +202,7 @@ class PostSnippets_Help
 	 * @since	Post Snippets 1.9.1
 	 * @return	string	The help text
 	 */
-	public function help_advanced()
+	public function helpAdvanced()
 	{
 		return '<p>'.
 		__('You can retrieve a Post Snippet directly from PHP, in a theme for instance, by using the PostSnippets::getSnippet() method.', PostSnippets::TEXT_DOMAIN).
@@ -254,7 +254,7 @@ class PostSnippets_Help
 	 * @since		Post Snippets 1.7.1
 	 * @return		string		The Contextual Help
 	 */
-	public function add_help($contextual_help, $screen_id, $screen) {
+	public function addHelp($contextual_help, $screen_id, $screen) {
 		if ( $screen->id == 'settings_page_post-snippets/post-snippets' ) {
 			$contextual_help  = '<h1>'.__( 'Basic', PostSnippets::TEXT_DOMAIN ).'</h1>';
 			$contextual_help .= $this->help_basic();

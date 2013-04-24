@@ -110,7 +110,7 @@ class PostSnippets_Admin
 	 *
 	 * @since	Post Snippets 1.9.7
 	 */
-	private function set_user_options()
+	private function setUserOptions()
 	{
 		if ( isset($_POST['post_snippets_user_nonce']) && wp_verify_nonce( $_POST['post_snippets_user_nonce'], 'post_snippets_user_options') )
 		{
@@ -128,7 +128,7 @@ class PostSnippets_Admin
 	 * @since	Post Snippets 1.9.7
 	 * @return	boolean	If overview should be rendered on output or not
 	 */
-	private function get_user_options()
+	private function getUserOptions()
 	{
 		$id = get_current_user_id();
 		$options = get_user_meta( $id, PostSnippets::userMetaKey(), true ); 
@@ -150,11 +150,11 @@ class PostSnippets_Admin
 	{
 		switch ( $page ) {
 			case 'options':
-				$this->options_page();
+				$this->optionsPage();
 				break;
 			
 			default:
-				$this->overview_page();
+				$this->overviewPage();
 				break;
 		}
 	}
@@ -177,7 +177,7 @@ class PostSnippets_Admin
 	 *
 	 * @since	Post Snippets 1.8.8
 	 */
-	private function options_page()
+	private function optionsPage()
 	{
 		// Handle Form Submits
 		$this->add();
@@ -204,9 +204,9 @@ class PostSnippets_Admin
 
 		// Tab content
 		if( $active_tab == 'snippets' )
-			$this->tab_snippets();
+			$this->tabSnippets();
 		else
-			$this->tab_tools();
+			$this->tabTools();
 
 		// Close it
 		echo '</div>';
@@ -217,7 +217,7 @@ class PostSnippets_Admin
 	 *
 	 * @since	Post Snippets 2.0
 	 */
-	private function tab_snippets()
+	private function tabSnippets()
 	{
 		echo '<form method="post" action="">';
 		wp_nonce_field( 'update_snippets', 'update_snippets_nonce' );
@@ -297,7 +297,7 @@ class PostSnippets_Admin
 	 *
 	 * @since	Post Snippets 2.0
 	 */
-	private function tab_tools()
+	private function tabTools()
 	{
 		$ie = new PostSnippets_ImportExport();
 
@@ -325,7 +325,7 @@ class PostSnippets_Admin
 	 *
 	 * @since	Post Snippets 1.9.7
 	 */
-	private function overview_page()
+	private function overviewPage()
 	{
 		// Header
 		echo '<div class="wrap">';
@@ -335,8 +335,8 @@ class PostSnippets_Admin
 		echo '</p>';
 
 		// Form
-		$this->set_user_options();
-		$render = $this->get_user_options();
+		$this->setUserOptions();
+		$render = $this->getUserOptions();
 
 		echo '<form method="post" action="">';
 		wp_nonce_field( 'post_snippets_user_options', 'post_snippets_user_nonce' );
