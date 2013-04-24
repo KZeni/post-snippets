@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Post Snippets
-Plugin URI: http://wpstorm.net/wordpress-plugins/post-snippets/
+Plugin URI: http://johansteen.se/code/post-snippets/
 Description: Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes.
 Author: Johan Steen
 Author URI: http://johansteen.se/
