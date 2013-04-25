@@ -203,8 +203,12 @@ class PostSnippets_Admin
         $this->update();
 
         // Header
-        echo '<div class="wrap">';
-        echo '<h2>Post Snippets</h2>';
+        echo '
+        <!-- Create a header in the default WordPress \'wrap\' container -->
+        <div class="wrap">
+            <div id="icon-plugins" class="icon32"></div>
+            <h2>Post Snippets</h2>
+        ';
 
         // Tabs
         $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'snippets';
