@@ -428,16 +428,6 @@ class PostSnippets
         var post_snippets_canvas;
         var post_snippets_caller = '';
 
-        /**
-         * Used in WordPress lower than version 3.3.
-         * Not used anymore starting with WordPress version 3.3.
-         * Called from: add_quicktag_button_pre33()
-         */
-        function edOpenPostSnippets(myField) {
-                post_snippets_canvas = myField;
-                post_snippets_caller = 'html_pre33';
-                jQuery( "#post-snippets-dialog" ).dialog( "open" );
-        };
         <?php
         echo "</script>\n";
         echo "\n<!-- END: Post Snippets jQuery UI and related functions -->\n";
