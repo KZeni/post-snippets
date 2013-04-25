@@ -100,7 +100,7 @@ class PostSnippets_ImportExport
                             $snippets
                         );
                         update_option(
-                            PostSnippets::optionDBKey(),
+                            PostSnippets::OPTION_KEY,
                             unserialize($snippets)
                         );
                     }
@@ -147,7 +147,7 @@ class PostSnippets_ImportExport
      */
     private function createExportFile()
     {
-        $snippets = serialize(get_option(PostSnippets::optionDBKey()));
+        $snippets = serialize(get_option(PostSnippets::OPTION_KEY));
         $snippets = apply_filters('post_snippets_export', $snippets);
         $dir = wp_upload_dir();
         $upload_dir = $dir['basedir'] . '/';

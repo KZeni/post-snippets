@@ -23,7 +23,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::optionDBKey());
+            $snippets = get_option(PostSnippets::OPTION_KEY);
             if (empty($snippets)) {
                 $snippets = array();
             }
@@ -41,7 +41,7 @@ class PostSnippets_Admin
                 )
             );
 
-            update_option(PostSnippets::optionDBKey(), $snippets);
+            update_option(PostSnippets::OPTION_KEY, $snippets);
             $this->message(__('A snippet named Untitled has been added.', PostSnippets::TEXT_DOMAIN));
         }
     }
@@ -55,7 +55,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::optionDBKey());
+            $snippets = get_option(PostSnippets::OPTION_KEY);
 
             if (empty($snippets) || !isset($_POST['checked'])) {
                 $this->message(__('Nothing selected to delete.', PostSnippets::TEXT_DOMAIN));
@@ -70,7 +70,7 @@ class PostSnippets_Admin
                 }
             }
 
-            update_option(PostSnippets::optionDBKey(), $newsnippets);
+            update_option(PostSnippets::OPTION_KEY, $newsnippets);
             $this->message(__('Selected snippets have been deleted.', PostSnippets::TEXT_DOMAIN));
         }
     }
@@ -84,7 +84,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::optionDBKey());
+            $snippets = get_option(PostSnippets::OPTION_KEY);
             if (!empty($snippets)) {
                 foreach ($snippets as $key => $value) {
                     $new_snippets[$key]['title'] = trim($_POST[$key.'_title']);
@@ -102,7 +102,7 @@ class PostSnippets_Admin
                     $new_snippets[$key]['snippet'] = wp_specialchars_decode(trim(stripslashes($_POST[$key.'_snippet'])), ENT_NOQUOTES);
                     $new_snippets[$key]['description'] = wp_specialchars_decode(trim(stripslashes($_POST[$key.'_description'])), ENT_NOQUOTES);
                 }
-                update_option(PostSnippets::optionDBKey(), $new_snippets);
+                update_option(PostSnippets::OPTION_KEY, $new_snippets);
                 $this->message(__('Snippets have been updated.', PostSnippets::TEXT_DOMAIN));
             }
         }
@@ -122,7 +122,7 @@ class PostSnippets_Admin
         ) {
             $id = get_current_user_id();
             $render = isset( $_POST['render'] ) ? true : false;
-            update_user_meta($id, PostSnippets::userMetaKey(), $render);
+            update_user_meta($id, PostSnippets::USER_META_KEY, $render);
         }
     }
 
@@ -137,7 +137,7 @@ class PostSnippets_Admin
     private function getUserOptions()
     {
         $id = get_current_user_id();
-        $options = get_user_meta($id, PostSnippets::userMetaKey(), true);
+        $options = get_user_meta($id, PostSnippets::USER_META_KEY, true);
         return $options;
     }
 
@@ -251,7 +251,7 @@ class PostSnippets_Admin
     
         <tbody>
         <?php 
-        $snippets = get_option( PostSnippets::optionDBKey() );
+        $snippets = get_option( PostSnippets::OPTION_KEY );
         if (!empty($snippets)) {
             foreach ($snippets as $key => $snippet) {
             ?>
@@ -353,7 +353,7 @@ class PostSnippets_Admin
         echo '</form>';
 
         // Snippet List
-        $snippets = get_option( PostSnippets::optionDBKey() );
+        $snippets = get_option( PostSnippets::OPTION_KEY );
         if (!empty($snippets)) {
             foreach ($snippets as $key => $snippet) {
 
