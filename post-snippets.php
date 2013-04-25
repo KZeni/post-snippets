@@ -41,7 +41,7 @@ class PostSnippets
 
     const MIN_PHP_VERSION     = '5.2.4';
     const MIN_WP_VERSION      = '3.3';
-    const OPTION_DB_KEY       = 'post_snippets_options';
+    const OPTION_KEY          = 'post_snippets_options';
     const USER_META_KEY       = 'post_snippets';
     const TINYMCE_PLUGIN_NAME = 'post_snippets';
     const TEXT_DOMAIN         = 'post-snippets';
@@ -318,7 +318,7 @@ class PostSnippets
         # Prepare the snippets and shortcodes into javascript variables
         # so they can be inserted into the editor, and get the variables replaced
         # with user defined strings.
-        $snippets = get_option(self::OPTION_DB_KEY, array());
+        $snippets = get_option(self::OPTION_KEY, array());
         foreach ($snippets as $key => $snippet) {
             if ($snippet['shortcode']) {
                 # Build a long string of the variables, ie: varname1={varname1} varname2={varname2}
@@ -461,7 +461,7 @@ function edOpenPostSnippets(myField) {
             }
         }
 
-        $data = array('snippets' => get_option(self::OPTION_DB_KEY, array()));
+        $data = array('snippets' => get_option(self::OPTION_KEY, array()));
         echo PostSnippets_View::render('jquery-ui-dialog', $data);
     }
 
@@ -497,7 +497,7 @@ function edOpenPostSnippets(myField) {
      */
     public function createShortcodes()
     {
-        $snippets = get_option(self::OPTION_DB_KEY);
+        $snippets = get_option(self::OPTION_KEY);
         if (!empty($snippets)) {
             foreach ($snippets as $snippet) {
                 // If shortcode is enabled for the snippet, and a snippet has been entered, register it as a shortcode.
@@ -639,7 +639,7 @@ function edOpenPostSnippets(myField) {
      */
     public static function getSnippet( $snippet_name, $snippet_vars = '' )
     {
-        $snippets = get_option( self::OPTION_DB_KEY, array() );
+        $snippets = get_option( self::OPTION_KEY, array() );
         for ($i = 0; $i < count($snippets); $i++) {
             if ($snippets[$i]['title'] == $snippet_name) {
                 parse_str( htmlspecialchars_decode($snippet_vars), $snippet_output );
@@ -656,16 +656,6 @@ function edOpenPostSnippets(myField) {
         return do_shortcode($snippet);
     }
 
-    public static function optionDBKey()
-    {
-        return self::OPTION_DB_KEY;
-    }
-
-    public static function userMetaKey()
-    {
-        return self::USER_META_KEY;
-    }
-
     /**
      * Allow other plugins to disable the PHP Code execution feature.
      *
@@ -677,10 +667,6 @@ function edOpenPostSnippets(myField) {
         return apply_filters('post_snippets_php_execution_enabled', true);
     }
 
-
-    // -------------------------------------------------------------------------
-    // Environment Checks
-    // -------------------------------------------------------------------------
 
     // -------------------------------------------------------------------------
     // Environment Checks
