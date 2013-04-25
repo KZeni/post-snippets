@@ -519,7 +519,8 @@ class PostSnippets
                             
 
                             $snippet = \''. addslashes($snippet["snippet"]) .'\';
-                            $snippet = str_replace("&", "&amp;", $snippet);
+                            // Disables auto conversion from & to &amp; as that should be done in snippet, not code (destroys php etc).
+                            // $snippet = str_replace("&", "&amp;", $snippet);
 
                             foreach ($attributes as $key => $val) {
                                 $snippet = str_replace("{".$key."}", $val, $snippet);
