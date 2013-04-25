@@ -240,13 +240,13 @@ class PostSnippets_Admin
         $ie = new PostSnippets_ImportExport();
 
         // Create header and export html form
-        printf( "<h3>%s</h3>", __( 'Import/Export', PostSnippets::TEXT_DOMAIN ));
-        printf( "<h4>%s</h4>", __( 'Export', PostSnippets::TEXT_DOMAIN ));
+        printf("<h3>%s</h3>", __('Import/Export', PostSnippets::TEXT_DOMAIN));
+        printf("<h4>%s</h4>", __('Export', PostSnippets::TEXT_DOMAIN));
         echo '<form method="post">';
         echo '<p>';
-        _e( 'Export your snippets for backup or to import them on another site.', PostSnippets::TEXT_DOMAIN );
+        _e('Export your snippets for backup or to import them on another site.', PostSnippets::TEXT_DOMAIN);
         echo '</p>';
-        printf("<input type='submit' class='button' name='postsnippets_export' value='%s' />", __( 'Export Snippets', PostSnippets::TEXT_DOMAIN) );
+        printf("<input type='submit' class='button' name='postsnippets_export' value='%s' />", __('Export Snippets', PostSnippets::TEXT_DOMAIN));
         echo '</form>';
 
         // Export logic, and import html form and logic
@@ -269,7 +269,7 @@ class PostSnippets_Admin
         echo '<div class="wrap">';
         echo '<h2>Post Snippets</h2>';
         echo '<p>';
-        _e( 'This is an overview of all snippets defined for this site. These snippets are inserted into posts from the post editor using the Post Snippets button. You can choose to see the snippets here as-is or as they are actually rendered on the website. Enabling rendered snippets for this overview might look strange if the snippet have dependencies on variables, CSS or other parameters only available on the frontend. If that is the case it is recommended to keep this option disabled.', PostSnippets::TEXT_DOMAIN );
+        _e('This is an overview of all snippets defined for this site. These snippets are inserted into posts from the post editor using the Post Snippets button. You can choose to see the snippets here as-is or as they are actually rendered on the website. Enabling rendered snippets for this overview might look strange if the snippet have dependencies on variables, CSS or other parameters only available on the frontend. If that is the case it is recommended to keep this option disabled.', PostSnippets::TEXT_DOMAIN);
         echo '</p>';
 
         // Form
@@ -277,45 +277,51 @@ class PostSnippets_Admin
         $render = $this->getUserOptions();
 
         echo '<form method="post" action="">';
-        wp_nonce_field( 'post_snippets_user_options', 'post_snippets_user_nonce' );
+        wp_nonce_field('post_snippets_user_options', 'post_snippets_user_nonce');
 
-        $this->checkbox(__('Display rendered snippets', PostSnippets::TEXT_DOMAIN), 'render', $render  );
-        $this->submit( 'update-post-snippets-user', __('Update', PostSnippets::TEXT_DOMAIN) );
+        $this->checkbox(__('Display rendered snippets', PostSnippets::TEXT_DOMAIN), 'render', $render);
+        $this->submit('update-post-snippets-user', __('Update', PostSnippets::TEXT_DOMAIN));
         echo '</form>';
 
         // Snippet List
-        $snippets = get_option( PostSnippets::OPTION_KEY );
+        $snippets = get_option(PostSnippets::OPTION_KEY);
         if (!empty($snippets)) {
             foreach ($snippets as $key => $snippet) {
 
                 echo "<hr style='border: none;border-top:1px dashed #aaa; margin:24px 0;' />";
 
                 echo "<h3>{$snippet['title']}";
-                if ($snippet['description'])
+                if ($snippet['description']) {
                     echo "<span class='description'> {$snippet['description']}</span>";
+                }
                 echo "</h3>";
 
-                if ($snippet['vars'])
-                    printf( "<strong>%s:</strong> {$snippet['vars']}<br/>", __('Variables', PostSnippets::TEXT_DOMAIN) );
+                if ($snippet['vars']) {
+                    printf("<strong>%s:</strong> {$snippet['vars']}<br/>", __('Variables', PostSnippets::TEXT_DOMAIN));
+                }
 
                 // echo "<strong>Variables:</strong> {$snippet['vars']}<br/>";
 
                 $options = array();
-                if ($snippet['shortcode'])
+                if ($snippet['shortcode']) {
                     array_push($options, 'Shortcode');
-                if ($snippet['php'])
+                }
+                if ($snippet['php']) {
                     array_push($options, 'PHP');
-                if ($snippet['wptexturize'])
+                }
+                if ($snippet['wptexturize']) {
                     array_push($options, 'wptexturize');
-                if ($options)
-                    printf ( "<strong>%s:</strong> %s<br/>", __('Options', PostSnippets::TEXT_DOMAIN), implode(', ', $options) );
+                }
+                if ($options) {
+                    printf("<strong>%s:</strong> %s<br/>", __('Options', PostSnippets::TEXT_DOMAIN), implode(', ', $options));
+                }
 
-                printf( "<br/><strong>%s:</strong><br/>", __('Snippet', PostSnippets::TEXT_DOMAIN) );
-                if ( $render ) {
-                    echo do_shortcode( $snippet['snippet'] );
+                printf("<br/><strong>%s:</strong><br/>", __('Snippet', PostSnippets::TEXT_DOMAIN));
+                if ($render) {
+                    echo do_shortcode($snippet['snippet']);
                 } else {
                     echo "<code>";
-                    echo nl2br( htmlspecialchars($snippet['snippet'], ENT_NOQUOTES) );
+                    echo nl2br(htmlspecialchars($snippet['snippet'], ENT_NOQUOTES));
                     echo "</code>";
                 }
             }
@@ -339,12 +345,13 @@ class PostSnippets_Admin
      * @param   string  $name       The unique name and id to identify the input
      * @param   boolean $checked    If the input is checked or not
      */
-    public static function checkbox( $label, $name, $checked )
+    public static function checkbox($label, $name, $checked)
     {
         echo "<label for=\"{$name}\">";
-        printf( '<input type="checkbox" name="%1$s" id="%1$s" value="true"', $name );
-        if ($checked)
+        printf('<input type="checkbox" name="%1$s" id="%1$s" value="true"', $name);
+        if ($checked) {
             echo ' checked';
+        }
         echo ' />';
         echo " {$label}</label><br/>";
     }
@@ -360,12 +367,13 @@ class PostSnippets_Admin
      * @param   string  $class  Optional. Button class. Default: button-primary
      * @param   boolean $wrap   Optional. Wrap in a submit div. Default: true
      */
-    public static function submit( $name, $label, $class='button-primary', $wrap=true )
+    public static function submit($name, $label, $class = 'button-primary', $wrap = true)
     {
-        $btn = sprintf( '<input type="submit" name="%s" value="%s" class="%s" />', $name, $label, $class );
+        $btn = sprintf('<input type="submit" name="%s" value="%s" class="%s" />', $name, $label, $class);
 
-        if ($wrap)
+        if ($wrap) {
             $btn = "<div class=\"submit\">{$btn}</div>";
+        }
 
         echo $btn;
     }
