@@ -88,15 +88,15 @@ class PostSnippets_ImportExport
                     // Delete the snippet file
                     unlink('./post-snippets-export.cfg');
 
-                    $import .= '<p><strong>'.__('Snippets successfully imported.').'</strong></p>';
+                    $import .= '<p><strong>'.__('Snippets successfully imported.', PostSnippets::TEXT_DOMAIN).'</strong></p>';
                 } else {
-                    $import .= '<p><strong>'.__('Snippets could not be imported:').' '.__('Unzipping failed.').'</strong></p>';
+                    $import .= '<p><strong>'.__('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).' '.__('Unzipping failed.', PostSnippets::TEXT_DOMAIN).'</strong></p>';
                 }
             } else {
                 if ($file['error'] || is_wp_error($file)) {
-                    $import .= '<p><strong>'.__('Snippets could not be imported:').' '.$file['error'].'</strong></p>';
+                    $import .= '<p><strong>'.__('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).' '.$file['error'].'</strong></p>';
                 } else {
-                    $import .= '<p><strong>'.__('Snippets could not be imported:').' '.__('Upload failed.').'</strong></p>';
+                    $import .= '<p><strong>'.__('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).' '.__('Upload failed.', PostSnippets::TEXT_DOMAIN).'</strong></p>';
                 }
             }
         }
