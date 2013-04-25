@@ -423,22 +423,22 @@ class PostSnippets
             });
         });
 
-// Global variables to keep track on the canvas instance and from what editor
-// that opened the Post Snippets popup.
-var post_snippets_canvas;
-var post_snippets_caller = '';
+        // Global variables to keep track on the canvas instance and from what editor
+        // that opened the Post Snippets popup.
+        var post_snippets_canvas;
+        var post_snippets_caller = '';
 
-/**
- * Used in WordPress lower than version 3.3.
- * Not used anymore starting with WordPress version 3.3.
- * Called from: add_quicktag_button_pre33()
- */
-function edOpenPostSnippets(myField) {
-        post_snippets_canvas = myField;
-        post_snippets_caller = 'html_pre33';
-        jQuery( "#post-snippets-dialog" ).dialog( "open" );
-};
-<?php
+        /**
+         * Used in WordPress lower than version 3.3.
+         * Not used anymore starting with WordPress version 3.3.
+         * Called from: add_quicktag_button_pre33()
+         */
+        function edOpenPostSnippets(myField) {
+                post_snippets_canvas = myField;
+                post_snippets_caller = 'html_pre33';
+                jQuery( "#post-snippets-dialog" ).dialog( "open" );
+        };
+        <?php
         echo "</script>\n";
         echo "\n<!-- END: Post Snippets jQuery UI and related functions -->\n";
     }
@@ -514,40 +514,45 @@ function edOpenPostSnippets(myField) {
                     // Get the wptexturize setting
                     $texturize = isset( $snippet["wptexturize"] ) ? $snippet["wptexturize"] : false;
 
-                    add_shortcode($snippet['title'], create_function('$atts,$content=null', 
-                                '$shortcode_symbols = array('.$vars_str.');
-                                extract(shortcode_atts($shortcode_symbols, $atts));
-                                
-                                $attributes = compact( array_keys($shortcode_symbols) );
-                                
-                                // Add enclosed content if available to the attributes array
-                                if ( $content != null )
-                                    $attributes["content"] = $content;
-                                
+                    add_shortcode(
+                        $snippet['title'],
+                        create_function(
+                            '$atts,$content=null',
+                            '$shortcode_symbols = array('.$vars_str.');
+                            extract(shortcode_atts($shortcode_symbols, $atts));
+                            
+                            $attributes = compact( array_keys($shortcode_symbols) );
+                            
+                            // Add enclosed content if available to the attributes array
+                            if ( $content != null )
+                                $attributes["content"] = $content;
+                            
 
-                                $snippet = \''. addslashes($snippet["snippet"]) .'\';
-                                $snippet = str_replace("&", "&amp;", $snippet);
+                            $snippet = \''. addslashes($snippet["snippet"]) .'\';
+                            $snippet = str_replace("&", "&amp;", $snippet);
 
-                                foreach ($attributes as $key => $val) {
-                                    $snippet = str_replace("{".$key."}", $val, $snippet);
-                                }
+                            foreach ($attributes as $key => $val) {
+                                $snippet = str_replace("{".$key."}", $val, $snippet);
+                            }
 
-                                // Handle PHP shortcodes
-                                $php = "'. $snippet["php"] .'";
-                                if ($php == true) {
-                                    $snippet = PostSnippets::phpEval( $snippet );
-                                }
+                            // Handle PHP shortcodes
+                            $php = "'. $snippet["php"] .'";
+                            if ($php == true) {
+                                $snippet = PostSnippets::phpEval( $snippet );
+                            }
 
-                                // Strip escaping and execute nested shortcodes
-                                $snippet = do_shortcode(stripslashes($snippet));
+                            // Strip escaping and execute nested shortcodes
+                            $snippet = do_shortcode(stripslashes($snippet));
 
-                                // WPTexturize the Snippet
-                                $texturize = "'. $texturize .'";
-                                if ($texturize == true) {
-                                    $snippet = wptexturize( $snippet );
-                                }
+                            // WPTexturize the Snippet
+                            $texturize = "'. $texturize .'";
+                            if ($texturize == true) {
+                                $snippet = wptexturize( $snippet );
+                            }
 
-                                return $snippet;') );
+                            return $snippet;'
+                        )
+                    );
                 }
             }
         }
@@ -560,10 +565,11 @@ function edOpenPostSnippets(myField) {
      * @param   string  $content    The snippet to evaluate
      * @return  string              The result of the evaluation
      */
-    public static function phpEval( $content )
+    public static function phpEval($content)
     {
-        if ( !self::canExecutePHP() )
+        if (!self::canExecutePHP()) {
             return $content;
+        }
 
         $content = stripslashes($content);
 
@@ -571,7 +577,7 @@ function edOpenPostSnippets(myField) {
         eval ($content);
         $content = ob_get_clean();
 
-        return addslashes( $content );
+        return addslashes($content);
     }
 
 
@@ -582,16 +588,17 @@ function edOpenPostSnippets(myField) {
     /**
      * The Admin Page.
      */
-    function wpAdmin() {
-        if ( current_user_can('manage_options') ) {
+    public function wpAdmin()
+    {
+        if (current_user_can('manage_options')) {
             // If user can manage options, display the admin page
-            $option_page = add_options_page( 'Post Snippets Options', 'Post Snippets', 'administrator', __FILE__, array(&$this, 'optionsPage') );
-            if ( $option_page and class_exists('PostSnippets_Help') ) {
-                $help = new PostSnippets_Help( $option_page );
+            $option_page = add_options_page('Post Snippets Options', 'Post Snippets', 'administrator', __FILE__, array(&$this, 'optionsPage'));
+            if ($option_page and class_exists('PostSnippets_Help')) {
+                $help = new PostSnippets_Help($option_page);
             }
         } else {
             // If user can't manage options, but can edit posts, display the overview page
-            $option_page = add_options_page( 'Post Snippets', 'Post Snippets', 'edit_posts', __FILE__, array(&$this, 'overviewPage') );
+            $option_page = add_options_page('Post Snippets', 'Post Snippets', 'edit_posts', __FILE__, array(&$this, 'overviewPage'));
         }
     }
 
@@ -606,7 +613,7 @@ function edOpenPostSnippets(myField) {
     public function overviewPage()
     {
         $settings = new PostSnippets_Admin();
-        $settings->render( 'overview' );
+        $settings->render('overview');
     }
 
     /**
@@ -617,7 +624,7 @@ function edOpenPostSnippets(myField) {
     public function optionsPage()
     {
         $settings = new PostSnippets_Admin();
-        $settings->render( 'options' );
+        $settings->render('options');
     }
     
 
@@ -637,16 +644,16 @@ function edOpenPostSnippets(myField) {
      * @return  string
      *          The Snippet
      */
-    public static function getSnippet( $snippet_name, $snippet_vars = '' )
+    public static function getSnippet($snippet_name, $snippet_vars = '')
     {
-        $snippets = get_option( self::OPTION_KEY, array() );
+        $snippets = get_option(self::OPTION_KEY, array());
         for ($i = 0; $i < count($snippets); $i++) {
             if ($snippets[$i]['title'] == $snippet_name) {
-                parse_str( htmlspecialchars_decode($snippet_vars), $snippet_output );
+                parse_str(htmlspecialchars_decode($snippet_vars), $snippet_output);
                 $snippet = $snippets[$i]['snippet'];
-                $var_arr = explode(",",$snippets[$i]['vars']);
+                $var_arr = explode(",", $snippets[$i]['vars']);
 
-                if ( !empty($var_arr[0]) ) {
+                if (!empty($var_arr[0])) {
                     for ($j = 0; $j < count($var_arr); $j++) {
                         $snippet = str_replace("{".$var_arr[$j]."}", $snippet_output[$var_arr[$j]], $snippet);
                     }
