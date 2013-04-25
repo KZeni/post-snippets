@@ -96,30 +96,7 @@ class PostSnippets_Help
      */
     public function helpPhp()
     {
-        return '<p>'.
-        __('Snippets defined as shortcodes can optionally also be evaluated as PHP Code by enabling the PHP checkbox. PHP snippets is only available when treating the snippet as a shortcode.', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p><strong>'.
-        __( 'Example PHP Snippet', PostSnippets::TEXT_DOMAIN ).
-        '</strong><br/>
-        <code>
-        for ($i=1; $i<5; $i++) {<br/>
-            echo "{loop_me}&lt;br/&gt;";<br/>
-        };
-        </code></p>
-
-        <p>'.
-        __( 'With a snippet defined like the one above, you can call it with its shortcode definition in a post. Let\'s pretend that the example snippet is named phpcode and have one variable defined loop_me, then it would be called like this from a post:' , PostSnippets::TEXT_DOMAIN ).
-        '</p>
-
-        <code>[phpcode loop_me="post snippet with PHP!"]</code>
-
-        <p>'.
-        __( 'When the shortcode is executed the loop_me variable will be replaced with the string supplied in the shortcode and then the PHP code will be evaluated. (Outputting the string five times in this case. Wow!)', PostSnippets::TEXT_DOMAIN ).
-        '</p>
-        <p>'.
-        __( 'Note the evaluation order, any snippet variables will be replaced before the snippet is evaluated as PHP code. Also note that a PHP snippet don\'t need to be wrapped in &lt;?php #code; ?&gt;.', PostSnippets::TEXT_DOMAIN ).
-        '</p>';
+        return PostSnippets_View::render('help_php');
     }
 
     /**
@@ -129,39 +106,6 @@ class PostSnippets_Help
      */
     public function helpAdvanced()
     {
-        return '<p>'.
-        __('You can retrieve a Post Snippet directly from PHP, in a theme for instance, by using the PostSnippets::getSnippet() method.', PostSnippets::TEXT_DOMAIN).
-        '</p>
-
-        <h2>'.
-        __('Usage', PostSnippets::TEXT_DOMAIN).
-        '</h2>
-        <p>'.
-        '<code>
-        &lt;?php $my_snippet = PostSnippets::getSnippet( $snippet_name, $snippet_vars ); ?&gt;
-        </code></p>
-
-        <h2>'.
-        __('Parameters', PostSnippets::TEXT_DOMAIN).
-        '</h2>
-        <p>
-        <code>$snippet_name</code><br/>'.
-        __('(string) (required) The name of the snippet to retrieve.', PostSnippets::TEXT_DOMAIN).
-
-        '<br/><br/><code>'.
-        '$snippet_vars
-        </code><br/>'.
-        __('(string) The variables to pass to the snippet, formatted as a query string.', PostSnippets::TEXT_DOMAIN).
-        '</p>
-
-        <h2>'.
-        __('Example', PostSnippets::TEXT_DOMAIN).
-        '</h2>
-        <p><code>
-        &lt;?php<br/>
-            $my_snippet = PostSnippets::getSnippet( \'internal-link\', \'title=Awesome&url=2011/02/awesome/\' );<br/>
-            echo $my_snippet;<br/>
-        ?&gt;
-        </code></p>';
+        return PostSnippets_View::render('help_advanced');
     }
 }
