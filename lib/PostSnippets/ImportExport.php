@@ -9,6 +9,8 @@
  */
 class PostSnippets_ImportExport
 {
+    private $downloadUrl;
+
     /**
      * Export Snippets.
      *
@@ -16,22 +18,15 @@ class PostSnippets_ImportExport
      * pushed to the footer. Also checks for old export files laying around and
      * deletes them (for security).
      *
-     * @since       Post Snippets 1.8
+     * @return void
      */
     public function exportSnippets()
     {
         if (isset($_POST['postsnippets_export'])) {
             $url = $this->createExportFile();
             if ($url) {
-                define('PSURL', $url);
-                function psnippetsFooter()
-                {
-                    $export =  '<script type="text/javascript">
-                                    document.location = \''.PSURL.'\';
-                                </script>';
-                    echo $export;
-                }
-                add_action('admin_footer', 'psnippetsFooter', 10000);
+                $this->downloadUrl = $url;
+                add_action('admin_footer', array(&$this, 'psnippetsFooter'), 10000);
 
             } else {
                 $export .= 'Error: '.$url;
@@ -50,9 +45,8 @@ class PostSnippets_ImportExport
     /**
      * Handles uploading of post snippets archive and import the snippets.
      *
-     * @uses        wp_handle_upload() in wp-admin/includes/file.php
-     * @since       Post Snippets 1.8
-     * @return      string          HTML to handle the import
+     * @uses   wp_handle_upload() in wp-admin/includes/file.php
+     * @return string HTML to handle the import
      */
     public function importSnippets()
     {
@@ -106,8 +100,7 @@ class PostSnippets_ImportExport
     /**
      * Create a zipped filed containing all Post Snippets, for export.
      *
-     * @since       Post Snippets 1.8
-     * @return      string          URL to the exported snippets
+     * @return string URL to the exported snippets
      */
     private function createExportFile()
     {
@@ -140,5 +133,18 @@ class PostSnippets_ImportExport
         }
         
         return $upload_url.'post-snippets-export.zip';
+    }
+
+    /**
+     * Generates the javascript to trigger the download of the file.
+     *
+     * @return void
+     */
+    public function psnippetsFooter()
+    {
+        $export =  '<script type="text/javascript">
+                        document.location = \''.$this->downloadUrl.'\';
+                    </script>';
+        echo $export;
     }
 }
