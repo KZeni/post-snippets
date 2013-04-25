@@ -42,7 +42,12 @@ class PostSnippets_Admin
             );
 
             update_option(PostSnippets::OPTION_KEY, $snippets);
-            $this->message(__('A snippet named Untitled has been added.', PostSnippets::TEXT_DOMAIN));
+            $this->message(
+                __(
+                    'A snippet named Untitled has been added.',
+                    PostSnippets::TEXT_DOMAIN
+                )
+            );
         }
     }
 
@@ -58,7 +63,9 @@ class PostSnippets_Admin
             $snippets = get_option(PostSnippets::OPTION_KEY);
 
             if (empty($snippets) || !isset($_POST['checked'])) {
-                $this->message(__('Nothing selected to delete.', PostSnippets::TEXT_DOMAIN));
+                $this->message(
+                    __('Nothing selected to delete.', PostSnippets::TEXT_DOMAIN)
+                );
                 return;
             }
 
@@ -71,7 +78,12 @@ class PostSnippets_Admin
             }
 
             update_option(PostSnippets::OPTION_KEY, $newsnippets);
-            $this->message(__('Selected snippets have been deleted.', PostSnippets::TEXT_DOMAIN));
+            $this->message(
+                __(
+                    'Selected snippets have been deleted.',
+                    PostSnippets::TEXT_DOMAIN
+                )
+            );
         }
     }
 
