@@ -120,8 +120,13 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
-= Version 2.1.2 - dd mm 2013 =
+= Version 2.2 - 26 Apr 2013 =
+ * Bumps required WordPress version to v3.3.
+ * Fixes a problem with using some HTML entities in snippets.
+ * Removes the screenshots from the plugin archive, to make a smaller archive.
+ * Updates help text for `PostSnippets::getSnippet()`.
  * Fixes a PHP warning that occurred when no post snippets exist.
+ * Makes the plugin PSR-2 compliant and introduces Travis CI for testing.
 
 = Version 2.1.1 - 23 Feb 2013 =
  * Fixes a bug that PHP snippets called an old class definition.
@@ -403,3 +408,6 @@ replaces the old function. `get_post_snippet()` will be removed in a future
 version.
 
 Most users are not affected by this change.
+
+= 2.2 =
+Note that at least WordPress v3.3 are required for Post Snippets v2.2.
