@@ -1,154 +1,141 @@
-# Copyright (C) 2012 Post Snippets
-# This file is distributed under the same license as the Post Snippets package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Post Snippets 1.9.7\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/post-snippets\n"
-"POT-Creation-Date: 2012-03-28 21:41:26+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-26 10:36+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: classes/help.php:41 classes/help.php:256
-msgid "Basic"
+#: post-snippets.php:168
+msgid "Settings"
 msgstr ""
 
-#: classes/help.php:46 classes/help.php:258 classes/settings.php:256
-msgid "Shortcode"
-msgstr ""
-
-#: classes/help.php:51 classes/help.php:260
-msgid "PHP"
-msgstr ""
-
-#: classes/help.php:56 classes/help.php:262
-msgid "Advanced"
-msgstr ""
-
-#: classes/help.php:70
-msgid "For more information:"
-msgstr ""
-
-#: classes/help.php:74
-msgid "Post Snippets Documentation"
-msgstr ""
-
-#: classes/help.php:78
-msgid "Support Forums"
-msgstr ""
-
-#: classes/help.php:91 classes/settings.php:225 classes/settings.php:234
+#: views/admin_snippets.php:8 views/admin_snippets.php:17
+#: views/help_basic.php:1
 msgid "Title"
 msgstr ""
 
-#: classes/help.php:94
+#: views/admin_snippets.php:9 views/admin_snippets.php:18
+#: views/help_basic.php:6 lib/PostSnippets/Admin.php:316
+msgid "Variables"
+msgstr ""
+
+#: views/admin_snippets.php:10 views/admin_snippets.php:19
+#: views/help_basic.php:16 lib/PostSnippets/Admin.php:335
+msgid "Snippet"
+msgstr ""
+
+#: views/admin_snippets.php:39 lib/PostSnippets/Help.php:40
+msgid "Shortcode"
+msgstr ""
+
+#: views/admin_snippets.php:46
+msgid "PHP Code"
+msgstr ""
+
+#: views/admin_snippets.php:58 views/help_basic.php:29
+msgid "Description"
+msgstr ""
+
+#: views/admin_snippets.php:70
+msgid "Update Snippets"
+msgstr ""
+
+#: views/admin_snippets.php:71
+msgid "Add New Snippet"
+msgstr ""
+
+#: views/admin_snippets.php:72
+msgid "Delete Selected"
+msgstr ""
+
+#: views/help_advanced.php:2
+msgid ""
+"You can retrieve a Post Snippet directly from PHP, in a theme for instance, "
+"by using the PostSnippets::getSnippet() method."
+msgstr ""
+
+#: views/help_advanced.php:5
+msgid "Usage"
+msgstr ""
+
+#: views/help_advanced.php:11
+msgid "Parameters"
+msgstr ""
+
+#: views/help_advanced.php:14
+msgid "(string) (required) The name of the snippet to retrieve."
+msgstr ""
+
+#: views/help_advanced.php:17
+msgid ""
+"(string) The variables to pass to the snippet, formatted as a query string."
+msgstr ""
+
+#: views/help_advanced.php:20 views/help_basic.php:12 views/help_basic.php:21
+msgid "Example"
+msgstr ""
+
+#: views/help_basic.php:3
 msgid ""
 "Give the snippet a title that helps you identify it in the post editor. This "
 "also becomes the name of the shortcode if you enable that option"
 msgstr ""
 
-#: classes/help.php:98 classes/settings.php:226 classes/settings.php:235
-#: classes/settings.php:354
-msgid "Variables"
-msgstr ""
-
-#: classes/help.php:101
+#: views/help_basic.php:8
 msgid ""
 "A comma separated list of custom variables you can reference in your "
 "snippet. A variable can also be assigned a default value that will be used "
 "in the insert window by using the equal sign, variable=default."
 msgstr ""
 
-#: classes/help.php:104 classes/help.php:115 classes/help.php:230
-msgid "Example"
-msgstr ""
-
-#: classes/help.php:109 classes/settings.php:227 classes/settings.php:236
-#: classes/settings.php:368
-msgid "Snippet"
-msgstr ""
-
-#: classes/help.php:112
+#: views/help_basic.php:18
 msgid ""
 "This is the block of text, HTML or PHP to insert in the post or as a "
 "shortcode. If you have entered predefined variables you can reference them "
 "from the snippet by enclosing them in {} brackets."
 msgstr ""
 
-#: classes/help.php:117
+#: views/help_basic.php:22
 msgid ""
 "To reference the variables in the example above, you would enter {url} and "
 "{name}. So if you enter this snippet:"
 msgstr ""
 
-#: classes/help.php:121
+#: views/help_basic.php:26
 msgid ""
 "You will get the option to replace url and name on insert if they are "
 "defined as variables."
 msgstr ""
 
-#: classes/help.php:125 classes/settings.php:270
-msgid "Description"
-msgstr ""
-
-#: classes/help.php:128
+#: views/help_basic.php:31
 msgid ""
 "An optional description for the Snippet. If filled out, the description will "
 "be displayed in the snippets insert window in the post editor."
 msgstr ""
 
-#: classes/help.php:141
-msgid ""
-"When enabling the shortcode checkbox, the snippet is no longer inserted "
-"directly but instead inserted as a shortcode. The obvious advantage of this "
-"is of course that you can insert a block of text or code in many places on "
-"the site, and update the content from one single place."
-msgstr ""
-
-#: classes/help.php:145
-msgid ""
-"The name to use the shortcode is the same as the title of the snippet "
-"(spaces are not allowed). When inserting a shortcode snippet, the shortcode "
-"and not the content will be inserted in the post."
-msgstr ""
-
-#: classes/help.php:148
-msgid ""
-"If you enclose the shortcode in your posts, you can access the enclosed "
-"content by using the variable {content} in your snippet. The {content} "
-"variable is reserved, so don't use it in the variables field."
-msgstr ""
-
-#: classes/help.php:152 classes/settings.php:366
-msgid "Options"
-msgstr ""
-
-#: classes/help.php:155
-msgid "See the dedicated help section for information about PHP shortcodes."
-msgstr ""
-
-#: classes/help.php:158
-msgid ""
-"Before the shortcode is outputted, it can optionally be formatted with %s, "
-"to transform quotes to smart quotes, apostrophes, dashes, ellipses, the "
-"trademark symbol, and the multiplication symbol."
-msgstr ""
-
-#: classes/help.php:171
+#: views/help_php.php:2
 msgid ""
 "Snippets defined as shortcodes can optionally also be evaluated as PHP Code "
 "by enabling the PHP checkbox. PHP snippets is only available when treating "
 "the snippet as a shortcode."
 msgstr ""
 
-#: classes/help.php:174
+#: views/help_php.php:5
 msgid "Example PHP Snippet"
 msgstr ""
 
-#: classes/help.php:183
+#: views/help_php.php:13
 msgid ""
 "With a snippet defined like the one above, you can call it with its "
 "shortcode definition in a post. Let's pretend that the example snippet is "
@@ -156,131 +143,119 @@ msgid ""
 "like this from a post:"
 msgstr ""
 
-#: classes/help.php:189
+#: views/help_php.php:19
 msgid ""
 "When the shortcode is executed the loop_me variable will be replaced with "
 "the string supplied in the shortcode and then the PHP code will be "
 "evaluated. (Outputting the string five times in this case. Wow!)"
 msgstr ""
 
-#: classes/help.php:192
+#: views/help_php.php:23
 msgid ""
 "Note the evaluation order, any snippet variables will be replaced before the "
 "snippet is evaluated as PHP code. Also note that a PHP snippet don't need to "
 "be wrapped in &lt;?php #code; ?&gt;."
 msgstr ""
 
-#: classes/help.php:205
+#: views/help_shortcode.php:2
 msgid ""
-"You can retrieve a Post Snippet directly from PHP, in a theme for instance, "
-"by using the get_post_snippet() function."
+"When enabling the shortcode checkbox, the snippet is no longer inserted "
+"directly but instead inserted as a shortcode. The obvious advantage of this "
+"is of course that you can insert a block of text or code in many places on "
+"the site, and update the content from one single place."
 msgstr ""
 
-#: classes/help.php:209
-msgid "Usage"
-msgstr ""
-
-#: classes/help.php:217
-msgid "Parameters"
-msgstr ""
-
-#: classes/help.php:221
-msgid "(string) (required) The name of the snippet to retrieve."
-msgstr ""
-
-#: classes/help.php:226
+#: views/help_shortcode.php:6
 msgid ""
-"(string) The variables to pass to the snippet, formatted as a query string."
+"The name to use the shortcode is the same as the title of the snippet "
+"(spaces are not allowed). When inserting a shortcode snippet, the shortcode "
+"and not the content will be inserted in the post."
 msgstr ""
 
-#: classes/import-export.php:91
-msgid "Import"
-msgstr ""
-
-#: classes/import-export.php:93
+#: views/help_shortcode.php:10
 msgid ""
-"Import snippets from a post-snippets-export.zip file. Importing overwrites "
-"any existing snippets."
+"If you enclose the shortcode in your posts, you can access the enclosed "
+"content by using the variable {content} in your snippet. The {content} "
+"variable is reserved, so don't use it in the variables field."
 msgstr ""
 
-#: classes/import-export.php:97
-msgid "Import Snippets"
+#: views/help_shortcode.php:13 lib/PostSnippets/Admin.php:332
+msgid "Options"
 msgstr ""
 
-#: classes/import-export.php:123
-msgid "Snippets successfully imported."
+#: views/help_shortcode.php:15
+msgid "See the dedicated help section for information about PHP shortcodes."
 msgstr ""
 
-#: classes/import-export.php:125 classes/import-export.php:129
-#: classes/import-export.php:131
-msgid "Snippets could not be imported:"
+#: views/help_shortcode.php:18
+#, php-format
+msgid ""
+"Before the shortcode is outputted, it can optionally be formatted with %s, "
+"to transform quotes to smart quotes, apostrophes, dashes, ellipses, the "
+"trademark symbol, and the multiplication symbol."
 msgstr ""
 
-#: classes/import-export.php:125
-msgid "Unzipping failed."
+#: views/help_sidebar.php:2
+msgid "For more information:"
 msgstr ""
 
-#: classes/import-export.php:131
-msgid "Upload failed."
+#: views/help_sidebar.php:6
+msgid "Documentation"
 msgstr ""
 
-#: classes/settings.php:41
+#: views/help_sidebar.php:10
+msgid "Support Forums"
+msgstr ""
+
+#: views/help_sidebar.php:14
+msgid "GitHub Contribution"
+msgstr ""
+
+#: views/jquery-ui-dialog.php:47
+msgid "This snippet is insert only, no variables defined."
+msgstr ""
+
+#: lib/PostSnippets/Admin.php:47
 msgid "A snippet named Untitled has been added."
 msgstr ""
 
-#: classes/settings.php:57
+#: lib/PostSnippets/Admin.php:67
 msgid "Nothing selected to delete."
 msgstr ""
 
-#: classes/settings.php:70
+#: lib/PostSnippets/Admin.php:83
 msgid "Selected snippets have been deleted."
 msgstr ""
 
-#: classes/settings.php:96
+#: lib/PostSnippets/Admin.php:118
 msgid "Snippets have been updated."
 msgstr ""
 
-#: classes/settings.php:189
+#: lib/PostSnippets/Admin.php:216
 msgid "Manage Snippets"
 msgstr ""
 
-#: classes/settings.php:189 classes/settings.php:298
+#: lib/PostSnippets/Admin.php:216 lib/PostSnippets/Admin.php:259
 msgid "Import/Export"
 msgstr ""
 
-#: classes/settings.php:197
+#: lib/PostSnippets/Admin.php:224
 msgid "Use the help dropdown button for additional information."
 msgstr ""
 
-#: classes/settings.php:261
-msgid "PHP Code"
-msgstr ""
-
-#: classes/settings.php:282
-msgid "Update Snippets"
-msgstr ""
-
-#: classes/settings.php:283
-msgid "Add New Snippet"
-msgstr ""
-
-#: classes/settings.php:284
-msgid "Delete Selected"
-msgstr ""
-
-#: classes/settings.php:299
+#: lib/PostSnippets/Admin.php:260
 msgid "Export"
 msgstr ""
 
-#: classes/settings.php:302
+#: lib/PostSnippets/Admin.php:263
 msgid "Export your snippets for backup or to import them on another site."
 msgstr ""
 
-#: classes/settings.php:304
+#: lib/PostSnippets/Admin.php:265
 msgid "Export Snippets"
 msgstr ""
 
-#: classes/settings.php:327
+#: lib/PostSnippets/Admin.php:288
 msgid ""
 "This is an overview of all snippets defined for this site. These snippets "
 "are inserted into posts from the post editor using the Post Snippets button. "
@@ -291,41 +266,57 @@ msgid ""
 "recommended to keep this option disabled."
 msgstr ""
 
-#: classes/settings.php:337
+#: lib/PostSnippets/Admin.php:298
 msgid "Display rendered snippets"
 msgstr ""
 
-#: classes/settings.php:338
+#: lib/PostSnippets/Admin.php:299
 msgid "Update"
 msgstr ""
 
-#: post-snippets.php:99
-msgid "Settings"
+#: lib/PostSnippets/Help.php:33
+msgid "Basic"
 msgstr ""
 
-#: post-snippets.php:472
-msgid "This snippet is insert only, no variables defined."
+#: lib/PostSnippets/Help.php:48
+msgid "PHP"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "Post Snippets"
+#: lib/PostSnippets/Help.php:56
+msgid "Advanced"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
-msgid "http://wpstorm.net/wordpress-plugins/post-snippets/"
+#: lib/PostSnippets/ImportExport.php:38
+msgid "Error: "
 msgstr ""
 
-#. Description of the plugin/theme
+#: lib/PostSnippets/ImportExport.php:61
+msgid "Import"
+msgstr ""
+
+#: lib/PostSnippets/ImportExport.php:67
 msgid ""
-"Build a library with snippets of HTML, PHP code or reoccurring text that you "
-"often use in your posts. Variables to replace parts of the snippet on insert "
-"can be used. The snippets can be inserted as-is or as shortcodes."
+"Import snippets from a post-snippets-export.zip file. Importing overwrites "
+"any existing snippets."
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Johan Steen"
+#: lib/PostSnippets/ImportExport.php:74
+msgid "Import Snippets"
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "http://johansteen.se/"
+#: lib/PostSnippets/ImportExport.php:113
+msgid "Snippets successfully imported."
+msgstr ""
+
+#: lib/PostSnippets/ImportExport.php:118 lib/PostSnippets/ImportExport.php:127
+#: lib/PostSnippets/ImportExport.php:133
+msgid "Snippets could not be imported:"
+msgstr ""
+
+#: lib/PostSnippets/ImportExport.php:120
+msgid "Unzipping failed."
+msgstr ""
+
+#: lib/PostSnippets/ImportExport.php:135
+msgid "Upload failed."
 msgstr ""

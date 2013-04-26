@@ -2,13 +2,14 @@
 /**
  * Post Snippets Unit Tests.
  */
-class PostSnippetsTest extends WP_UnitTestCase {
+class TestPostSnippets extends WP_UnitTestCase {
 
     private $plugin = 'post-snippets';
 
     public function setUp()
     {
         parent::setUp();
+        $this->plugin = PostSnippets::getInstance();
 
 		$snippets = array();
 		array_push($snippets, array(
@@ -30,36 +31,9 @@ class PostSnippetsTest extends WP_UnitTestCase {
         $this->assertFalse( null == $this->plugin );
     }
 
-	public function teast_Yo()
+	public function testGetSnippet()
 	{
-		$this->assertTrue(true);
-	}
-
-	public function teast_Yos()
-	{
-		$this->assertTrue(true);
-	}
-
-	/**
-	 * @dataProvider	provider
-	 */
-	public function teast_data_inline($a, $b, $c)
-	{
-		// var_dump($c);
-	}
-	public function praovider()
-	{
-		return array(
-			array(0, 0, 0),
-			array(0, 1, 1),
-			array(1, 0, 1),
-			array(1, 1, 3)
-		);
-	}
-
-	public function test_get_post_snippet()
-	{
-		$test = get_post_snippet('TestTmp');
+		$test = PostSnippets::getSnippet('TestTmp');
 		$this->assertTrue(is_string($test));
 		$this->assertEquals($test, 'A test snippet...');
 	}
