@@ -15,45 +15,12 @@ $ct.CurrentCulture   = $ic
 $ct.CurrentUICulture = $ic
 
 # Generic
-$PLUGIN_NAME = 'Post Snippets'
-$VERSION     = '1.0'
-$DATE        = get-date -format "d MMM yyyy"
-$FILES       = @('post-snippets.php', 'readme.txt')
-$PLUGIN_FILE = 'post-snippets.php'
-$POT_FILE    = 'lang/post-snippets.pot'
-# ------------------------------------------------------------------------------
-# Build
-# Replaces Version and Date in the plugin. 
-# ------------------------------------------------------------------------------
-function build_plugin
-{
-    Write-Host '--------------------------------------------'
-    Write-Host 'Building plugin...'
-    # cd $LESS_FOLDER
-
-    # Replace Date and Version
-    foreach ($file in $FILES)
-    {
-        cat $file `
-            | %{$_ -replace "@BUILD_DATE", $DATE} `
-            | %{$_ -replace "@DEV_HEAD", $VERSION} `
-            | Set-Content $file'.tmp' 
-
-        # Set UNIX line endings and UTF-8 encoding.
-        Get-ChildItem $file'.tmp' | ForEach-Object {
-          # get the contents and replace line breaks by U+000A
-          $contents = [IO.File]::ReadAllText($_) -replace "`r`n?", "`n"
-          # create UTF-8 encoding without signature
-          $utf8 = New-Object System.Text.UTF8Encoding $false
-          # write the text back
-          [IO.File]::WriteAllText($_, $contents, $utf8)
-        }
-
-        cp $file'.tmp' $file
-        Remove-Item $file'.tmp'
-    }
-    Write-Host "Plugin successfully built! - $DATE"
-}
+$PLUGIN_NAME  = 'Post Snippets'
+$DATE         = get-date -format "d MMM yyyy"
+$FILES        = @('post-snippets.php', 'readme.txt')
+$PLUGIN_FILE  = 'post-snippets.php'
+$POT_FILE     = 'lang/post-snippets.pot'
+$SVN_TAG_REPO = 'http://plugins.svn.wordpress.org/post-snippets/tags/'
 
 # ------------------------------------------------------------------------------
 # Bump
@@ -160,14 +127,14 @@ function svn
     Write-Host "Version to build: $version"
     # Checkout SVN repo
     Write-Host "Checking out tags folder..."
-    svn.exe co --depth empty http://plugins.svn.wordpress.org/wp-humanstxt/tags/ build/tags
+    svn.exe co --depth empty $SVN_TAG_REPO build/tags
 
     # Create new tag
     Write-Host "Building new tag..."
     mkdir build/tags/$version
 
     # Copy files
-    cp wp-humans-txt.php build/tags/$version/
+    cp $PLUGIN_FILE build/tags/$version/
     cp readme.txt build/tags/$version/
 
     cp assets/  -Destination build/tags/$version/assets/  -Recurse
