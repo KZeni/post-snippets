@@ -184,6 +184,7 @@ function assets
 
     Write-Host "Commiting the assets folder..."
     svn.exe add --force build/*.jpg
+    svn.exe add --force build/*.png
     cd build
     svn.exe ci -m "Updates repository assets."
     if (!$LastExitCode -eq 0) {
