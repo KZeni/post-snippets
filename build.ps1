@@ -20,7 +20,7 @@ $VERSION     = '1.0'
 $DATE        = get-date -format "d MMM yyyy"
 $FILES       = @('post-snippets.php', 'readme.txt')
 $PLUGIN_FILE = 'post-snippets.php'
-
+$POT_FILE    = 'lang/post-snippets.pot'
 # ------------------------------------------------------------------------------
 # Build
 # Replaces Version and Date in the plugin. 
@@ -86,8 +86,11 @@ function bump($newVersion)
     git commit -m "Bumps version number."
 
     bumpMessage "pot file: Updating..."
-    xgettext -o lang/wp-humans-txt.pot -L php --keyword=_e --keyword=__  `
-    *.php views/*.php lib/WPHumansTxt/*.php
+    xgettext -o  $POT_FILE -L php --keyword=_e --keyword=__  `
+    *.php views/*.php lib/PostSnippets/*.php
+
+    git add .
+    git commit -m "Updates pot file."
 
     Write-Host "Done!"
     Write-Host $('-' * 80)
