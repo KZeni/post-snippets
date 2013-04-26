@@ -51,7 +51,7 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 = Requirements =
 
 * PHP version 5.2.4 or greater.
-* WordPress version 3.0 or greater.
+* WordPress version 3.3 or greater.
 
 = Install =
 
