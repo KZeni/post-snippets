@@ -117,6 +117,14 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.2.1 - 1 May 2013 =
+ * Added an option to give users with `edit_posts` capability access to the
+   Post Snippets Admin. Fixes 
+   [issue #12](https://github.com/artstorm/post-snippets/issues/12). Add 
+   `define('POST_SNIPPETS_ALLOW_EDIT_POSTS', true);` to wp-config.php to enable
+   Post Snippets access for those users.
+ * Optimizes code for the admin section.
+
 = Version 2.2 - 26 Apr 2013 =
  * Bumps required WordPress version to v3.3.
  * Fixes a problem with using some HTML entities in snippets.
