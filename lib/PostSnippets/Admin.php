@@ -47,11 +47,19 @@ class PostSnippets_Admin
      */
     public function menu()
     {
-        if (current_user_can('manage_options')) {
+        $capability = 'manage_options';
+        if (defined('POST_SNIPPETS_ALLOW_EDIT_POSTS')
+            and current_user_can('edit_posts')
+        ) {
+            $allowed = true;
+            $capability = 'edit_posts';
+        }
+
+        if (current_user_can('manage_options') or isset($allowed)) {
             $optionPage = add_options_page(
                 'Post Snippets Options',
                 'Post Snippets',
-                'administrator',
+                $capability,
                 PostSnippets::FILE,
                 array(&$this, 'optionsPage')
             );
