@@ -20,7 +20,7 @@ $DATE         = get-date -format "d MMM yyyy"
 $FILES        = @('post-snippets.php', 'readme.txt')
 $PLUGIN_FILE  = 'post-snippets.php'
 $POT_FILE     = 'lang/post-snippets.pot'
-$SVN_TAG_REPO = 'http://plugins.svn.wordpress.org/post-snippets/tags/'
+$SVN_REPO     = 'http://plugins.svn.wordpress.org/post-snippets/'
 
 # ------------------------------------------------------------------------------
 # Bump
@@ -125,31 +125,37 @@ function svn
     $version = findVersionNumber
 
     Write-Host "Version to build: $version"
-    # Checkout SVN repo
-    Write-Host "Checking out tags folder..."
-    svn.exe co --depth empty $SVN_TAG_REPO build/tags
+    # Checkout Update trunk in repo
+    Write-Host "Checks out trunk..."
+    svn.exe co $SVN_REPO"trunk/" build/trunk
+    Write-Host "Removes old version..."
+    svn.exe rm build/trunk/*
+    Write-Host "Copies new version to trunk..."
+    cp $PLUGIN_FILE build/trunk/
+    cp readme.txt build/trunk/
 
-    # Create new tag
-    Write-Host "Building new tag..."
-    mkdir build/tags/$version
+    cp assets/  -Destination build/trunk/assets/  -Recurse
+    cp lang/    -Destination build/trunk/lang/    -Recurse
+    cp lib/     -Destination build/trunk/lib/     -Recurse
+    cp tinymce/ -Destination build/trunk/tinymce/ -Recurse
+    cp views/   -Destination build/trunk/views/   -Recurse
 
-    # Copy files
-    cp $PLUGIN_FILE build/tags/$version/
-    cp readme.txt build/tags/$version/
-
-    cp assets/  -Destination build/tags/$version/assets/  -Recurse
-    cp lang/    -Destination build/tags/$version/lang/    -Recurse
-    cp lib/     -Destination build/tags/$version/lib/     -Recurse
-    cp tinymce/ -Destination build/tags/$version/tinymce/ -Recurse
-    cp views/   -Destination build/tags/$version/views/   -Recurse
-
-    # # Add and commit
-    svn.exe add build/tags/$version
-    cd build/tags
-    svn.exe ci -m "Tagged version $version"
+    Write-Host "Commits trunk to repo..."
+    cd build/trunk
+    svn.exe add *
+    svn.exe ci -m "Updates trunk with version $version"
 
     if (!$LastExitCode -eq 0) {
-        Write-Host "Error! Could not commit the new tag. Exiting." -foregroundcolor "Red"
+        Write-Host "Error! Could not update trunk. Exiting." -foregroundcolor "Red"
+        Exit
+    }
+
+    # Tag it
+    Write-Host "Tagging the new version"
+    svn.exe cp -m "Tagged version $version" $SVN_REPO"trunk/" $SVN_REPO"tags/"$version"/"
+
+    if (!$LastExitCode -eq 0) {
+        Write-Host "Error! Could not create the new tag. Exiting." -foregroundcolor "Red"
         Exit
     }
 
