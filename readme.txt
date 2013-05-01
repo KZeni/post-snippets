@@ -4,7 +4,7 @@ Donate link: http://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.2
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,15 +38,12 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 = Related Links =
 
-* [Documentation](http://wpstorm.net/wordpress-plugins/post-snippets/ 
-  "Complete usage instructions")
-* [Support Forum](http://wordpress.org/tags/post-snippets?forum_id=10 
+* [Documentation](http://johansteen.se/code/post-snippets/
+  "Usage instructions")
+* [Support Forum](http://wordpress.org/support/plugin/post-snippets
   "Use this for support and feature requests")
-* [GitHub](https://github.com/artstorm/post-snippets 
+* [GitHub](https://github.com/artstorm/post-snippets
   "Develop and contribute your code or report bugs")
-
-See the [Changelog](http://wordpress.org/extend/plugins/post-snippets/changelog/) 
-for what's new. Available [Translations](http://wpstorm.net/wordpress-plugins/post-snippets/#translations).
 
 
 == Installation ==
@@ -54,7 +51,7 @@ for what's new. Available [Translations](http://wpstorm.net/wordpress-plugins/po
 = Requirements =
 
 * PHP version 5.2.4 or greater.
-* WordPress version 3.0 or greater.
+* WordPress version 3.3 or greater.
 
 = Install =
 
@@ -119,6 +116,14 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.2.1 - 1 May 2013 =
+ * Added an option to give users with `edit_posts` capability access to the
+   Post Snippets Admin. Fixes 
+   [issue #12](https://github.com/artstorm/post-snippets/issues/12). Add 
+   `define('POST_SNIPPETS_ALLOW_EDIT_POSTS', true);` to wp-config.php to enable
+   Post Snippets access for those users.
+ * Optimizes code for the admin section.
 
 = Version 2.2 - 26 Apr 2013 =
  * Bumps required WordPress version to v3.3.

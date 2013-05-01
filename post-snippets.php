@@ -5,7 +5,7 @@ Plugin URI: http://johansteen.se/code/post-snippets/
 Description: Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes.
 Author: Johan Steen
 Author URI: http://johansteen.se/
-Version: 2.2
+Version: 2.2.1
 License: GPLv2 or later
 Text Domain: post-snippets 
 
@@ -73,11 +73,6 @@ class PostSnippets
         // Add TinyMCE button
         add_action('init', array(&$this, 'addTinymceButton'));
 
-        // Settings link on plugins list
-        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
-        // Options Page
-        add_action('admin_menu', array(&$this,'wpAdmin'));
-
         $this->createShortcodes();
 
         // Adds the JS and HTML code in the header and footer for the jQuery
@@ -92,6 +87,8 @@ class PostSnippets
             array(&$this,'addQuicktagButton'),
             100
         );
+
+        new PostSnippets_Admin;
     }
 
     /**
@@ -157,37 +154,6 @@ class PostSnippets
         );
     }
 
-    /**
-     * Quick link to the Post Snippets Settings page from the Plugins page.
-     *
-     * @return  Array with all the plugin's action links
-     */
-    public function actionLinks($links, $file)
-    {
-        if ($file == plugin_basename(dirname(__FILE__).'/post-snippets.php')) {
-            $links[] = '<a href="options-general.php?page=post-snippets/post-snippets.php">'.__('Settings', PostSnippets::TEXT_DOMAIN).'</a>';
-        }
-        return $links;
-    }
-
-
-    /**
-     * Enqueues the necessary scripts and styles for the plugins
-     *
-     * @since       Post Snippets 1.7
-     */
-    public function enqueueAssets()
-    {
-        wp_enqueue_script('jquery-ui-dialog');
-        wp_enqueue_script('jquery-ui-tabs');
-        wp_enqueue_style('wp-jquery-ui-dialog');
-
-        # Adds the CSS stylesheet for the jQuery UI dialog
-        $style_url = plugins_url('/assets/post-snippets.css', __FILE__);
-        wp_register_style('post-snippets', $style_url, false, '2.0');
-        wp_enqueue_style('post-snippets');
-    }
-    
 
     // -------------------------------------------------------------------------
     // WordPress Editor Buttons
@@ -571,53 +537,22 @@ class PostSnippets
         return addslashes($content);
     }
 
-
-    // -------------------------------------------------------------------------
-    // Admin
-    // -------------------------------------------------------------------------
-
     /**
-     * The Admin Page.
+     * Enqueues the necessary scripts and styles for the plugins
+     *
+     * @since       Post Snippets 1.7
      */
-    public function wpAdmin()
+    public function enqueueAssets()
     {
-        if (current_user_can('manage_options')) {
-            // If user can manage options, display the admin page
-            $option_page = add_options_page('Post Snippets Options', 'Post Snippets', 'administrator', __FILE__, array(&$this, 'optionsPage'));
-            if ($option_page and class_exists('PostSnippets_Help')) {
-                $help = new PostSnippets_Help($option_page);
-            }
-        } else {
-            // If user can't manage options, but can edit posts, display the overview page
-            $option_page = add_options_page('Post Snippets', 'Post Snippets', 'edit_posts', __FILE__, array(&$this, 'overviewPage'));
-        }
-    }
+        wp_enqueue_script('jquery-ui-dialog');
+        wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_style('wp-jquery-ui-dialog');
 
-    /**
-     * The options Overview page.
-     *
-     * For users without manage_options cap but with edit_posts cap. A read-only
-     * view.
-     *
-     * @since   Post Snippets 1.9.7
-     */
-    public function overviewPage()
-    {
-        $settings = new PostSnippets_Admin();
-        $settings->render('overview');
+        # Adds the CSS stylesheet for the jQuery UI dialog
+        $style_url = plugins_url('/assets/post-snippets.css', __FILE__);
+        wp_register_style('post-snippets', $style_url, false, '2.0');
+        wp_enqueue_style('post-snippets');
     }
-
-    /**
-     * The options Admin page.
-     *
-     * For users with manage_options capability.
-     */
-    public function optionsPage()
-    {
-        $settings = new PostSnippets_Admin();
-        $settings->render('options');
-    }
-    
 
     // -------------------------------------------------------------------------
     // Helpers
