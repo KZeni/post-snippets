@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-26 10:36+0700\n"
+"POT-Creation-Date: 2013-05-01 18:50+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,22 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: post-snippets.php:168
-msgid "Settings"
-msgstr ""
-
 #: views/admin_snippets.php:8 views/admin_snippets.php:17
 #: views/help_basic.php:1
 msgid "Title"
 msgstr ""
 
 #: views/admin_snippets.php:9 views/admin_snippets.php:18
-#: views/help_basic.php:6 lib/PostSnippets/Admin.php:316
+#: views/help_basic.php:6 lib/PostSnippets/Admin.php:364
 msgid "Variables"
 msgstr ""
 
 #: views/admin_snippets.php:10 views/admin_snippets.php:19
-#: views/help_basic.php:16 lib/PostSnippets/Admin.php:335
+#: views/help_basic.php:16 lib/PostSnippets/Admin.php:383
 msgid "Snippet"
 msgstr ""
 
@@ -179,7 +175,7 @@ msgid ""
 "variable is reserved, so don't use it in the variables field."
 msgstr ""
 
-#: views/help_shortcode.php:13 lib/PostSnippets/Admin.php:332
+#: views/help_shortcode.php:13 lib/PostSnippets/Admin.php:380
 msgid "Options"
 msgstr ""
 
@@ -215,47 +211,51 @@ msgstr ""
 msgid "This snippet is insert only, no variables defined."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:47
+#: lib/PostSnippets/Admin.php:39
+msgid "Settings"
+msgstr ""
+
+#: lib/PostSnippets/Admin.php:113
 msgid "A snippet named Untitled has been added."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:67
+#: lib/PostSnippets/Admin.php:133
 msgid "Nothing selected to delete."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:83
+#: lib/PostSnippets/Admin.php:149
 msgid "Selected snippets have been deleted."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:118
+#: lib/PostSnippets/Admin.php:184
 msgid "Snippets have been updated."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:216
+#: lib/PostSnippets/Admin.php:264
 msgid "Manage Snippets"
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:216 lib/PostSnippets/Admin.php:259
+#: lib/PostSnippets/Admin.php:264 lib/PostSnippets/Admin.php:307
 msgid "Import/Export"
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:224
+#: lib/PostSnippets/Admin.php:272
 msgid "Use the help dropdown button for additional information."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:260
+#: lib/PostSnippets/Admin.php:308
 msgid "Export"
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:263
+#: lib/PostSnippets/Admin.php:311
 msgid "Export your snippets for backup or to import them on another site."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:265
+#: lib/PostSnippets/Admin.php:313
 msgid "Export Snippets"
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:288
+#: lib/PostSnippets/Admin.php:336
 msgid ""
 "This is an overview of all snippets defined for this site. These snippets "
 "are inserted into posts from the post editor using the Post Snippets button. "
@@ -266,11 +266,11 @@ msgid ""
 "recommended to keep this option disabled."
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:298
+#: lib/PostSnippets/Admin.php:346
 msgid "Display rendered snippets"
 msgstr ""
 
-#: lib/PostSnippets/Admin.php:299
+#: lib/PostSnippets/Admin.php:347
 msgid "Update"
 msgstr ""
 
