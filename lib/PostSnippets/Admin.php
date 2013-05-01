@@ -10,6 +10,64 @@
  */
 class PostSnippets_Admin
 {
+    public function __construct()
+    {
+        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
+        add_action('admin_menu', array(&$this, 'menu'));
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Setup
+    // -------------------------------------------------------------------------
+
+    /**
+     * Quick link to the Post Snippets Settings page from the Plugins page.
+     *
+     * @param array Array of all plugin links
+     * @param string The current plugin file we're filtering.
+     * @return  Array with all the plugin's action links
+     */
+    public function actionLinks($links, $file)
+    {
+        $pluginFile = plugin_basename(dirname(PostSnippets::FILE));
+        $pluginFile .= '/post-snippets.php';
+
+        if ($file == $pluginFile) {
+            $url = 'options-general.php?page=post-snippets/post-snippets.php';
+            $link = "<a href='{$url}'>";
+            $link .= __('Settings', PostSnippets::TEXT_DOMAIN).'</a>';
+            $links[] = $link;
+        }
+        return $links;
+    }
+
+    /**
+     * Initialize the administration page.
+     */
+    public function menu()
+    {
+        if (current_user_can('manage_options')) {
+            $optionPage = add_options_page(
+                'Post Snippets Options',
+                'Post Snippets',
+                'administrator',
+                PostSnippets::FILE,
+                array(&$this, 'optionsPage')
+            );
+            new PostSnippets_Help($optionPage);
+        } else {
+            $option_page = add_options_page(
+                'Post Snippets',
+                'Post Snippets',
+                'edit_posts',
+                PostSnippets::FILE,
+                array(&$this, 'overviewPage')
+            );
+        }
+    }
+
+
     // -------------------------------------------------------------------------
     // Handle form submissions
     // -------------------------------------------------------------------------
@@ -159,24 +217,6 @@ class PostSnippets_Admin
     // -------------------------------------------------------------------------
 
     /**
-     * Render the options page.
-     *
-     * @since   Post Snippets 1.9.7
-     * @param   string  $page   Admin page to render. Default: options
-     */
-    public function render($page)
-    {
-        switch ($page) {
-            case 'options':
-                $this->optionsPage();
-                break;
-            default:
-                $this->overviewPage();
-                break;
-        }
-    }
-
-    /**
      * Display Flashing Message.
      *
      * @param   string  $message    Message to display to the user.
@@ -195,7 +235,7 @@ class PostSnippets_Admin
      *
      * @since   Post Snippets 1.8.8
      */
-    private function optionsPage()
+    public function optionsPage()
     {
         // Handle Form Submits
         $this->add();
@@ -279,7 +319,7 @@ class PostSnippets_Admin
      *
      * @since   Post Snippets 1.9.7
      */
-    private function overviewPage()
+    public function overviewPage()
     {
         // Header
         echo '<div class="wrap">';
@@ -342,7 +382,6 @@ class PostSnippets_Admin
                 }
             }
         }
-
         // Close
         echo '</div>';
     }
