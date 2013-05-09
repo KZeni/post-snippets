@@ -25,7 +25,26 @@ class PostSnippets_WPEditor
         add_action('admin_head', array(&$this,'jqueryUiDialog'));
         add_action('admin_footer', array(&$this,'addJqueryUiDialog'));
 
-        
+        // Adds the JS and HTML code in the header and footer for the jQuery
+        // insert UI dialog in the editor
+        add_action('admin_init', array(&$this,'enqueueAssets'));
+    }
+
+    /**
+     * Enqueues the necessary scripts and styles for the plugins
+     *
+     * @since       Post Snippets 1.7
+     */
+    public function enqueueAssets()
+    {
+        wp_enqueue_script('jquery-ui-dialog');
+        wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_style('wp-jquery-ui-dialog');
+
+        # Adds the CSS stylesheet for the jQuery UI dialog
+        $style_url = plugins_url('/assets/post-snippets.css', PostSnippets::FILE);
+        wp_register_style('post-snippets', $style_url, false, '2.0');
+        wp_enqueue_style('post-snippets');
     }
 
     // -------------------------------------------------------------------------
