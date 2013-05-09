@@ -113,14 +113,6 @@ class PostSnippets_WPEditor
      */
     public function addQuicktagButton()
     {
-        // Only run the function on post edit screens
-        // if (function_exists('get_current_screen')) {
-        //     $screen = get_current_screen();
-        //     if ($screen->base != 'post') {
-        //         return;
-        //     }
-        // }
-
         echo "\n<!-- START: Add QuickTag button for Post Snippets -->\n";
         ?>
         <script type="text/javascript" charset="utf-8">
@@ -148,14 +140,6 @@ class PostSnippets_WPEditor
      */
     public function jqueryUiDialog()
     {
-        // Only run the function on post edit screens
-        // if (function_exists('get_current_screen')) {
-        //     $screen = get_current_screen();
-        //     if ($screen->base != 'post') {
-        //         return;
-        //     }
-        // }
-
         echo "\n<!-- START: Post Snippets jQuery UI and related functions -->\n";
         echo "<script type='text/javascript'>\n";
         
@@ -287,14 +271,6 @@ class PostSnippets_WPEditor
      */
     public function addJqueryUiDialog()
     {
-        // Only run the function on post edit screens
-        // if (function_exists('get_current_screen')) {
-        //     $screen = get_current_screen();
-        //     if ($screen->base != 'post') {
-        //         return;
-        //     }
-        // }
-
         $data = array('snippets' => get_option(PostSnippets::OPTION_KEY, array()));
         echo PostSnippets_View::render('jquery-ui-dialog', $data);
     }
