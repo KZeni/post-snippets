@@ -117,6 +117,10 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.2.2 - 10 May 2013 =
+ * The Post Snippets buttons now works everywhere there is a wp_editor present
+   and not only on post/page edit screens.
+
 = Version 2.2.1 - 1 May 2013 =
  * Added an option to give users with `edit_posts` capability access to the
    Post Snippets Admin. Add  
