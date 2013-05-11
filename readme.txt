@@ -117,6 +117,9 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.2.3 - 11 May 2013 =
+ * Fixes issue with the QuickTag button not being displayed in Firefox.
+
 = Version 2.2.2 - 10 May 2013 =
  * The Post Snippets buttons now works everywhere there is a wp_editor present
    and not only on post/page edit screens.
