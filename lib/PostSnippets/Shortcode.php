@@ -100,6 +100,4 @@ class PostSnippets_Shortcode
 
         return addslashes($content);
     }
-
-
 }
