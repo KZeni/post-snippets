@@ -128,7 +128,7 @@ Contributions are appreciated and encouraged.
  * Removes `get_post_snippet()` which was deprecated in version 2.1.
  * Adds POST_SNIPPETS_ALLOW_EDIT_POSTS constant for easy disabling to PHP 
    code execution in snippets. Add  
-   `define('POST_SNIPPETS_DISABLE_PHP', true);`
+   `define('POST_SNIPPETS_DISABLE_PHP', true);`  
    to wp-config.php or the theme's functions.php to disable PHP execution in the
    plugin.
 
