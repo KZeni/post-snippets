@@ -147,27 +147,34 @@ class PostSnippets
      *
      * @since   Post Snippets 1.8.9.1
      *
-     * @param   string      $snippet_name
-     *          The name of the snippet to retrieve
-     * @param   string      $snippet_vars
-     *          The variables to pass to the snippet, formatted as a query string.
-     * @return  string
-     *          The Snippet
+     * @param  string  $name  The name of the snippet to retrieve
+     * @param  string|array  $variables  The variables to pass to the snippet, 
+     *         formatted as a query string or an associative array.
+     * @param  bool    $isArray  Use an associative array for variables.
+     * @return string  The Snippet
      */
-    public static function getSnippet($snippet_name, $snippet_vars = '')
+    public static function getSnippet($name, $variables = '', $isArray = false)
     {
         $snippets = get_option(self::OPTION_KEY, array());
         for ($i = 0; $i < count($snippets); $i++) {
-            if ($snippets[$i]['title'] == $snippet_name) {
-                parse_str(htmlspecialchars_decode($snippet_vars), $snippet_output);
+            if ($snippets[$i]['title'] == $name) {
+                if (!$isArray) {
+                    parse_str(htmlspecialchars_decode($variables), $variables);
+                }
+
                 $snippet = $snippets[$i]['snippet'];
                 $var_arr = explode(",", $snippets[$i]['vars']);
 
                 if (!empty($var_arr[0])) {
                     for ($j = 0; $j < count($var_arr); $j++) {
-                        $snippet = str_replace("{".$var_arr[$j]."}", $snippet_output[$var_arr[$j]], $snippet);
+                        $snippet = str_replace(
+                            "{".$var_arr[$j]."}",
+                            $variables[$var_arr[$j]],
+                            $snippet
+                        );
                     }
                 }
+                break;
             }
         }
         return do_shortcode($snippet);
