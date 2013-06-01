@@ -151,15 +151,14 @@ class PostSnippets
      * @param  string  $name  The name of the snippet to retrieve
      * @param  string|array  $variables  The variables to pass to the snippet, 
      *         formatted as a query string or an associative array.
-     * @param  bool    $isArray  Use an associative array for variables.
      * @return string  The Snippet
      */
-    public static function getSnippet($name, $variables = '', $isArray = false)
+    public static function getSnippet($name, $variables = '')
     {
         $snippets = get_option(self::OPTION_KEY, array());
         for ($i = 0; $i < count($snippets); $i++) {
             if ($snippets[$i]['title'] == $name) {
-                if (!$isArray) {
+                if (!is_array($variables)) {
                     parse_str(htmlspecialchars_decode($variables), $variables);
                 }
 

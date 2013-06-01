@@ -69,8 +69,7 @@ class TestPostSnippets extends WP_UnitTestCase
 
         $test = PostSnippets::getSnippet(
             'Ampersands',
-            array('subject'=>'Foo&Bar'),
-            true
+            array('subject'=>'Foo&Bar')
         );
         $this->assertEquals('I love Foo&Bar', $test);
 
