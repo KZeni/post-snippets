@@ -88,7 +88,7 @@ class PostSnippets_Shortcode
      */
     public static function phpEval($content)
     {
-        if (!PostSnippets::canExecutePHP()) {
+        if (defined('POST_SNIPPETS_DISABLE_PHP')) {
             return $content;
         }
 

@@ -69,6 +69,7 @@ class PostSnippets
         add_action('init', array($this, 'textDomain'));
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
 
+        add_action('after_setup_theme', array(&$this, 'phpExecState'));
         new PostSnippets_Admin;
         new PostSnippets_WPEditor;
         new PostSnippets_Shortcode;
@@ -180,18 +181,6 @@ class PostSnippets
         return do_shortcode($snippet);
     }
 
-    /**
-     * Allow other plugins to disable the PHP Code execution feature.
-     *
-     * @see   http://wordpress.org/extend/plugins/post-snippets/faq/
-     * @since 2.1
-     */
-    public static function canExecutePHP()
-    {
-        return apply_filters('post_snippets_php_execution_enabled', true);
-    }
-
-
     // -------------------------------------------------------------------------
     // Environment Checks
     // -------------------------------------------------------------------------
@@ -256,6 +245,31 @@ class PostSnippets
     {
         $data = get_plugin_data(self::FILE);
         return $data['Name'];
+    }
+
+    // -------------------------------------------------------------------------
+    // Deprecated methods
+    // -------------------------------------------------------------------------
+    /**
+     * Allow plugins to disable the PHP Code execution feature with a filter.
+     * Deprecated: Use the POST_SNIPPETS_DISABLE_PHP global constant to disable
+     * PHP instead.
+     *
+     * @see   http://wordpress.org/extend/plugins/post-snippets/faq/
+     * @since 2.1
+     * @deprecated 2.3
+     */
+    public function phpExecState()
+    {
+        $filter = apply_filters('post_snippets_php_execution_enabled', true);
+        if ($filter == false and !defined('POST_SNIPPETS_DISABLE_PHP')) {
+            _deprecated_function(
+                'post_snippets_php_execution_enabled',
+                '2.3',
+                'define(\'POST_SNIPPETS_DISABLE_PHP\', true);'
+            );
+            define('POST_SNIPPETS_DISABLE_PHP', true);
+        }
     }
 }
 
