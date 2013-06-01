@@ -75,7 +75,7 @@ class TestPostSnippets extends WP_UnitTestCase
         $this->assertEquals('I love Foo&Bar', $test);
 
 
-        $test = PostSnippets::getSnippet('variables','subject=Foo&from=Bar');
+        $test = PostSnippets::getSnippet('variables', 'subject=Foo&from=Bar');
         $this->assertEquals('I love Foo from Bar', $test);
     }
 }
