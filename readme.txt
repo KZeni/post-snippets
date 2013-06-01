@@ -130,8 +130,8 @@ Contributions are appreciated and encouraged.
    to accept an array with variables and not only a querystring. Fixes
    [issue #22](https://github.com/artstorm/post-snippets/issues/22).
  * Removes `get_post_snippet()` which was deprecated in version 2.1.
- * Adds POST_SNIPPETS_DISABLE_PHP constant for easy disabling to PHP 
-   code execution in snippets. Add  
+ * Adds POST_SNIPPETS_DISABLE_PHP constant for easy disabling to PHP code
+   execution in snippets. Add  
    `define('POST_SNIPPETS_DISABLE_PHP', true);`  
    to wp-config.php or the theme's functions.php to disable PHP execution in the
    plugin.
