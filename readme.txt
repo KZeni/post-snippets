@@ -121,8 +121,12 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.1 - 1 Jun 2013 =
+ * Removes the `$isArray` argument from `PostSnippets::getSnippet()` as it was
+   not needed.
+
 = Version 2.3 - 1 Jun 2013 =
- * Updates `PostSnippets::getSnippet($name, $variables, $isArray)` to be able
+ * Updates `PostSnippets::getSnippet($name, $variables)` to be able
    to accept an array with variables and not only a querystring. Fixes
    [issue #22](https://github.com/artstorm/post-snippets/issues/22).
  * Removes `get_post_snippet()` which was deprecated in version 2.1.
