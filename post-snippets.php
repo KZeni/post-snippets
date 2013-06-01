@@ -253,27 +253,3 @@ class PostSnippets
 }
 
 add_action('plugins_loaded', array('PostSnippets', 'getInstance'));
-
-// -----------------------------------------------------------------------------
-// Helper functions
-// -----------------------------------------------------------------------------
-
-/**
- * Allow snippets to be retrieved directly from PHP.
- * This function is a wrapper for Post_Snippets::get_snippet().
- *
- * @since   Post Snippets 1.6
- * @deprecated Post Snippets 2.1
- *
- * @param   string      $snippet_name
- *          The name of the snippet to retrieve
- * @param   string      $snippet_vars
- *          The variables to pass to the snippet, formatted as a query string.
- * @return  string
- *          The Snippet
- */
-function get_post_snippet($snippet_name, $snippet_vars = '')
-{
-    _deprecated_function(__FUNCTION__, '2.1', 'PostSnippets::getSnippet()');
-    return PostSnippets::getSnippet($snippet_name, $snippet_vars);
-}
