@@ -37,8 +37,10 @@ spl_autoload_register('PostSnippets::autoload');
  */
 class PostSnippets
 {
+    /** Holds the plugin instance */
     private static $instance = false;
 
+    /** Define plugin constants */
     const MIN_PHP_VERSION     = '5.2.4';
     const MIN_WP_VERSION      = '3.3';
     const OPTION_KEY          = 'post_snippets_options';
