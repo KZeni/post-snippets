@@ -121,6 +121,12 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.2 - 5 Aug 2013 =
+ * Updates insert snippets into the editor to be compatible with jQuery 1.9+
+   (which makes it compatible with WordPress 3.6).
+ * Changes WP version check to comply with WordPress 3.3 as the minimum required
+   version.
+
 = Version 2.3.1 - 1 Jun 2013 =
  * Removes the `$isArray` argument from `PostSnippets::getSnippet()` as it was
    not needed.
