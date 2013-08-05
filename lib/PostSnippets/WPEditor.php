@@ -226,7 +226,18 @@ class PostSnippets_WPEditor
                         },
                         "Insert": function() {
                             $(this).dialog("close");
+                        <?php
+                        global $wp_version;
+                        if (version_compare($wp_version, '3.5', '<')) {
+                        ?>
+                            var selected = tabs.tabs('option', 'selected');
+                        <?php
+                        } else {
+                        ?>
                             var selected = tabs.tabs('option', 'active');
+                        <?php
+                        }
+                        ?>
                         <?php
         foreach ($snippets as $key => $snippet) {
                         ?>
