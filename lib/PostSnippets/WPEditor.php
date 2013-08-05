@@ -213,8 +213,8 @@ class PostSnippets_WPEditor
         }
         ?>
             
-            var $tabs = $("#post-snippets-tabs").tabs();
-            
+            var tabs = $("#post-snippets-tabs").tabs();
+
             $(function() {
                 $( "#post-snippets-dialog" ).dialog({
                     autoOpen: false,
@@ -225,8 +225,8 @@ class PostSnippets_WPEditor
                             $( this ).dialog( "close" );
                         },
                         "Insert": function() {
-                            $( this ).dialog( "close" );
-                            var selected = $tabs.tabs('option', 'selected');
+                            $(this).dialog("close");
+                            var selected = tabs.tabs('option', 'active');
                         <?php
         foreach ($snippets as $key => $snippet) {
                         ?>
