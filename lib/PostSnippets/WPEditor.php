@@ -255,9 +255,6 @@ class PostSnippets_WPEditor
                             if (post_snippets_caller == 'html') {
                                 // HTML editor in WordPress 3.3 and greater
                                 QTags.insertContent(insert_snippet);
-                            } else if (post_snippets_caller == 'html_pre33') {
-                                // HTML editor in WordPress below 3.3.
-                                edInsertContent(post_snippets_canvas, insert_snippet);
                             } else {
                                 // Visual Editor
                                 post_snippets_canvas.execCommand('mceInsertContent', false, insert_snippet);
