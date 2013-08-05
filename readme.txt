@@ -3,8 +3,8 @@ Contributors: artstorm
 Donate link: http://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 2.3.1
+Tested up to: 3.6
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,12 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.2 - 5 Aug 2013 =
+ * Updates insert snippets into the editor to be compatible with jQuery 1.9+
+   (which makes it compatible with WordPress 3.6).
+ * Changes WP version check to comply with WordPress 3.3 as the minimum required
+   version.
 
 = Version 2.3.1 - 1 Jun 2013 =
  * Removes the `$isArray` argument from `PostSnippets::getSnippet()` as it was
