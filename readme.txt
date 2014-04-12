@@ -124,6 +124,8 @@ Contributions are appreciated and encouraged.
 = Version 2.3.3 - 12 Apr 2014 =
  * Updates Post Snippets admin screen to not let Chrome XSS Auditor preventing
    snippets containg form elements to be saved.
+ * Adds Serbo-Croatian translation.
+ * Updated Polish translation.
 
 = Version 2.3.2 - 5 Aug 2013 =
  * Updates insert snippets into the editor to be compatible with jQuery 1.9+
