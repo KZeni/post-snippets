@@ -7,7 +7,7 @@ Author: Johan Steen
 Author URI: http://johansteen.se/
 Version: 2.3.2
 License: GPLv2 or later
-Text Domain: post-snippets 
+Text Domain: post-snippets
 
 Copyright 2009-2013 Johan Steen  (email : artstorm [at] gmail [dot] com)
 
@@ -98,7 +98,7 @@ class PostSnippets
             $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace);
             $fileName .= DIRECTORY_SEPARATOR;
         }
-        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, 'lib_'.$className);
+        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, 'src_'.$className);
         $fileName .='.php';
 
         require $fileName;
@@ -134,7 +134,7 @@ class PostSnippets
         global $wpdb;
         $wpdb->query(
             "
-            DELETE FROM $wpdb->usermeta 
+            DELETE FROM $wpdb->usermeta
             WHERE meta_key = 'post_snippets'
             "
         );
@@ -151,7 +151,7 @@ class PostSnippets
      * @since   Post Snippets 1.8.9.1
      *
      * @param  string  $name  The name of the snippet to retrieve
-     * @param  string|array  $variables  The variables to pass to the snippet, 
+     * @param  string|array  $variables  The variables to pass to the snippet,
      *         formatted as a query string or an associative array.
      * @return string  The Snippet
      */
