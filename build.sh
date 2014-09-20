@@ -86,55 +86,57 @@ findVersionNumber()
 # SVN
 # Push a new release to the WordPress Repository
 # ------------------------------------------------------------------------------
-# function svn
-# {
-#     $version = findVersionNumber
 
-#     Write-Host "Version to build: $version"
-#     # Checkout Update trunk in repo
-#     Write-Host "Checks out trunk..."
-#     svn.exe co $SVN_REPO"trunk/" build/trunk
-#     Write-Host "Removes old version..."
-#     svn.exe rm build/trunk/*
-#     Write-Host "Copies new version to trunk..."
-#     cp $PLUGIN_FILE build/trunk/
-#     cp readme.txt build/trunk/
+publish()
+{
+    version=$(findVersionNumber)
 
-#     cp assets/  -Destination build/trunk/assets/  -Recurse
-#     cp lang/    -Destination build/trunk/lang/    -Recurse
-#     cp lib/     -Destination build/trunk/lib/     -Recurse
-#     cp tinymce/ -Destination build/trunk/tinymce/ -Recurse
-#     cp views/   -Destination build/trunk/views/   -Recurse
+    echo "Version to build: $version"
+    # Checkout SVN repo
+    echo "Checking out trunk..."
+    svn co $SVN_REPO"trunk/" build/trunk
+    echo "Removes old version..."
+    svn rm build/trunk/*
 
-#     Write-Host "Commits trunk to repo..."
-#     cd build/trunk
-#     svn.exe add *
-#     svn.exe ci -m "Updates trunk with version $version"
+    # Copy
+    echo "Copies new version to trunk..."
+    cp $PLUGIN_FILE build/trunk/
+    cp readme.txt build/trunk/
 
-#     if (!$LastExitCode -eq 0) {
-#         Write-Host "Error! Could not update trunk. Exiting." -foregroundcolor "Red"
-#         Exit
-#     }
+    cp -r assets build/trunk/
+    cp -r lang build/trunk/
+    cp -r src build/trunk/
+    cp -r tinymce build/trunk/
+    cp -r views build/trunk/
 
-#     # Tag it
-#     Write-Host "Tagging the new version"
-#     svn.exe cp -m "Tagged version $version" $SVN_REPO"trunk/" $SVN_REPO"tags/"$version"/"
+    # Commit
+    echo "Commits trunk to repo..."
+    cd build/trunk
+    svn add *
+    svn ci -m "Updates trunk with version "$version
+    if [ $? -ne 0 ]; then
+        echo "Error! Could not update trunk. Exiting."
+        exit
+    fi
 
-#     if (!$LastExitCode -eq 0) {
-#         Write-Host "Error! Could not create the new tag. Exiting." -foregroundcolor "Red"
-#         Exit
-#     }
+    # Tag it
+    echo "Tagging the new version"
+    svn cp -m "Tagged version "$version $SVN_REPO"trunk/" $SVN_REPO"tags/"$version"/"
+    if [ $? -ne 0 ]; then
+        echo "Error! Could not create the new tag. Exiting."
+        exit
+    fi
 
-#     # Cleanup
-#     cd ../..
-#     Remove-Item build -Recurse -Force
+    # Cleanup
+    cd ../..
+    rm -rf build
 
-#     # Git tag the new version, and push master to the repo.
-#     git tag -a $version -m "Tagged version $version"
-#     git push origin master --tags
+    # Git tag the new version, and push master to the repo.
+    git tag -a $version -m "Tagged version $version"
+    git push origin master --tags
 
-#     Write-Host "All done!"
-# }
+    echo "All done!"
+}
 
 
 # ------------------------------------------------------------------------------
