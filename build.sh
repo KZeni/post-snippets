@@ -15,14 +15,6 @@ SVN_REPO='http://plugins.svn.wordpress.org/post-snippets/'
 TRANS_PREFIX='lang/post-snippets'
 
 
-# Generic
-# $PLUGIN_NAME  = 'Post Snippets'
-# $DATE         = get-date -format "d MMM yyyy"
-# $FILES        = @('post-snippets.php', 'readme.txt')
-# $PLUGIN_FILE  = 'post-snippets.php'
-# $POT_FILE     = 'lang/post-snippets.pot'
-# $SVN_REPO     = 'http://plugins.svn.wordpress.org/post-snippets/'
-
 # ------------------------------------------------------------------------------
 # Bump
 # Prepares strings for a new release.
