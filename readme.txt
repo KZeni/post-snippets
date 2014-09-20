@@ -121,6 +121,11 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.4 - 20 Sep 2014 =
+ * Tested up to WordPress v4.0.
+ * Update Swedish translation.
+ * Add Ukrainian translation.
+
 = Version 2.3.3 - 12 Apr 2014 =
  * Updates Post Snippets admin screen to not let Chrome XSS Auditor preventing
    snippets containg form elements to be saved.
