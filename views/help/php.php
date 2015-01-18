@@ -1,13 +1,14 @@
+<h2><?php _e('PHP', $td); ?> (<em><?php _e('for developers', $td); ?></em>)</h2>
+
 <p>
 <?php _e('Snippets defined as shortcodes can optionally also be evaluated as PHP Code by enabling the PHP checkbox. PHP snippets is only available when treating the snippet as a shortcode.', PostSnippets::TEXT_DOMAIN); ?>
 </p>
 
-<p><strong><?php _e('Example PHP Snippet', PostSnippets::TEXT_DOMAIN); ?></strong><br/>
-<code>
-for ($i=1; $i<5; $i++) {<br/>
-    echo "{loop_me}&lt;br/&gt;";<br/>
+<p><strong><?php _e('Example PHP Snippet', PostSnippets::TEXT_DOMAIN); ?></strong></p>
+<pre><code>for ($i=1; $i<5; $i++) {
+    echo "{loop_me}&lt;br/&gt;";
 };
-</code></p>
+</code></pre>
 
 <p>
 <?php _e('With a snippet defined like the one above, you can call it with its shortcode definition in a post. Let\'s pretend that the example snippet is named phpcode and have one variable defined loop_me, then it would be called like this from a post:', PostSnippets::TEXT_DOMAIN); ?>
