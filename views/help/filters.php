@@ -5,6 +5,7 @@
 <ul>
   <li><strong>post_snippets_import</strong>&nbsp;&nbsp;&nbsp;<em>serialized array</em>&nbsp;&nbsp;&nbsp;<?php _e('Modify snippets and related data before the imported file populates the snippets.', $td); ?></li>
   <li><strong>post_snippets_export</strong>&nbsp;&nbsp;&nbsp;<em>serialized array</em>&nbsp;&nbsp;&nbsp;<?php _e('Modify snippets and related data before the export file is created.', $td); ?></li>
+  <li><strong>post_snippets_snippets_list</strong>&nbsp;&nbsp;&nbsp;<em>array</em>&nbsp;&nbsp;&nbsp;<?php _e('Modify the array of snippets that are used as the snippet list for the jQuery UI dialog in the edit post screen.', $td); ?></li>
 </ul>
 
 <h3><?php _e('Examples', $td); ?></h3>
