@@ -81,6 +81,13 @@ class PostSnippets_Help
             'content' => $this->content('help/filters')
             )
         );
+        $screen->add_help_tab(
+            array(
+            'id'      => 'translators-plugin-help',
+            'title'   => __('Translators', PostSnippets::TEXT_DOMAIN),
+            'content' => $this->content('help/translators')
+            )
+        );
     }
 
     /**
