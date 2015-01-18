@@ -176,7 +176,7 @@ trans()
     xgettext \
     -o $TRANS_PREFIX".pot" \
     -L php --keyword=_e --keyword=__ --keyword=_n \
-    *.php views/*.php src/PostSnippets/*.php
+    *.php views/*.php views/help/*.php src/PostSnippets/*.php
 
     # Update po files with potential new changes from the pot file
     msgmerge --update $TRANS_PREFIX"-sv_SE.po" $TRANS_PREFIX".pot"
