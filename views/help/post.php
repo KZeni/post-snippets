@@ -3,7 +3,7 @@
 <img src="<?php echo plugins_url('assets/img/help/post-snippets-editor.jpg', PostSnippets::FILE); ?>" />
 
 <p>
-<?php _e('With your snippets set up, you’ll find a new button in your post editor (circled in the image above), which you can click to open the Post Snippet window to insert one of your snippets in your post.', $td); ?>
+<?php _e('With your snippets set up, you\'ll find a new button in your post editor (circled in the image above), which you can click to open the Post Snippet window to insert one of your snippets in your post.', $td); ?>
 </p>
 
 <img src="<?php echo plugins_url('assets/img/help/post-snippets-window.jpg', PostSnippets::FILE); ?>" />
