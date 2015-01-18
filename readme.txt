@@ -121,6 +121,11 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.5 - 18 Jan 2015 =
+ * Adds new developer filter, `post_snippets_snippets_list`.
+ * Integrates plugin doc to the post editor help tab.
+ * Adds complete plugin usage documentation to the settings help tab.
+
 = Version 2.3.4 - 20 Sep 2014 =
  * Tested up to WordPress v4.0.
  * Update Swedish translation.
