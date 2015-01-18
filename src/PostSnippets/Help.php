@@ -46,9 +46,9 @@ class PostSnippets_Help
         $screen->set_help_sidebar($this->content('help/sidebar'));
         $screen->add_help_tab(
             array(
-            'id'      => 'basic-plugin-help',
-            'title'   => __('Basic', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->content('help/basic')
+            'id'      => 'usage-plugin-help',
+            'title'   => __('Usage', PostSnippets::TEXT_DOMAIN),
+            'content' => $this->content('help/usage')
             )
         );
         $screen->add_help_tab(
