@@ -41,6 +41,13 @@ class PostSnippets_Help
             'content' => $this->content('help/shortcode')
             )
         );
+        $screen->add_help_tab(
+            array(
+            'id'      => 'post-plugin-help',
+            'title'   => __('Post Editor', PostSnippets::TEXT_DOMAIN),
+            'content' => $this->content('help/post')
+            )
+        );
         if (!defined('POST_SNIPPETS_DISABLE_PHP')) {
             $screen->add_help_tab(
                 array(
