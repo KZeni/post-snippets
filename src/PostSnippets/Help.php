@@ -53,13 +53,6 @@ class PostSnippets_Help
         );
         $screen->add_help_tab(
             array(
-            'id'      => 'shortcode-plugin-help',
-            'title'   => __('Shortcode', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->content('help/shortcode')
-            )
-        );
-        $screen->add_help_tab(
-            array(
             'id'      => 'post-plugin-help',
             'title'   => __('Post Editor', PostSnippets::TEXT_DOMAIN),
             'content' => $this->content('help/post')
