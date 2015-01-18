@@ -10,12 +10,29 @@ class PostSnippets_Help
     /**
      * Define actions.
      *
-     * @param   string  The option page to load the help text on
+     * @param  string
      * @return void
      */
     public function __construct($optionPage)
     {
-        add_action('load-'.$optionPage, array(&$this,'addHelpTabs'));
+        add_action('load-'.$optionPage, array(&$this,'tabs'));
+
+        add_action('load-post.php', array(&$this,'postEditor'));
+        add_action('load-post-new.php', array(&$this,'postEditor'));
+    }
+
+    /**
+     * Load the post editor tab in the admin_head filter.
+     *
+     * We load the tab that will integrate in the post editor help menu via the
+     * admin_head hook, as we are not otherwise able to make it get ordered
+     * below the native help tabs.
+     *
+     * @return void.
+     */
+    public function postEditor()
+    {
+        add_action('admin_head', array(&$this,'postEditorTabs'));
     }
 
     /**
@@ -23,7 +40,7 @@ class PostSnippets_Help
      *
      * @return void
      */
-    public function addHelpTabs()
+    public function tabs()
     {
         $screen = get_current_screen();
         $screen->set_help_sidebar($this->content('help/sidebar'));
@@ -69,6 +86,24 @@ class PostSnippets_Help
             'id'      => 'filters-plugin-help',
             'title'   => __('Filters', PostSnippets::TEXT_DOMAIN),
             'content' => $this->content('help/filters')
+            )
+        );
+    }
+
+    /**
+     * Setup the help tab for the post editor.
+     *
+     * @return void
+     */
+    public function postEditorTabs()
+    {
+        $screen = get_current_screen();
+
+        $screen->add_help_tab(
+            array(
+            'id'      => 'postsnippets-plugin-help',
+            'title'   => 'Post Snippets',
+            'content' => $this->content('help/post')
             )
         );
     }
