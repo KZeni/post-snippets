@@ -61,51 +61,51 @@ class PostSnippets_Help
 
     /**
      * The right sidebar help text.
-     * 
+     *
      * @return  string  The help text
      */
     public function helpSidebar()
     {
-        return PostSnippets_View::render('help_sidebar');
+        return PostSnippets_View::render('help/sidebar');
     }
 
     /**
      * The basic help tab.
-     * 
+     *
      * @return  string  The help text
      */
     public function helpBasic()
     {
-        return PostSnippets_View::render('help_basic');
+        return PostSnippets_View::render('help/basic');
     }
 
     /**
      * The shortcode help tab.
-     * 
+     *
      * @return  string  The help text
      */
     public function helpShortcode()
     {
-        return PostSnippets_View::render('help_shortcode');
+        return PostSnippets_View::render('help/shortcode');
     }
 
     /**
      * The PHP help tab.
-     * 
+     *
      * @return  string  The help text
      */
     public function helpPhp()
     {
-        return PostSnippets_View::render('help_php');
+        return PostSnippets_View::render('help/php');
     }
 
     /**
      * The advanced help tab.
-     * 
+     *
      * @return  string  The help text
      */
     public function helpAdvanced()
     {
-        return PostSnippets_View::render('help_advanced');
+        return PostSnippets_View::render('help/advanced');
     }
 }
