@@ -8,10 +8,10 @@
 class PostSnippets_Help
 {
     /**
-     * Constructor.
+     * Define actions.
      *
-     * @since   Post Snippets 1.8.9
      * @param   string  The option page to load the help text on
+     * @return void
      */
     public function __construct($optionPage)
     {
@@ -21,24 +21,24 @@ class PostSnippets_Help
     /**
      * Setup the help tabs and sidebar.
      *
-     * @since   Post Snippets 1.8.9
+     * @return void
      */
     public function addHelpTabs()
     {
         $screen = get_current_screen();
-        $screen->set_help_sidebar($this->helpSidebar());
+        $screen->set_help_sidebar($this->content('help/sidebar'));
         $screen->add_help_tab(
             array(
             'id'      => 'basic-plugin-help',
             'title'   => __('Basic', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->helpBasic()
+            'content' => $this->content('help/basic')
             )
         );
         $screen->add_help_tab(
             array(
             'id'      => 'shortcode-plugin-help',
             'title'   => __('Shortcode', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->helpShortcode()
+            'content' => $this->content('help/shortcode')
             )
         );
         if (!defined('POST_SNIPPETS_DISABLE_PHP')) {
@@ -46,7 +46,7 @@ class PostSnippets_Help
                 array(
                 'id'      => 'php-plugin-help',
                 'title'   => __('PHP', PostSnippets::TEXT_DOMAIN),
-                'content' => $this->helpPhp()
+                'content' => $this->content('help/php')
                 )
             );
         }
@@ -54,58 +54,29 @@ class PostSnippets_Help
             array(
             'id'      => 'advanced-plugin-help',
             'title'   => __('Advanced', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->helpAdvanced()
+            'content' => $this->content('help/advanced')
+            )
+        );
+        $screen->add_help_tab(
+            array(
+            'id'      => 'filters-plugin-help',
+            'title'   => __('Filters', PostSnippets::TEXT_DOMAIN),
+            'content' => $this->content('help/filters')
             )
         );
     }
 
     /**
-     * The right sidebar help text.
+     * Get the content for a help tab
      *
-     * @return  string  The help text
+     * @param  string  $tab
+     * @return string
      */
-    public function helpSidebar()
+    private function content($tab)
     {
-        return PostSnippets_View::render('help/sidebar');
-    }
-
-    /**
-     * The basic help tab.
-     *
-     * @return  string  The help text
-     */
-    public function helpBasic()
-    {
-        return PostSnippets_View::render('help/basic');
-    }
-
-    /**
-     * The shortcode help tab.
-     *
-     * @return  string  The help text
-     */
-    public function helpShortcode()
-    {
-        return PostSnippets_View::render('help/shortcode');
-    }
-
-    /**
-     * The PHP help tab.
-     *
-     * @return  string  The help text
-     */
-    public function helpPhp()
-    {
-        return PostSnippets_View::render('help/php');
-    }
-
-    /**
-     * The advanced help tab.
-     *
-     * @return  string  The help text
-     */
-    public function helpAdvanced()
-    {
-        return PostSnippets_View::render('help/advanced');
+        return PostSnippets_View::render(
+            $tab,
+            array('td' => PostSnippets::TEXT_DOMAIN)
+        );
     }
 }
