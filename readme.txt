@@ -33,13 +33,15 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 * **Variables** Each snippet can have as many custom variables as you like,
   which can be used on insert.
 * **Import/Export** Snippets can be imported and exported between sites.
+* **Documentation** Full documentation is available directly from the help panel
+  in the plugin administration screen.
 * **Uninstall** If you delete the plugin from your plugins panel it cleans up
   all data it has created in the Wordpress database.
 
 = Related Links =
 
-* [Documentation](http://johansteen.se/code/post-snippets/
-  "Usage instructions")
+* [Plugin Page](http://johansteen.se/code/post-snippets/
+  "Post snippets plugin page")
 * [Support Forum](http://wordpress.org/support/plugin/post-snippets
   "Use this for support and feature requests")
 * [GitHub](https://github.com/artstorm/post-snippets
@@ -68,6 +70,11 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
    options the plugin has stored in the database.
 
 == Frequently Asked Questions ==
+
+= Where can I find usage and developer information? =
+
+Documentation for the plugin is available directly from the help panel in the
+plugin administration screen.
 
 = Why do importing Snippets on a multi site install fail? =
 
