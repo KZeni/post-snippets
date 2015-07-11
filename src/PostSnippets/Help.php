@@ -15,10 +15,10 @@ class PostSnippets_Help
      */
     public function __construct($optionPage)
     {
-        add_action('load-'.$optionPage, array(&$this,'tabs'));
+        add_action('load-'.$optionPage, array(&$this, 'tabs'));
 
-        add_action('load-post.php', array(&$this,'postEditor'));
-        add_action('load-post-new.php', array(&$this,'postEditor'));
+        add_action('load-post.php', array(&$this, 'postEditor'));
+        add_action('load-post-new.php', array(&$this, 'postEditor'));
     }
 
     /**
@@ -32,7 +32,7 @@ class PostSnippets_Help
      */
     public function postEditor()
     {
-        add_action('admin_head', array(&$this,'postEditorTabs'));
+        add_action('admin_head', array(&$this, 'postEditorTabs'));
     }
 
     /**
