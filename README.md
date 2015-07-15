@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/artstorm/post-snippets.png?branch=develop)](https://travis-ci.org/artstorm/post-snippets)
 [![StyleCI](https://styleci.io/repos/7717261/shield)](https://styleci.io/repos/7717261)
+[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 
 
