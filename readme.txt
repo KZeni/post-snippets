@@ -3,7 +3,7 @@ Contributors: artstorm
 Donate link: http://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: 2.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,7 +52,7 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 = Requirements =
 
-* PHP version 5.2.4 or greater.
+* PHP version 5.3.0 or greater.
 * WordPress version 3.3 or greater.
 
 = Install =
@@ -127,6 +127,10 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.6 - 15 Jul 2015 =
+ * Bumps minimum required PHP version to 5.3.0.
+ * Adds list of translators to inline documentation.
 
 = Version 2.3.5 - 18 Jan 2015 =
  * Adds new developer filter, `post_snippets_snippets_list`.
@@ -478,3 +482,11 @@ in version 2.1. In this update it is now completely removed. Please update any
 code you might have that uses this function to use `PostSnippets::getSnippet()` instead, which replaces the deprecated function.
 
 Most users are not affected by this change.
+
+= 2.3.6 =
+The minimum required PHP version have changed from v5.2.4 to v5.3.0 with this
+update of Post Snippets to prepare for the next major release.
+
+Most servers should be using PHP v5.3.0 or newer by now, but if you are unsure
+what PHP version your server is using, please check before updating to this
+version of the plugin.
