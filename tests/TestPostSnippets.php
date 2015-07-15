@@ -4,7 +4,6 @@
  */
 class TestPostSnippets extends WP_UnitTestCase
 {
-
     private $plugin = 'post-snippets';
 
     public function setUp()
