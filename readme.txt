@@ -4,7 +4,7 @@ Donate link: http://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.2.2
-Stable tag: 2.3.6
+Stable tag: 2.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,9 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.7 - 4 Nov 2015 =
+ * Updates translatable strings to be Language Pack compatible.
 
 = Version 2.3.6 - 15 Jul 2015 =
  * Bumps minimum required PHP version to 5.3.0.
