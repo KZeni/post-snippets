@@ -5,23 +5,23 @@
         <thead>
         <tr>
             <th scope="col" class="check-column"><input type="checkbox" /></th>
-            <th scope="col" style="width: 180px;"><?php _e('Title', PostSnippets::TEXT_DOMAIN); ?></th>
-            <th scope="col" style="width: 180px;"><?php _e('Variables', PostSnippets::TEXT_DOMAIN); ?></th>
-            <th scope="col"><?php _e('Snippet', PostSnippets::TEXT_DOMAIN); ?></th>
+            <th scope="col" style="width: 180px;"><?php _e('Title', 'post-snippets'); ?></th>
+            <th scope="col" style="width: 180px;"><?php _e('Variables', 'post-snippets'); ?></th>
+            <th scope="col"><?php _e('Snippet', 'post-snippets'); ?></th>
         </tr>
         </thead>
-    
+
         <tfoot>
         <tr>
             <th scope="col" class="check-column"><input type="checkbox" /></th>
-            <th scope="col"><?php _e('Title', PostSnippets::TEXT_DOMAIN) ?></th>
-            <th scope="col"><?php _e('Variables', PostSnippets::TEXT_DOMAIN) ?></th>
-            <th scope="col"><?php _e('Snippet', PostSnippets::TEXT_DOMAIN) ?></th>
+            <th scope="col"><?php _e('Title', 'post-snippets') ?></th>
+            <th scope="col"><?php _e('Variables', 'post-snippets') ?></th>
+            <th scope="col"><?php _e('Snippet', 'post-snippets') ?></th>
         </tr>
         </tfoot>
-    
+
         <tbody>
-<?php 
+<?php
 $snippets = get_option(PostSnippets::OPTION_KEY);
 if (!empty($snippets)) {
     foreach ($snippets as $key => $snippet) {
@@ -41,14 +41,14 @@ if (!empty($snippets)) {
             <br/>
             <br/>
             <?php
-            PostSnippets_Admin::checkbox(__('Shortcode', PostSnippets::TEXT_DOMAIN), $key.'_shortcode',
+            PostSnippets_Admin::checkbox(__('Shortcode', 'post-snippets'), $key.'_shortcode',
                             $snippet['shortcode']);
 
         echo '<br/><strong>Shortcode Options:</strong><br/>';
 
         if (!defined('POST_SNIPPETS_DISABLE_PHP')) {
             PostSnippets_Admin::checkbox(
-                __('PHP Code', PostSnippets::TEXT_DOMAIN),
+                __('PHP Code', 'post-snippets'),
                 $key.'_php',
                 $snippet['php']
             );
@@ -62,7 +62,7 @@ if (!empty($snippets)) {
             <textarea name="<?php echo $key;
         ?>_snippet" class="large-text" style='width: 100%;' rows="5"><?php echo htmlspecialchars($snippet['snippet'], ENT_NOQUOTES);
         ?></textarea>
-            <?php _e('Description', PostSnippets::TEXT_DOMAIN) ?>:
+            <?php _e('Description', 'post-snippets') ?>:
             <input type='text' style='width: 100%;' name='<?php echo $key;
         ?>_description' value='<?php if (isset($snippet['description'])) {
     echo esc_html($snippet['description']);
@@ -79,7 +79,7 @@ if (!empty($snippets)) {
     </table>
 
 <?php
-        PostSnippets_Admin::submit('update-snippets', __('Update Snippets', PostSnippets::TEXT_DOMAIN));
-        PostSnippets_Admin::submit('add-snippet', __('Add New Snippet', PostSnippets::TEXT_DOMAIN), 'button-secondary', false);
-        PostSnippets_Admin::submit('delete-snippets', __('Delete Selected', PostSnippets::TEXT_DOMAIN), 'button-secondary', false);
+        PostSnippets_Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'));
+        PostSnippets_Admin::submit('add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false);
+        PostSnippets_Admin::submit('delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false);
         echo '</form>';

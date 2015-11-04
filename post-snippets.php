@@ -8,6 +8,7 @@ Author URI: http://johansteen.se/
 Version: 2.3.6
 License: GPLv2 or later
 Text Domain: post-snippets
+Domain Path: /lang
 
 Copyright 2009-2015 Johan Steen  (email : artstorm [at] gmail [dot] com)
 
@@ -45,7 +46,6 @@ class PostSnippets
     const MIN_WP_VERSION      = '3.3';
     const OPTION_KEY          = 'post_snippets_options';
     const USER_META_KEY       = 'post_snippets';
-    const TEXT_DOMAIN         = 'post-snippets';
     const FILE                = __FILE__;
 
     /**
@@ -68,10 +68,14 @@ class PostSnippets
             return;
         }
 
-        add_action('init', array($this, 'textDomain'));
+        load_plugin_textdomain(
+            'post-snippets',
+            false,
+            dirname(plugin_basename(__FILE__)).'/lang/'
+        );
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
-
         add_action('after_setup_theme', array(&$this, 'phpExecState'));
+
         new PostSnippets_Admin;
         new PostSnippets_WPEditor;
         new PostSnippets_Shortcode;
@@ -102,24 +106,6 @@ class PostSnippets
         $fileName .='.php';
 
         require $fileName;
-    }
-
-    /**
-     * Loads the plugin text domain for translation
-     */
-    public function textDomain()
-    {
-        $domain = self::TEXT_DOMAIN;
-        $locale = apply_filters('plugin_locale', get_locale(), $domain);
-        load_textdomain(
-            $domain,
-            WP_LANG_DIR.'/'.$domain.'/'.$domain.'-'.$locale.'.mo'
-        );
-        load_plugin_textdomain(
-            $domain,
-            false,
-            dirname(plugin_basename(__FILE__)).'/lang/'
-        );
     }
 
     /**

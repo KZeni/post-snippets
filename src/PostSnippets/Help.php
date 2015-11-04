@@ -47,14 +47,14 @@ class PostSnippets_Help
         $screen->add_help_tab(
             array(
             'id'      => 'usage-plugin-help',
-            'title'   => __('Usage', PostSnippets::TEXT_DOMAIN),
+            'title'   => __('Usage', 'post-snippets'),
             'content' => $this->content('help/usage')
             )
         );
         $screen->add_help_tab(
             array(
             'id'      => 'post-plugin-help',
-            'title'   => __('Post Editor', PostSnippets::TEXT_DOMAIN),
+            'title'   => __('Post Editor', 'post-snippets'),
             'content' => $this->content('help/post')
             )
         );
@@ -62,7 +62,7 @@ class PostSnippets_Help
             $screen->add_help_tab(
                 array(
                 'id'      => 'php-plugin-help',
-                'title'   => __('PHP', PostSnippets::TEXT_DOMAIN),
+                'title'   => __('PHP', 'post-snippets'),
                 'content' => $this->content('help/php')
                 )
             );
@@ -70,22 +70,15 @@ class PostSnippets_Help
         $screen->add_help_tab(
             array(
             'id'      => 'advanced-plugin-help',
-            'title'   => __('Advanced', PostSnippets::TEXT_DOMAIN),
+            'title'   => __('Advanced', 'post-snippets'),
             'content' => $this->content('help/advanced')
             )
         );
         $screen->add_help_tab(
             array(
             'id'      => 'filters-plugin-help',
-            'title'   => __('Filters', PostSnippets::TEXT_DOMAIN),
+            'title'   => __('Filters', 'post-snippets'),
             'content' => $this->content('help/filters')
-            )
-        );
-        $screen->add_help_tab(
-            array(
-            'id'      => 'translators-plugin-help',
-            'title'   => __('Translators', PostSnippets::TEXT_DOMAIN),
-            'content' => $this->content('help/translators')
             )
         );
     }
@@ -116,9 +109,6 @@ class PostSnippets_Help
      */
     private function content($tab)
     {
-        return PostSnippets_View::render(
-            $tab,
-            array('td' => PostSnippets::TEXT_DOMAIN)
-        );
+        return PostSnippets_View::render($tab);
     }
 }

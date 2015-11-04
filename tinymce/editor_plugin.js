@@ -3,7 +3,7 @@
 (function() {
 	// Load plugin specific language pack
 	tinymce.PluginManager.requireLangPack('post_snippets');
-	
+
 	tinymce.create('tinymce.plugins.post_snippets', {
 		/**
 		 * Initializes the plugin, this will be executed after the plugin has been created.
@@ -24,7 +24,7 @@
 
 			// Register example button
 			ed.addButton('post_snippets', {
-				title : 'post_snippets.desc',
+				title : 'Post Snippets',
 				cmd : 'mce_post_snippets',
 				image : url + '/post-snippets.gif'
 			});

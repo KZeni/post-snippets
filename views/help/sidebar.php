@@ -1,15 +1,15 @@
 <p><strong>
-<?php _e('Related:', PostSnippets::TEXT_DOMAIN); ?>
+<?php _e('Related:', 'post-snippets'); ?>
 </strong></p>
 
 <p><a href="http://wordpress.org/support/plugin/post-snippets" target="_blank"><?php
-_e('Support Forums', PostSnippets::TEXT_DOMAIN);
+_e('Support Forums', 'post-snippets');
 ?></a></p>
 
 <p><a href="https://github.com/artstorm/post-snippets" target="_blank"><?php
-_e('GitHub Repository', PostSnippets::TEXT_DOMAIN);
+_e('GitHub Repository', 'post-snippets');
 ?></a></p>
 
 <p><a href="http://johansteen.se/donate/" target="_blank"><?php
-_e('Donate', PostSnippets::TEXT_DOMAIN);
+_e('Donate', 'post-snippets');
 ?></a></p>
