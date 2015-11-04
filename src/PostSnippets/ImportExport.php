@@ -35,7 +35,7 @@ class PostSnippets_ImportExport
                     10000
                 );
             } else {
-                echo __('Error: ', PostSnippets::TEXT_DOMAIN).$url;
+                echo __('Error: ', 'post-snippets').$url;
             }
         } else {
             // Check if there is any old export files to delete
@@ -58,24 +58,24 @@ class PostSnippets_ImportExport
     {
         $import =
         '<br/><br/><strong>'.
-        __('Import', PostSnippets::TEXT_DOMAIN).
+        __('Import', 'post-snippets').
         '</strong><br/>';
         if (!isset($_FILES['postsnippets_import_file'])
             || empty($_FILES['postsnippets_import_file'])
         ) {
             $import .=
-            '<p>'.__('Import snippets from a post-snippets-export.zip file. Importing overwrites any existing snippets.', PostSnippets::TEXT_DOMAIN).
+            '<p>'.__('Import snippets from a post-snippets-export.zip file. Importing overwrites any existing snippets.', 'post-snippets').
             '</p>';
             $import .= '<form method="post" enctype="multipart/form-data">';
             $import .= '<input type="file" name="postsnippets_import_file"/>';
             $import .= '<input type="hidden" name="action" value="wp_handle_upload"/>';
             $import .=
             '<input type="submit" class="button" value="'.
-            __('Import Snippets', PostSnippets::TEXT_DOMAIN).'"/>';
+            __('Import Snippets', 'post-snippets').'"/>';
             $import .= '</form>';
         } else {
             $file = wp_handle_upload($_FILES['postsnippets_import_file']);
-            
+
             if (isset($file['file']) && !is_wp_error($file)) {
                 require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
                 $zip = new PclZip($file['file']);
@@ -110,29 +110,29 @@ class PostSnippets_ImportExport
 
                     $import .=
                     '<p><strong>'.
-                    __('Snippets successfully imported.', PostSnippets::TEXT_DOMAIN).
+                    __('Snippets successfully imported.', 'post-snippets').
                     '</strong></p>';
                 } else {
                     $import .=
                     '<p><strong>'.
-                    __('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).
+                    __('Snippets could not be imported:', 'post-snippets').
                     ' '.
-                    __('Unzipping failed.', PostSnippets::TEXT_DOMAIN).
+                    __('Unzipping failed.', 'post-snippets').
                     '</strong></p>';
                 }
             } else {
                 if ($file['error'] || is_wp_error($file)) {
                     $import .=
                     '<p><strong>'.
-                    __('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).
+                    __('Snippets could not be imported:', 'post-snippets').
                     ' '.
                     $file['error'].'</strong></p>';
                 } else {
                     $import .=
                     '<p><strong>'.
-                    __('Snippets could not be imported:', PostSnippets::TEXT_DOMAIN).
+                    __('Snippets could not be imported:', 'post-snippets').
                     ' '.
-                    __('Upload failed.', PostSnippets::TEXT_DOMAIN).
+                    __('Upload failed.', 'post-snippets').
                     '</strong></p>';
                 }
             }
@@ -152,7 +152,7 @@ class PostSnippets_ImportExport
         $dir = wp_upload_dir();
         $upload_dir = $dir['basedir'] . '/';
         $upload_url = $dir['baseurl'] . '/';
-        
+
         // Open a file stream and write the serialized options to it.
         if (!$handle = fopen($upload_dir.'./'.self::FILE_CFG, 'w')) {
             die();
@@ -174,7 +174,7 @@ class PostSnippets_ImportExport
         if (!$zipped) {
             return false;
         }
-        
+
         return $upload_url.'./'.self::FILE_ZIP;
     }
 
