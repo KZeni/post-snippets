@@ -13,6 +13,7 @@
                     ?>"><?php echo $snippet['title'];
                     ?></a></li>
                 <?php
+
                 } ?>
             </ul>
 
@@ -29,6 +30,7 @@
                     <p class="howto"><?php echo $snippet['description'];
                     ?></p>
                 <?php
+
                 }
 
                 // Get all variables defined for the snippet and output them as
@@ -55,6 +57,7 @@
                         ?>" style="width: 190px" />
                         <br/>
                     <?php
+
                     }
                 } else {
                     // If no variables and no description available, output a text
@@ -64,12 +67,14 @@
                         <p class="howto"><?php _e('This snippet is insert only, no variables defined.', 'post-snippets');
                         ?></p>
                     <?php
+
                     }
                 }
                 ?>
                 </div><!-- #ps-tabs-<?php echo $key;
                 ?> -->
             <?php
+
             }
         // Close the tabs and dialog divs ?>
         </div><!-- #post-snippets-tabs -->
