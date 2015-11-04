@@ -128,6 +128,9 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.7 - 4 Nov 2015 =
+ * Updates translatable strings to be Language Pack compatible.
+
 = Version 2.3.6 - 15 Jul 2015 =
  * Bumps minimum required PHP version to 5.3.0.
  * Adds list of translators to inline documentation.
