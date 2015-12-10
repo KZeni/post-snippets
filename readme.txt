@@ -3,8 +3,8 @@ Contributors: artstorm
 Donate link: http://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
-Tested up to: 4.2.2
-Stable tag: 2.3.7
+Tested up to: 4.4
+Stable tag: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,10 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.8 - 10 Dec 2015 =
+ * Adds validation of shortcode names. Invalid shortcode names now gets
+   highlighted in red.
 
 = Version 2.3.7 - 4 Nov 2015 =
  * Updates translatable strings to be Language Pack compatible.

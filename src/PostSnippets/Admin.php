@@ -13,6 +13,7 @@ class PostSnippets_Admin
     public function __construct()
     {
         add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
+        add_action('admin_init', array(&$this, 'init'));
         add_action('admin_menu', array(&$this, 'menu'));
         add_action('current_screen', array(&$this, 'addHeaderXss'));
     }
@@ -44,7 +45,23 @@ class PostSnippets_Admin
     }
 
     /**
-     * Initialize the administration page.
+     * Initialize assets for the administration page.
+     *
+     * @return void
+     */
+    public function init()
+    {
+        wp_register_script(
+            'post-snippets',
+            plugins_url('/assets/post-snippets.js', PostSnippets::FILE),
+            array('jquery')
+        );
+    }
+
+    /**
+     * Register the administration page.
+     *
+     * @return void
      */
     public function menu()
     {
@@ -66,7 +83,7 @@ class PostSnippets_Admin
             );
             new PostSnippets_Help($optionPage);
         } else {
-            $option_page = add_options_page(
+            $optionPage = add_options_page(
                 'Post Snippets',
                 'Post Snippets',
                 'edit_posts',
@@ -74,6 +91,21 @@ class PostSnippets_Admin
                 array(&$this, 'overviewPage')
             );
         }
+
+        add_action(
+            'admin_print_scripts-'.$optionPage,
+            array(&$this, 'scripts')
+        );
+    }
+
+    /**
+     * Enqueue scripts to be loaded.
+     *
+     * @return void
+     */
+    public function scripts()
+    {
+        wp_enqueue_script('post-snippets');
     }
 
     /**
