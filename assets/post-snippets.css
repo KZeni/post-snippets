@@ -1,5 +1,5 @@
 /**
- * Styling for the jQuery UI dialog used by Post Snippets 
+ * Styling for the jQuery UI dialog used by Post Snippets
  *
  * @version		2.0
  * @since		Post Snippets 1.7.1
@@ -8,7 +8,7 @@
 	/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	position: relative;
 	padding: .2em;
-	zoom: 1; 
+	zoom: 1;
 }
 #post-snippets-tabs .ui-tabs-nav {
 	margin: 0;
@@ -72,4 +72,9 @@
 #post-snippets-dialog label {
 	width: 60px;
 	display: inline-block;
+}
+
+.post-snippets-invalid {
+	background-color: #ffaaaa !important;
+	border: 1px solid #ff0000 !important;
 }
