@@ -10,6 +10,6 @@ _e('Support Forums', 'post-snippets');
 _e('GitHub Repository', 'post-snippets');
 ?></a></p>
 
-<p><a href="http://johansteen.se/donate/" target="_blank"><?php
+<p><a href="https://johansteen.se/donate/" target="_blank"><?php
 _e('Donate', 'post-snippets');
 ?></a></p>

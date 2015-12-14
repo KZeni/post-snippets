@@ -328,8 +328,8 @@ msgid "Post Snippets"
 msgstr "Post Snippets"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpstorm.net/wordpress-plugins/post-snippets/"
-msgstr "http://wpstorm.net/wordpress-plugins/post-snippets/"
+msgid "https://johansteen.se/code/post-snippets/"
+msgstr "https://johansteen.se/code/post-snippets/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -347,5 +347,5 @@ msgid "Johan Steen"
 msgstr "Johan Steen"
 
 #. Author URI of the plugin/theme
-msgid "http://johansteen.se/"
-msgstr "http://johansteen.se/"
+msgid "https://johansteen.se/"
+msgstr "https://johansteen.se/"
