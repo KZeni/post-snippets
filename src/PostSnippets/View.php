@@ -3,7 +3,7 @@
  * View Handling.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
- * @link     http://johansteen.se/
+ * @link     https://johansteen.se/
  */
 class PostSnippets_View
 {

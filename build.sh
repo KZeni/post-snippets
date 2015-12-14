@@ -3,7 +3,7 @@
 # Build Script for WordPress Plugins
 #
 # @author       Johan Steen <artstorm at gmail dot com>
-# @uri          http://johansteen.se/
+# @uri          https://johansteen.se/
 
 # ------------------------------------------------------------------------------
 # Variables and Setup
@@ -11,7 +11,7 @@
 
 PLUGIN_NAME='Post Snippets'
 PLUGIN_FILE='post-snippets.php'
-SVN_REPO='http://plugins.svn.wordpress.org/post-snippets/'
+SVN_REPO='https://plugins.svn.wordpress.org/post-snippets/'
 TRANS_PREFIX='lang/post-snippets'
 
 

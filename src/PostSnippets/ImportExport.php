@@ -5,7 +5,7 @@
  * Class to handle import and export of Snippets.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
- * @link     http://johansteen.se/
+ * @link     https://johansteen.se/
  */
 class PostSnippets_ImportExport
 {

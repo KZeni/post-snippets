@@ -40,8 +40,8 @@
 			return {
 					longname  : 'Post Snippets',
 					author 	  : 'Johan Steen',
-					authorurl : 'http://johansteen.se/',
-					infourl   : 'http://wpstorm.net/wordpress-plugins/post-snippets/',
+					authorurl : 'https://johansteen.se/',
+					infourl   : 'https://johansteen.se/code/post-snippets/',
 					version   : '1.9'
 			};
 		}

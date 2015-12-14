@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Post Snippets
-Plugin URI: http://johansteen.se/code/post-snippets/
+Plugin URI: https://johansteen.se/code/post-snippets/
 Description: Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes.
 Author: Johan Steen
-Author URI: http://johansteen.se/
-Version: 2.3.8
+Author URI: https://johansteen.se/
+Version: 2.3.9
 License: GPLv2 or later
 Text Domain: post-snippets
 Domain Path: /lang
@@ -34,7 +34,7 @@ spl_autoload_register('PostSnippets::autoload');
  * Init Singleton Class.
  *
  * @author  Johan Steen <artstorm at gmail dot com>
- * @link    http://johansteen.se/
+ * @link    https://johansteen.se/
  */
 class PostSnippets
 {

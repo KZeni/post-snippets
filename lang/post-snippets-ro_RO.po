@@ -255,8 +255,8 @@ msgid "Post Snippets"
 msgstr "Fragmente post"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wpstorm.net/wordpress-plugins/post-snippets/"
-msgstr "http://wpstorm.net/Wordpress-plugins/post-Snippets/"
+msgid "https://johansteen.se/code/post-snippets/"
+msgstr "https://johansteen.se/code/post-snippets/"
 
 #. Description of the plugin/theme
 msgid "Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes."
@@ -267,6 +267,6 @@ msgid "Johan Steen"
 msgstr "Johan Steen"
 
 #. Author URI of the plugin/theme
-msgid "http://johansteen.se/"
-msgstr "http://johansteen.se/"
+msgid "https://johansteen.se/"
+msgstr "https://johansteen.se/"
 

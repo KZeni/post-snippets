@@ -3,7 +3,7 @@
  * Shortcode Handling.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
- * @link     http://johansteen.se/
+ * @link     https://johansteen.se/
  */
 class PostSnippets_Shortcode
 {
@@ -39,13 +39,13 @@ class PostSnippets_Shortcode
                             '$atts,$content=null',
                             '$shortcode_symbols = array('.$vars_str.');
                             extract(shortcode_atts($shortcode_symbols, $atts));
-                            
+
                             $attributes = compact( array_keys($shortcode_symbols) );
-                            
+
                             // Add enclosed content if available to the attributes array
                             if ( $content != null )
                                 $attributes["content"] = $content;
-                            
+
 
                             $snippet = \''. addslashes($snippet["snippet"]) .'\';
                             // Disables auto conversion from & to &amp; as that should be done in snippet, not code (destroys php etc).

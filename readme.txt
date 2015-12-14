@@ -1,10 +1,10 @@
 === Post Snippets ===
 Contributors: artstorm
-Donate link: http://johansteen.se/donate/
+Donate link: https://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.3.8
+Stable tag: 2.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,7 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 = Related Links =
 
-* [Plugin Page](http://johansteen.se/code/post-snippets/
+* [Plugin Page](https://johansteen.se/code/post-snippets/
   "Post snippets plugin page")
 * [Support Forum](http://wordpress.org/support/plugin/post-snippets
   "Use this for support and feature requests")
@@ -127,6 +127,11 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.9 - 14 Dec 2015 =
+ * Only includes the javascript code to include Post Snippets in WordPress'
+   editor on post editing related screens, to avoid potential condlicts with
+   other plugins.
 
 = Version 2.3.8 - 10 Dec 2015 =
  * Adds validation of shortcode names. Invalid shortcode names now gets
@@ -239,7 +244,6 @@ Contributions are appreciated and encouraged.
 
 = Version 1.9.6 - 19 Mar 2012 =
  * Added two new filters. `post_snippets_import` and `post_snippets_export`.
-   [Read more](http://wpstorm.net/wordpress-plugins/post-snippets/#filters).
 
 = Version 1.9.5 - 17 Mar 2012 =
  * The HTML and scripts for the popup window in the post editor is now only
@@ -264,7 +268,6 @@ Contributions are appreciated and encouraged.
 
 = Version 1.9 - 17 Jan 2012 =
  * Initial implementation to allow snippets to be evaluated as PHP code.
-   [Read more](http://wpstorm.net/wordpress-plugins/post-snippets/#php).
  * PHP version 5.2.4 or greater is now required to run Post Snippets.
 
 = Version 1.8.9.2 - 15 Jan 2012 =
