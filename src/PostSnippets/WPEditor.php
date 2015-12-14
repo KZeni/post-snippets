@@ -79,6 +79,10 @@ class PostSnippets_WPEditor
      */
     public function registerTinymceButton($buttons)
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         array_push($buttons, 'separator', self::TINYMCE_PLUGIN_NAME);
         return $buttons;
     }
@@ -115,6 +119,10 @@ class PostSnippets_WPEditor
      */
     public function addQuicktagButton()
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         echo "\n<!-- START: Add QuickTag button for Post Snippets -->\n";
         ?>
         <script type="text/javascript" charset="utf-8">
