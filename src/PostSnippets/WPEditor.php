@@ -79,6 +79,10 @@ class PostSnippets_WPEditor
      */
     public function registerTinymceButton($buttons)
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         array_push($buttons, 'separator', self::TINYMCE_PLUGIN_NAME);
         return $buttons;
     }
@@ -115,6 +119,10 @@ class PostSnippets_WPEditor
      */
     public function addQuicktagButton()
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         echo "\n<!-- START: Add QuickTag button for Post Snippets -->\n";
         ?>
         <script type="text/javascript" charset="utf-8">
@@ -159,6 +167,10 @@ class PostSnippets_WPEditor
      */
     public function jqueryUiDialog()
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         echo "\n<!-- START: Post Snippets jQuery UI and related functions -->\n";
         echo "<script type='text/javascript'>\n";
 
@@ -309,6 +321,10 @@ class PostSnippets_WPEditor
      */
     public function addJqueryUiDialog()
     {
+        if (!$this->isEditingPost()) {
+            return;
+        }
+
         $snippets = get_option(PostSnippets::OPTION_KEY, array());
 
         //Let other plugins change the snippets array
@@ -316,6 +332,18 @@ class PostSnippets_WPEditor
         $data = array('snippets' => $snippets);
 
         echo PostSnippets_View::render('jquery-ui-dialog', $data);
+    }
+
+    /**
+     * Determine if current screen is a post editing screen.
+     *
+     * @return boolean
+     */
+    protected function isEditingPost()
+    {
+        $screen = get_current_screen();
+
+        return $screen->base == 'post';
     }
 
     /**
