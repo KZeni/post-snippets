@@ -4,7 +4,7 @@ Donate link: https://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.3.8
+Stable tag: 2.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,11 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.3.9 - 14 Dec 2015 =
+ * Only includes the javascript code to include Post Snippets in WordPress'
+   editor on post editing related screens, to avoid potential condlicts with
+   other plugins.
 
 = Version 2.3.8 - 10 Dec 2015 =
  * Adds validation of shortcode names. Invalid shortcode names now gets
