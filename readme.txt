@@ -128,6 +128,11 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.3.9 - 14 Dec 2015 =
+ * Only includes the javascript code to include Post Snippets in WordPress'
+   editor on post editing related screens, to avoid potential condlicts with
+   other plugins.
+
 = Version 2.3.8 - 10 Dec 2015 =
  * Adds validation of shortcode names. Invalid shortcode names now gets
    highlighted in red.
