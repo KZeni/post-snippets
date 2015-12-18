@@ -128,6 +128,10 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.4 - 18 Dec 2015 =
+ * Fixes potential conflict with WP Editor on none post screens.
+ * Removes notice message on some screens if WordPress debug mode is enabled.
+
 = Version 2.3.9 - 14 Dec 2015 =
  * Only includes the javascript code to include Post Snippets in WordPress'
    editor on post editing related screens, to avoid potential conflicts with
