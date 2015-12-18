@@ -11,7 +11,6 @@ class PostSnippets_WPEditor
 
     public function __construct()
     {
-
         // Add TinyMCE button
         add_action('init', array(&$this, 'addTinymceButton'));
 
@@ -80,7 +79,7 @@ class PostSnippets_WPEditor
     public function registerTinymceButton($buttons)
     {
         if (!$this->isEditingPost()) {
-            return;
+            return $buttons;
         }
 
         array_push($buttons, 'separator', self::TINYMCE_PLUGIN_NAME);
@@ -101,6 +100,10 @@ class PostSnippets_WPEditor
      */
     public function registerTinymcePlugin($plugins)
     {
+        if (!$this->isEditingPost()) {
+            return $plugins;
+        }
+
         // Load the TinyMCE plugin, editor_plugin.js, into the array
         $plugins[self::TINYMCE_PLUGIN_NAME] =
             plugins_url('/tinymce/editor_plugin.js?ver=1.9', PostSnippets::FILE);
@@ -343,7 +346,7 @@ class PostSnippets_WPEditor
     {
         $screen = get_current_screen();
 
-        return $screen->base == 'post';
+        return is_object($screen) ? $screen->base == 'post' : false;
     }
 
     /**
