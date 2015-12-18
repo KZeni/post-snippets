@@ -346,7 +346,7 @@ class PostSnippets_WPEditor
     {
         $screen = get_current_screen();
 
-        return $screen->base == 'post';
+        return is_object($screen) ? $screen->base == 'post' : false;
     }
 
     /**
