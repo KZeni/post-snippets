@@ -344,7 +344,11 @@ class PostSnippets_WPEditor
      */
     protected function isEditingPost()
     {
-        $screen = get_current_screen();
+        if( function_exists( 'get_current_screen' ) ) {
+          $screen = get_current_screen();
+        } else {
+          $screen = false;
+        }
 
         return is_object($screen) ? $screen->base == 'post' : false;
     }
