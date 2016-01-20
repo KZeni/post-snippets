@@ -308,7 +308,11 @@ class PostSnippets_Admin
         // Tabs
         $active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
         $base_url = '?page=post-snippets/post-snippets.php&amp;tab=';
-        $tabs = array('snippets' => __('Manage Snippets', 'post-snippets'), 'tools' => __('Import/Export', 'post-snippets'));
+        $tabs = array(
+            'snippets' => __('Manage Snippets', 'post-snippets'),
+            'options' => __('Options', 'post-snippets'),
+            'tools' => __('Import/Export', 'post-snippets')
+        );
         echo '<h2 class="nav-tab-wrapper">';
         foreach ($tabs as $tab => $title) {
             $active = ($active_tab == $tab) ? ' nav-tab-active' : '';
@@ -322,6 +326,8 @@ class PostSnippets_Admin
         // Tab content
         if ($active_tab == 'snippets') {
             $this->tabSnippets();
+        } elseif ($active_tab == 'options') {
+            $this->tabOptions();
         } else {
             $this->tabTools();
         }
@@ -339,6 +345,16 @@ class PostSnippets_Admin
     {
         $data = array();
         echo PostSnippets_View::render('admin_snippets', $data);
+    }
+
+    /**
+     * Tab to set options for the plugin.
+     *
+     * @return void
+     */
+    private function tabOptions()
+    {
+        echo 'no options yet....';
     }
 
     /**
