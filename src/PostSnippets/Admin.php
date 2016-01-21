@@ -497,14 +497,14 @@ class PostSnippets_Admin
 
         add_settings_field(
             'exclude_from_custom_editors',
-            'Exclude from Custom Editors',
+            __('Exclude from Custom Editors', 'post-snippets'),
             array($this, 'cbExcludeFromCustomEditors'),
             'post-snippets',
             'general_section',
             array(
                 'id' => 'exclude_from_custom_editors',
                 'label_for' => 'exclude_from_custom_editors',
-                'description' => __('Checking this only includes Post Snippets on standard WordPress post editing screens.')
+                'description' => __('Checking this only includes Post Snippets on standard WordPress post editing screens.', 'post-snippets')
             )
         );
     }
