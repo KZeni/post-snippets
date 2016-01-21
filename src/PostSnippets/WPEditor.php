@@ -344,7 +344,23 @@ class PostSnippets_WPEditor
      */
     protected function isEditingPost()
     {
-        $screen = get_current_screen();
+        $settings = get_option(PostSnippets::SETTINGS);
+        $exclude = isset($settings['exclude_from_custom_editors']) ?
+            $settings['exclude_from_custom_editors'] :
+            false;
+
+        // If we are not excluding from custom editors, always return true.
+        if (!$exclude) {
+            return true;
+        }
+
+        // If get_current_screen doesn't exist, we're on the frontend,
+        // so return false, as it's then definately a custom editor
+        if (function_exists('get_current_screen')) {
+            $screen = get_current_screen();
+        } else {
+            $screen = false;
+        }
 
         return is_object($screen) ? $screen->base == 'post' : false;
     }
