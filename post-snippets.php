@@ -44,6 +44,7 @@ class PostSnippets
     /** Define plugin constants */
     const MIN_PHP_VERSION     = '5.3.0';
     const MIN_WP_VERSION      = '3.3';
+    const SETTINGS            = 'post_snippets';
     const OPTION_KEY          = 'post_snippets_options';
     const USER_META_KEY       = 'post_snippets';
     const FILE                = __FILE__;
@@ -73,6 +74,7 @@ class PostSnippets
             false,
             dirname(plugin_basename(__FILE__)).'/lang/'
         );
+
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
         add_action('after_setup_theme', array(&$this, 'phpExecState'));
 
