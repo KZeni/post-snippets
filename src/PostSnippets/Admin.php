@@ -10,53 +10,28 @@
  */
 class PostSnippets_Admin
 {
+    /**
+     * Plugin settings.
+     *
+     * @var array
+     */
+    protected $settings;
+
+    /**
+     * Defines hooks and filters for admin page.
+     */
     public function __construct()
     {
-        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
-        add_action('admin_init', array(&$this, 'init'));
         add_action('admin_menu', array(&$this, 'menu'));
+        add_action('admin_init', array(&$this, 'init'));
         add_action('current_screen', array(&$this, 'addHeaderXss'));
+        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
     }
 
 
     // -------------------------------------------------------------------------
     // Setup
     // -------------------------------------------------------------------------
-
-    /**
-     * Quick link to the Post Snippets Settings page from the Plugins page.
-     *
-     * @param array Array of all plugin links
-     * @param string The current plugin file we're filtering.
-     * @return  Array with all the plugin's action links
-     */
-    public function actionLinks($links, $file)
-    {
-        $pluginFile = plugin_basename(dirname(PostSnippets::FILE));
-        $pluginFile .= '/post-snippets.php';
-
-        if ($file == $pluginFile) {
-            $url = 'options-general.php?page=post-snippets/post-snippets.php';
-            $link = "<a href='{$url}'>";
-            $link .= __('Settings', 'post-snippets').'</a>';
-            $links[] = $link;
-        }
-        return $links;
-    }
-
-    /**
-     * Initialize assets for the administration page.
-     *
-     * @return void
-     */
-    public function init()
-    {
-        wp_register_script(
-            'post-snippets',
-            plugins_url('/assets/post-snippets.js', PostSnippets::FILE),
-            array('jquery')
-        );
-    }
 
     /**
      * Register the administration page.
@@ -99,6 +74,22 @@ class PostSnippets_Admin
     }
 
     /**
+     * Initialize assets for the administration page.
+     *
+     * @return void
+     */
+    public function init()
+    {
+        wp_register_script(
+            'post-snippets',
+            plugins_url('/assets/post-snippets.js', PostSnippets::FILE),
+            array('jquery')
+        );
+
+        $this->registerSettings();
+    }
+
+    /**
      * Enqueue scripts to be loaded.
      *
      * @return void
@@ -120,6 +111,27 @@ class PostSnippets_Admin
         if ($current_screen->base == 'settings_page_post-snippets/post-snippets') {
             header('X-XSS-Protection: 0');
         }
+    }
+
+    /**
+     * Quick link to the Post Snippets Settings page from the Plugins page.
+     *
+     * @param array Array of all plugin links
+     * @param string The current plugin file we're filtering.
+     * @return  Array with all the plugin's action links
+     */
+    public function actionLinks($links, $file)
+    {
+        $pluginFile = plugin_basename(dirname(PostSnippets::FILE));
+        $pluginFile .= '/post-snippets.php';
+
+        if ($file == $pluginFile) {
+            $url = 'options-general.php?page=post-snippets/post-snippets.php';
+            $link = "<a href='{$url}'>";
+            $link .= __('Settings', 'post-snippets').'</a>';
+            $links[] = $link;
+        }
+        return $links;
     }
 
 
@@ -308,7 +320,11 @@ class PostSnippets_Admin
         // Tabs
         $active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
         $base_url = '?page=post-snippets/post-snippets.php&amp;tab=';
-        $tabs = array('snippets' => __('Manage Snippets', 'post-snippets'), 'tools' => __('Import/Export', 'post-snippets'));
+        $tabs = array(
+            'snippets' => __('Manage Snippets', 'post-snippets'),
+            'options' => __('Options', 'post-snippets'),
+            'tools' => __('Import/Export', 'post-snippets')
+        );
         echo '<h2 class="nav-tab-wrapper">';
         foreach ($tabs as $tab => $title) {
             $active = ($active_tab == $tab) ? ' nav-tab-active' : '';
@@ -322,6 +338,8 @@ class PostSnippets_Admin
         // Tab content
         if ($active_tab == 'snippets') {
             $this->tabSnippets();
+        } elseif ($active_tab == 'options') {
+            $this->tabOptions();
         } else {
             $this->tabTools();
         }
@@ -339,6 +357,17 @@ class PostSnippets_Admin
     {
         $data = array();
         echo PostSnippets_View::render('admin_snippets', $data);
+    }
+
+    /**
+     * Tab to set options for the plugin.
+     *
+     * @return void
+     */
+    private function tabOptions()
+    {
+        $data = array();
+        echo PostSnippets_View::render('admin_options', $data);
     }
 
     /**
@@ -442,7 +471,70 @@ class PostSnippets_Admin
 
 
     // -------------------------------------------------------------------------
-    // HTML and Form element methods
+    // Register and callbacks for the options tab
+    // -------------------------------------------------------------------------
+
+    /**
+     * Register settings for the options tab.
+     *
+     * @return void
+     */
+    protected function registerSettings()
+    {
+        $this->settings = get_option(PostSnippets::SETTINGS);
+
+        register_setting(
+            PostSnippets::SETTINGS,
+            PostSnippets::SETTINGS
+        );
+
+        add_settings_section(
+            'general_section',
+            __('General', 'post-snippets'),
+            null,
+            'post-snippets'
+        );
+
+        add_settings_field(
+            'exclude_from_custom_editors',
+            'Exclude from Custom Editors',
+            array($this, 'cbExcludeFromCustomEditors'),
+            'post-snippets',
+            'general_section',
+            array(
+                'id' => 'exclude_from_custom_editors',
+                'label_for' => 'exclude_from_custom_editors',
+                'description' => __('Checking this only includes Post Snippets on standard WordPress post editing screens.')
+            )
+        );
+    }
+
+    /**
+     * Callback for HTML generator for exlusion of custom editors.
+     *
+     * @param  array $args
+     *
+     * @return  void
+     */
+    public function cbExcludeFromCustomEditors($args)
+    {
+        $checked = isset($this->settings[$args['id']]) ?
+            $this->settings[$args['id']] :
+            false;
+
+        echo "<input type='checkbox' id='{$args['id']}' ";
+        echo "name='".PostSnippets::SETTINGS."[{$args['id']}]' value='1' ";
+        if ($checked) {
+            echo 'checked ';
+        }
+        echo " />";
+
+        echo "<span class='description'>{$args['description']}</span>";
+    }
+
+
+    // -------------------------------------------------------------------------
+    // HTML and Form element methods for Snippets form
     // -------------------------------------------------------------------------
 
     /**
@@ -453,6 +545,8 @@ class PostSnippets_Admin
      * @param   string  $label      The label rendered to screen
      * @param   string  $name       The unique name and id to identify the input
      * @param   boolean $checked    If the input is checked or not
+     *
+     * @return  void
      */
     public static function checkbox($label, $name, $checked)
     {
@@ -475,6 +569,8 @@ class PostSnippets_Admin
      * @param   string  $label  The label rendered on the button
      * @param   string  $class  Optional. Button class. Default: button-primary
      * @param   boolean $wrap   Optional. Wrap in a submit div. Default: true
+     *
+     * @return  void
      */
     public static function submit($name, $label, $class = 'button-primary', $wrap = true)
     {
