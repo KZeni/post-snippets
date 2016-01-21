@@ -128,6 +128,12 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.5 - 21 Jan 2016 =
+ * Implements an options tab to handle plugin settings.
+ * Reverts the change implemented in version 2.3.9 to exclude post snippets from
+   custom editors by default, and instead adds it as an optional setting.
+ * Fixes a conflict with plugins that adds custom editors on the frontend.
+
 = Version 2.4 - 18 Dec 2015 =
  * Fixes potential conflict with WP Editor on none post screens.
  * Removes notice message on some screens if WordPress debug mode is enabled.
