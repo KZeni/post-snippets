@@ -4,7 +4,7 @@ Donate link: https://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.4
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,12 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.5 - 21 Jan 2016 =
+ * Implements an options tab to handle plugin settings.
+ * Reverts the change implemented in version 2.3.9 to exclude post snippets from
+   custom editors by default, and instead adds it as an optional setting.
+ * Fixes a conflict with plugins that adds custom editors on the frontend.
 
 = Version 2.4 - 18 Dec 2015 =
  * Fixes potential conflict with WP Editor on none post screens.
