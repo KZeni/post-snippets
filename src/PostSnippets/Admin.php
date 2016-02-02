@@ -96,6 +96,12 @@ class PostSnippets_Admin
      */
     public function scripts()
     {
+        // Localize the strings in the script
+        $translation_array = array(
+            'invalid_shortcode' => __('Invalid shortcode name', 'post-snippets')
+        );
+        wp_localize_script('post-snippets', 'post_snippets', $translation_array);
+
         wp_enqueue_script('post-snippets');
     }
 
