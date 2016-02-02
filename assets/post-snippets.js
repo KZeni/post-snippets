@@ -44,7 +44,7 @@ jQuery(document).ready(function($)
 
     if ($('#'+index+'_shortcode').prop('checked') && !isTitleValid(title)) {
       $(element).addClass('post-snippets-invalid');
-      $(element).after("<p><em><font color='red'>Shortcode name invalid</font></em></p>");
+      $(element).after("<p><em><font color='red'>"+post_snippets.invalid_shortcode+"</font></em></p>");
     }
   }
 
