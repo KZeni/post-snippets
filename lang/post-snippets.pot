@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 09:31+0000\n"
+"POT-Creation-Date: 2016-02-06 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,12 +23,12 @@ msgid "Title"
 msgstr ""
 
 #: views/admin_snippets.php:9 views/admin_snippets.php:18
-#: views/help/usage.php:10 src/PostSnippets/Admin.php:378
+#: views/help/usage.php:10 src/PostSnippets/Admin.php:445
 msgid "Variables"
 msgstr ""
 
 #: views/admin_snippets.php:10 views/admin_snippets.php:19
-#: views/help/usage.php:21 src/PostSnippets/Admin.php:397
+#: views/help/usage.php:21 src/PostSnippets/Admin.php:464
 msgid "Snippet"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Delete Selected"
 msgstr ""
 
-#: views/jquery-ui-dialog.php:64
+#: views/jquery-ui-dialog.php:67
 msgid "This snippet is insert only, no variables defined."
 msgstr ""
 
@@ -194,76 +194,6 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#: views/help/translators.php:1 src/PostSnippets/Help.php:87
-msgid "Translators"
-msgstr ""
-
-#: views/help/translators.php:3
-msgid ""
-"Other than the default English language, Post Snippets has been translated "
-"to the following languages by these great people:"
-msgstr ""
-
-#: views/help/translators.php:19
-msgid "by"
-msgstr ""
-
-#: views/help/translators.php:22
-msgid "Belarusian"
-msgstr ""
-
-#: views/help/translators.php:23
-msgid "French"
-msgstr ""
-
-#: views/help/translators.php:24
-msgid "German"
-msgstr ""
-
-#: views/help/translators.php:25
-msgid "Hebrew"
-msgstr ""
-
-#: views/help/translators.php:26
-msgid "Lithuanian"
-msgstr ""
-
-#: views/help/translators.php:27
-msgid "Polish"
-msgstr ""
-
-#: views/help/translators.php:28
-msgid "Romanian"
-msgstr ""
-
-#: views/help/translators.php:29
-msgid "Russian"
-msgstr ""
-
-#: views/help/translators.php:30
-msgid "Slovak"
-msgstr ""
-
-#: views/help/translators.php:31
-msgid "Serbo-Croatian"
-msgstr ""
-
-#: views/help/translators.php:32
-msgid "Spanish"
-msgstr ""
-
-#: views/help/translators.php:33
-msgid "Swedish"
-msgstr ""
-
-#: views/help/translators.php:34
-msgid "Turkish"
-msgstr ""
-
-#: views/help/translators.php:35
-msgid "Ukrainian"
-msgstr ""
-
 #: views/help/usage.php:6
 msgid ""
 "Give the snippet a title that helps you identify it in the post editor. This "
@@ -340,51 +270,59 @@ msgid ""
 "trademark symbol, and the multiplication symbol."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:40
+#: src/PostSnippets/Admin.php:101
+msgid "Invalid shortcode name"
+msgstr ""
+
+#: src/PostSnippets/Admin.php:137
 msgid "Settings"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:128
+#: src/PostSnippets/Admin.php:178
 msgid "A snippet named Untitled has been added."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:148
+#: src/PostSnippets/Admin.php:198
 msgid "Nothing selected to delete."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:164
+#: src/PostSnippets/Admin.php:214
 msgid "Selected snippets have been deleted."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:199
+#: src/PostSnippets/Admin.php:249
 msgid "Snippets have been updated."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:279
+#: src/PostSnippets/Admin.php:330
 msgid "Manage Snippets"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:279 src/PostSnippets/Admin.php:322
+#: src/PostSnippets/Admin.php:331 src/PostSnippets/Admin.php:461
+msgid "Options"
+msgstr ""
+
+#: src/PostSnippets/Admin.php:332 src/PostSnippets/Admin.php:389
 msgid "Import/Export"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:287
+#: src/PostSnippets/Admin.php:341
 msgid "Use the help dropdown button for additional information."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:323
+#: src/PostSnippets/Admin.php:390
 msgid "Export"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:326
+#: src/PostSnippets/Admin.php:393
 msgid "Export your snippets for backup or to import them on another site."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:328
+#: src/PostSnippets/Admin.php:395
 msgid "Export Snippets"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:351
+#: src/PostSnippets/Admin.php:418
 msgid ""
 "This is an overview of all snippets defined for this site. These snippets "
 "are inserted into posts from the post editor using the Post Snippets button. "
@@ -395,16 +333,26 @@ msgid ""
 "recommended to keep this option disabled."
 msgstr ""
 
-#: src/PostSnippets/Admin.php:361
+#: src/PostSnippets/Admin.php:428
 msgid "Display rendered snippets"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:362
+#: src/PostSnippets/Admin.php:429
 msgid "Update"
 msgstr ""
 
-#: src/PostSnippets/Admin.php:394
-msgid "Options"
+#: src/PostSnippets/Admin.php:499
+msgid "General"
+msgstr ""
+
+#: src/PostSnippets/Admin.php:506
+msgid "Exclude from Custom Editors"
+msgstr ""
+
+#: src/PostSnippets/Admin.php:513
+msgid ""
+"Checking this only includes Post Snippets on standard WordPress post editing "
+"screens."
 msgstr ""
 
 #: src/PostSnippets/Help.php:57
