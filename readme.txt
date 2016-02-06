@@ -4,7 +4,7 @@ Donate link: https://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.5
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,10 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.5.1 - 6 Feb 2016 =
+ * Makes strings inside javascripts translatable.
+ * Removes `{comment}` from shortcode output if the shortcode is not enclosed.
 
 = Version 2.5 - 21 Jan 2016 =
  * Implements an options tab to handle plugin settings.
