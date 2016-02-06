@@ -78,23 +78,23 @@ class PostSnippets
         register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
         add_action('after_setup_theme', array(&$this, 'phpExecState'));
 
-        new PostSnippets_Admin;
-        new PostSnippets_WPEditor;
-        new PostSnippets_Shortcode;
+        new \PostSnippets\Admin;
+        new \PostSnippets\WPEditor;
+        new \PostSnippets\Shortcode;
     }
 
     /**
      * PSR-0 compliant autoloader to load classes as needed.
      *
-     * @param  string  $classname  The name of the class
-     * @return null    Return early if the class name does not start with the
-     *                 correct prefix
+     * @param  string  $classname
+     * @return void
      */
     public static function autoload($className)
     {
         if (__CLASS__ !== mb_substr($className, 0, strlen(__CLASS__))) {
             return;
         }
+
         $className = ltrim($className, '\\');
         $fileName  = '';
         $namespace = '';
@@ -104,10 +104,9 @@ class PostSnippets
             $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace);
             $fileName .= DIRECTORY_SEPARATOR;
         }
-        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, 'src_'.$className);
-        $fileName .='.php';
+        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className);
 
-        require $fileName;
+        require 'src'.DIRECTORY_SEPARATOR.$fileName.'.php';
     }
 
     /**

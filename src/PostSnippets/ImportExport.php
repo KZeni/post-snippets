@@ -1,4 +1,6 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Post Snippets I/O.
  *
@@ -7,7 +9,7 @@
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_ImportExport
+class ImportExport
 {
     const FILE_CFG = 'post-snippets-export.cfg';
     const FILE_ZIP = 'post-snippets-export.zip';
@@ -100,7 +102,7 @@ class PostSnippets_ImportExport
                             $snippets
                         );
                         update_option(
-                            PostSnippets::OPTION_KEY,
+                            \PostSnippets::OPTION_KEY,
                             unserialize($snippets)
                         );
                     }
@@ -147,7 +149,7 @@ class PostSnippets_ImportExport
      */
     private function createExportFile()
     {
-        $snippets = serialize(get_option(PostSnippets::OPTION_KEY));
+        $snippets = serialize(get_option(\PostSnippets::OPTION_KEY));
         $snippets = apply_filters('post_snippets_export', $snippets);
         $dir = wp_upload_dir();
         $upload_dir = $dir['basedir'] . '/';

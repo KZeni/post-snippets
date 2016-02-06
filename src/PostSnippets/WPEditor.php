@@ -1,11 +1,13 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Post Snippets WP Editor.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_WPEditor
+class WPEditor
 {
     const TINYMCE_PLUGIN_NAME = 'post_snippets';
 
@@ -106,7 +108,7 @@ class PostSnippets_WPEditor
 
         // Load the TinyMCE plugin, editor_plugin.js, into the array
         $plugins[self::TINYMCE_PLUGIN_NAME] =
-            plugins_url('/tinymce/editor_plugin.js?ver=1.9', PostSnippets::FILE);
+            plugins_url('/tinymce/editor_plugin.js?ver=1.9', \PostSnippets::FILE);
 
         return $plugins;
     }
@@ -158,7 +160,7 @@ class PostSnippets_WPEditor
         wp_enqueue_style('wp-jquery-ui-dialog');
 
         # Adds the CSS stylesheet for the jQuery UI dialog
-        $style_url = plugins_url('/assets/post-snippets.css', PostSnippets::FILE);
+        $style_url = plugins_url('/assets/post-snippets.css', \PostSnippets::FILE);
         wp_register_style('post-snippets', $style_url, false, '2.0');
         wp_enqueue_style('post-snippets');
     }
@@ -180,7 +182,7 @@ class PostSnippets_WPEditor
         # Prepare the snippets and shortcodes into javascript variables
         # so they can be inserted into the editor, and get the variables replaced
         # with user defined strings.
-        $snippets = get_option(PostSnippets::OPTION_KEY, array());
+        $snippets = get_option(\PostSnippets::OPTION_KEY, array());
 
         //Let other plugins change the snippets array
         $snippets = apply_filters('post_snippets_snippets_list', $snippets);
@@ -327,13 +329,13 @@ class PostSnippets_WPEditor
             return;
         }
 
-        $snippets = get_option(PostSnippets::OPTION_KEY, array());
+        $snippets = get_option(\PostSnippets::OPTION_KEY, array());
 
         //Let other plugins change the snippets array
         $snippets = apply_filters('post_snippets_snippets_list', $snippets);
         $data = array('snippets' => $snippets);
 
-        echo PostSnippets_View::render('jquery-ui-dialog', $data);
+        echo View::render('jquery-ui-dialog', $data);
     }
 
     /**
@@ -343,7 +345,7 @@ class PostSnippets_WPEditor
      */
     protected function isEditingPost()
     {
-        $settings = get_option(PostSnippets::SETTINGS);
+        $settings = get_option(\PostSnippets::SETTINGS);
         $exclude = isset($settings['exclude_from_custom_editors']) ?
             $settings['exclude_from_custom_editors'] :
             false;
