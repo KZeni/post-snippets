@@ -128,6 +128,10 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.5.1 - 6 Feb 2016 =
+ * Makes strings inside javascripts translatable.
+ * Removes `{comment}` from shortcode output if the shortcode is not enclosed.
+
 = Version 2.5 - 21 Jan 2016 =
  * Implements an options tab to handle plugin settings.
  * Reverts the change implemented in version 2.3.9 to exclude post snippets from
