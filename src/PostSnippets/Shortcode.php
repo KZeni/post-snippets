@@ -1,11 +1,13 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Shortcode Handling.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_Shortcode
+class Shortcode
 {
     public function __construct()
     {
@@ -17,7 +19,7 @@ class PostSnippets_Shortcode
      */
     public function create()
     {
-        $snippets = get_option(PostSnippets::OPTION_KEY);
+        $snippets = get_option(\PostSnippets::OPTION_KEY);
         if (!empty($snippets)) {
             foreach ($snippets as $snippet) {
                 // If shortcode is enabled for the snippet, and a snippet has been entered, register it as a shortcode.
@@ -66,7 +68,7 @@ class PostSnippets_Shortcode
                             // Handle PHP shortcodes
                             $php = "'. $snippet["php"] .'";
                             if ($php == true) {
-                                $snippet = PostSnippets_Shortcode::phpEval( $snippet );
+                                $snippet = \PostSnippets\Shortcode::phpEval( $snippet );
                             }
 
                             // Strip escaping and execute nested shortcodes

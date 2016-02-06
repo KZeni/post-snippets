@@ -1,4 +1,6 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Post Snippets Settings.
  *
@@ -8,7 +10,7 @@
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_Admin
+class Admin
 {
     /**
      * Plugin settings.
@@ -53,16 +55,16 @@ class PostSnippets_Admin
                 'Post Snippets Options',
                 'Post Snippets',
                 $capability,
-                PostSnippets::FILE,
+                \PostSnippets::FILE,
                 array(&$this, 'optionsPage')
             );
-            new PostSnippets_Help($optionPage);
+            new Help($optionPage);
         } else {
             $optionPage = add_options_page(
                 'Post Snippets',
                 'Post Snippets',
                 'edit_posts',
-                PostSnippets::FILE,
+                \PostSnippets::FILE,
                 array(&$this, 'overviewPage')
             );
         }
@@ -82,7 +84,7 @@ class PostSnippets_Admin
     {
         wp_register_script(
             'post-snippets',
-            plugins_url('/assets/post-snippets.js', PostSnippets::FILE),
+            plugins_url('/assets/post-snippets.js', \PostSnippets::FILE),
             array('jquery')
         );
 
@@ -128,7 +130,7 @@ class PostSnippets_Admin
      */
     public function actionLinks($links, $file)
     {
-        $pluginFile = plugin_basename(dirname(PostSnippets::FILE));
+        $pluginFile = plugin_basename(dirname(\PostSnippets::FILE));
         $pluginFile .= '/post-snippets.php';
 
         if ($file == $pluginFile) {
@@ -154,7 +156,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::OPTION_KEY);
+            $snippets = get_option(\PostSnippets::OPTION_KEY);
             if (empty($snippets)) {
                 $snippets = array();
             }
@@ -172,7 +174,7 @@ class PostSnippets_Admin
                 )
             );
 
-            update_option(PostSnippets::OPTION_KEY, $snippets);
+            update_option(\PostSnippets::OPTION_KEY, $snippets);
             $this->message(
                 __(
                     'A snippet named Untitled has been added.',
@@ -191,7 +193,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::OPTION_KEY);
+            $snippets = get_option(\PostSnippets::OPTION_KEY);
 
             if (empty($snippets) || !isset($_POST['checked'])) {
                 $this->message(
@@ -208,7 +210,7 @@ class PostSnippets_Admin
                 }
             }
 
-            update_option(PostSnippets::OPTION_KEY, $newsnippets);
+            update_option(\PostSnippets::OPTION_KEY, $newsnippets);
             $this->message(
                 __(
                     'Selected snippets have been deleted.',
@@ -227,7 +229,7 @@ class PostSnippets_Admin
             && isset($_POST['update_snippets_nonce'])
             && wp_verify_nonce($_POST['update_snippets_nonce'], 'update_snippets')
         ) {
-            $snippets = get_option(PostSnippets::OPTION_KEY);
+            $snippets = get_option(\PostSnippets::OPTION_KEY);
             if (!empty($snippets)) {
                 foreach ($snippets as $key => $value) {
                     $new_snippets[$key]['title'] = trim($_POST[$key.'_title']);
@@ -245,7 +247,7 @@ class PostSnippets_Admin
                     $new_snippets[$key]['snippet'] = wp_specialchars_decode(trim(stripslashes($_POST[$key.'_snippet'])), ENT_NOQUOTES);
                     $new_snippets[$key]['description'] = wp_specialchars_decode(trim(stripslashes($_POST[$key.'_description'])), ENT_NOQUOTES);
                 }
-                update_option(PostSnippets::OPTION_KEY, $new_snippets);
+                update_option(\PostSnippets::OPTION_KEY, $new_snippets);
                 $this->message(__('Snippets have been updated.', 'post-snippets'));
             }
         }
@@ -265,7 +267,7 @@ class PostSnippets_Admin
         ) {
             $id = get_current_user_id();
             $render = isset($_POST['render']) ? true : false;
-            update_user_meta($id, PostSnippets::USER_META_KEY, $render);
+            update_user_meta($id, \PostSnippets::USER_META_KEY, $render);
         }
     }
 
@@ -280,7 +282,7 @@ class PostSnippets_Admin
     private function getUserOptions()
     {
         $id = get_current_user_id();
-        $options = get_user_meta($id, PostSnippets::USER_META_KEY, true);
+        $options = get_user_meta($id, \PostSnippets::USER_META_KEY, true);
         return $options;
     }
 
@@ -362,7 +364,7 @@ class PostSnippets_Admin
     private function tabSnippets()
     {
         $data = array();
-        echo PostSnippets_View::render('admin_snippets', $data);
+        echo View::render('admin_snippets', $data);
     }
 
     /**
@@ -373,7 +375,7 @@ class PostSnippets_Admin
     private function tabOptions()
     {
         $data = array();
-        echo PostSnippets_View::render('admin_options', $data);
+        echo View::render('admin_options', $data);
     }
 
     /**
@@ -383,7 +385,7 @@ class PostSnippets_Admin
      */
     private function tabTools()
     {
-        $ie = new PostSnippets_ImportExport();
+        $ie = new ImportExport();
 
         // Create header and export html form
         printf("<h3>%s</h3>", __('Import/Export', 'post-snippets'));
@@ -430,7 +432,7 @@ class PostSnippets_Admin
         echo '</form>';
 
         // Snippet List
-        $snippets = get_option(PostSnippets::OPTION_KEY);
+        $snippets = get_option(\PostSnippets::OPTION_KEY);
         if (!empty($snippets)) {
             foreach ($snippets as $key => $snippet) {
                 echo "<hr style='border: none;border-top:1px dashed #aaa; margin:24px 0;' />";
@@ -487,11 +489,11 @@ class PostSnippets_Admin
      */
     protected function registerSettings()
     {
-        $this->settings = get_option(PostSnippets::SETTINGS);
+        $this->settings = get_option(\PostSnippets::SETTINGS);
 
         register_setting(
-            PostSnippets::SETTINGS,
-            PostSnippets::SETTINGS
+            \PostSnippets::SETTINGS,
+            \PostSnippets::SETTINGS
         );
 
         add_settings_section(
@@ -529,7 +531,7 @@ class PostSnippets_Admin
             false;
 
         echo "<input type='checkbox' id='{$args['id']}' ";
-        echo "name='".PostSnippets::SETTINGS."[{$args['id']}]' value='1' ";
+        echo "name='".\PostSnippets::SETTINGS."[{$args['id']}]' value='1' ";
         if ($checked) {
             echo 'checked ';
         }

@@ -8,7 +8,7 @@
 <?php _e('Check this image for an example PHP snippet:', 'post-snippets'); ?>
 </p>
 
-<img src="<?php echo plugins_url('assets/img/help/php-snippet.jpg', PostSnippets::FILE); ?>" />
+<img src="<?php echo plugins_url('assets/img/help/php-snippet.jpg', \PostSnippets::FILE); ?>" />
 
 <p>
 <?php _e('With a snippet defined like the one above, you can call it with its shortcode definition in a post. Let\'s pretend that the example snippet is named phpcode and have one variable defined loop_me, then it would be called like this from a post:', 'post-snippets'); ?>
