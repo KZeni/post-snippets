@@ -193,7 +193,6 @@ class PostSnippets_WPEditor
                 $variables = '';
                 if (!empty($var_arr[0])) {
                     foreach ($var_arr as $var) {
-                        // '[test2 yet="{yet}" mupp=per="{mupp=per}" content="{content}"]';
                         $var = $this->stripDefaultVal($var);
 
                         $variables .= ' ' . $var . '="{' . $var . '}"';

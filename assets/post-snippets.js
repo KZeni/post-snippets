@@ -40,9 +40,11 @@ jQuery(document).ready(function($)
     var title = $("input[name$='"+index+"_title']").val();
 
     $(element).removeClass('post-snippets-invalid');
+    $(element).next().remove('p');
 
     if ($('#'+index+'_shortcode').prop('checked') && !isTitleValid(title)) {
       $(element).addClass('post-snippets-invalid');
+      $(element).after("<p><em><font color='red'>"+post_snippets.invalid_shortcode+"</font></em></p>");
     }
   }
 
