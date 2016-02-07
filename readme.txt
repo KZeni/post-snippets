@@ -128,6 +128,11 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.5.2 - 7 Feb 2016 =
+ * Fixes an issue than can occur when other plugins bootstrap WordPress Admin
+   and then includes `admin_head` but not `admin_footer`, like download monitor.
+ * Refactors parts of the code to prepare for a future snippet storage update.
+
 = Version 2.5.1 - 6 Feb 2016 =
  * Makes strings inside javascripts translatable.
  * Removes `{content}` from shortcode output if the shortcode is not enclosed.
