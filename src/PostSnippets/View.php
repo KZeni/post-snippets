@@ -1,11 +1,13 @@
 <?php
+namespace PostSnippets;
+
 /**
  * View Handling.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_View
+class View
 {
     /**
      * Render a View.

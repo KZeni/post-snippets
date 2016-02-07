@@ -1,11 +1,13 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Handles the plugin help screen.
  *
  * @author  Johan Steen <artstorm at gmail dot com>
  * @link    https://johansteen.se/
  */
-class PostSnippets_Help
+class Help
 {
     /**
      * Define actions.
@@ -109,6 +111,6 @@ class PostSnippets_Help
      */
     private function content($tab)
     {
-        return PostSnippets_View::render($tab);
+        return View::render($tab);
     }
 }

@@ -22,7 +22,7 @@
 
         <tbody>
 <?php
-$snippets = get_option(PostSnippets::OPTION_KEY);
+$snippets = get_option(\PostSnippets::OPTION_KEY);
 if (!empty($snippets)) {
     foreach ($snippets as $key => $snippet) {
         ?>
@@ -41,13 +41,13 @@ if (!empty($snippets)) {
             <br/>
             <br/>
             <?php
-            PostSnippets_Admin::checkbox(__('Shortcode', 'post-snippets'), $key.'_shortcode',
+            \PostSnippets\Admin::checkbox(__('Shortcode', 'post-snippets'), $key.'_shortcode',
                             $snippet['shortcode']);
 
         echo '<br/><strong>Shortcode Options:</strong><br/>';
 
         if (!defined('POST_SNIPPETS_DISABLE_PHP')) {
-            PostSnippets_Admin::checkbox(
+            \PostSnippets\Admin::checkbox(
                 __('PHP Code', 'post-snippets'),
                 $key.'_php',
                 $snippet['php']
@@ -55,7 +55,7 @@ if (!empty($snippets)) {
         }
 
         $wptexturize = isset($snippet['wptexturize']) ? $snippet['wptexturize'] : false;
-        PostSnippets_Admin::checkbox('wptexturize', $key.'_wptexturize', $wptexturize);
+        \PostSnippets\Admin::checkbox('wptexturize', $key.'_wptexturize', $wptexturize);
         ?>
             </td>
             <td class='desc'>
@@ -79,7 +79,7 @@ if (!empty($snippets)) {
     </table>
 
 <?php
-        PostSnippets_Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'));
-        PostSnippets_Admin::submit('add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false);
-        PostSnippets_Admin::submit('delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false);
+        \PostSnippets\Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'));
+        \PostSnippets\Admin::submit('add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false);
+        \PostSnippets\Admin::submit('delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false);
         echo '</form>';

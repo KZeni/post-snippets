@@ -1,11 +1,13 @@
 <?php
+namespace PostSnippets;
+
 /**
  * Post Snippets WP Editor.
  *
  * @author   Johan Steen <artstorm at gmail dot com>
  * @link     https://johansteen.se/
  */
-class PostSnippets_WPEditor
+class WPEditor
 {
     const TINYMCE_PLUGIN_NAME = 'post_snippets';
 
@@ -106,7 +108,7 @@ class PostSnippets_WPEditor
 
         // Load the TinyMCE plugin, editor_plugin.js, into the array
         $plugins[self::TINYMCE_PLUGIN_NAME] =
-            plugins_url('/tinymce/editor_plugin.js?ver=1.9', PostSnippets::FILE);
+            plugins_url('/tinymce/editor_plugin.js?ver=1.9', \PostSnippets::FILE);
 
         return $plugins;
     }
@@ -158,7 +160,7 @@ class PostSnippets_WPEditor
         wp_enqueue_style('wp-jquery-ui-dialog');
 
         # Adds the CSS stylesheet for the jQuery UI dialog
-        $style_url = plugins_url('/assets/post-snippets.css', PostSnippets::FILE);
+        $style_url = plugins_url('/assets/post-snippets.css', \PostSnippets::FILE);
         wp_register_style('post-snippets', $style_url, false, '2.0');
         wp_enqueue_style('post-snippets');
     }
@@ -174,16 +176,15 @@ class PostSnippets_WPEditor
             return;
         }
 
-        echo "\n<!-- START: Post Snippets jQuery UI and related functions -->\n";
-        echo "<script type='text/javascript'>\n";
-
         # Prepare the snippets and shortcodes into javascript variables
         # so they can be inserted into the editor, and get the variables replaced
         # with user defined strings.
-        $snippets = get_option(PostSnippets::OPTION_KEY, array());
+        $snippets = get_option(\PostSnippets::OPTION_KEY, array());
 
         //Let other plugins change the snippets array
         $snippets = apply_filters('post_snippets_snippets_list', $snippets);
+
+        $snippetStack = array();
 
         foreach ($snippets as $key => $snippet) {
             if ($snippet['shortcode']) {
@@ -199,7 +200,7 @@ class PostSnippets_WPEditor
                     }
                 }
                 $shortcode = $snippet['title'] . $variables;
-                echo "var postsnippet_{$key} = '[" . $shortcode . "]';\n";
+                array_push($snippetStack, "var postsnippet_{$key} = '[" . $shortcode . "]';\n");
             } else {
                 // To use $snippet is probably not a good naming convention here.
                 // rename to js_snippet or something?
@@ -212,107 +213,18 @@ class PostSnippets_WPEditor
                 /* Remove CR and replace LF with \n to keep formatting */
                 $snippet = str_replace(chr(13), '', str_replace(chr(10), '\n', $snippet));
                 # Print out the variable containing the snippet
-                echo "var postsnippet_{$key} = \"" . $snippet . "\";\n";
+                array_push($snippetStack, "var postsnippet_{$key} = \"" . $snippet . "\";\n");
             }
         }
         ?>
 
-        jQuery(document).ready(function($){
         <?php
-        # Create js variables for all form fields
-        foreach ($snippets as $key => $snippet) {
-            $var_arr = explode(",", $snippet['vars']);
-            if (!empty($var_arr[0])) {
-                foreach ($var_arr as $key_2 => $var) {
-                    $varname = "var_" . $key . "_" . $key_2;
-                    echo "var {$varname} = $( \"#{$varname}\" );\n";
-                }
-            }
-        }
-        ?>
-
-			if($("#post-snippets-tabs").length>0){ // Only initiate if there's tabs
-	            var tabs = $("#post-snippets-tabs").tabs();
-	
-	            $(function() {
-	                $( "#post-snippets-dialog" ).dialog({
-	                    autoOpen: false,
-	                    modal: true,
-	                    dialogClass: 'wp-dialog',
-	                    buttons: {
-	                        Cancel: function() {
-	                            $( this ).dialog( "close" );
-	                        },
-	                        "Insert": function() {
-	                            $(this).dialog("close");
-	                        <?php
-	                        global $wp_version;
-	        if (version_compare($wp_version, '3.5', '<')) {
-	            ?>
-	                            var selected = tabs.tabs('option', 'selected');
-	                        <?php
-	
-	        } else {
-	            ?>
-	                            var selected = tabs.tabs('option', 'active');
-	                        <?php
-	
-	        }
-	        ?>
-	                        <?php
-	        foreach ($snippets as $key => $snippet) {
-	            ?>
-	                                if (selected == <?php echo $key;
-	            ?>) {
-	                                    insert_snippet = postsnippet_<?php echo $key;
-	            ?>;
-	                                    <?php
-	                                    $var_arr = explode(",", $snippet['vars']);
-	            if (!empty($var_arr[0])) {
-	                foreach ($var_arr as $key_2 => $var) {
-	                    $varname = "var_" . $key . "_" . $key_2;
-	                    ?>
-	                                            insert_snippet = insert_snippet.replace(/\{<?php
-	                                            echo $this->stripDefaultVal($var);
-	                    ?>\}/g, <?php echo $varname;
-	                    ?>.val());
-	            <?php
-	                    echo "\n";
-	                }
-	            }
-	            ?>
-	                                }
-	        <?php
-	
-	        }
-	        ?>
-	
-	                            // Decide what method to use to insert the snippet depending
-	                            // from what editor the window was opened from
-	                            if (post_snippets_caller == 'html') {
-	                                // HTML editor in WordPress 3.3 and greater
-	                                QTags.insertContent(insert_snippet);
-	                            } else {
-	                                // Visual Editor
-	                                post_snippets_canvas.execCommand('mceInsertContent', false, insert_snippet);
-	                            }
-	
-	                        }
-	                    },
-	                    width: 500,
-	                });
-	            });
-            }
-        });
-
-        // Global variables to keep track on the canvas instance and from what editor
-        // that opened the Post Snippets popup.
-        var post_snippets_canvas;
-        var post_snippets_caller = '';
-
-        <?php
-        echo "</script>\n";
-        echo "\n<!-- END: Post Snippets jQuery UI and related functions -->\n";
+        $data = array(
+            'methods' => $this,
+            'snippets' => $snippets,
+            'snippetStack' => $snippetStack
+        );
+        echo View::render('jquery_ui_dialog_head', $data);
     }
 
     /**
@@ -329,13 +241,13 @@ class PostSnippets_WPEditor
             return;
         }
 
-        $snippets = get_option(PostSnippets::OPTION_KEY, array());
+        $snippets = get_option(\PostSnippets::OPTION_KEY, array());
 
         //Let other plugins change the snippets array
         $snippets = apply_filters('post_snippets_snippets_list', $snippets);
         $data = array('snippets' => $snippets);
 
-        echo PostSnippets_View::render('jquery-ui-dialog', $data);
+        echo View::render('jquery_ui_dialog_footer', $data);
     }
 
     /**
@@ -345,7 +257,7 @@ class PostSnippets_WPEditor
      */
     protected function isEditingPost()
     {
-        $settings = get_option(PostSnippets::SETTINGS);
+        $settings = get_option(\PostSnippets::SETTINGS);
         $exclude = isset($settings['exclude_from_custom_editors']) ?
             $settings['exclude_from_custom_editors'] :
             false;
