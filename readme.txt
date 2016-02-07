@@ -4,7 +4,7 @@ Donate link: https://johansteen.se/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4.2
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,11 @@ Contributions are appreciated and encouraged.
 
 
 == Changelog ==
+
+= Version 2.5.2 - 7 Feb 2016 =
+ * Fixes an issue than can occur when other plugins bootstrap WordPress Admin
+   and then includes `admin_head` but not `admin_footer`, like download monitor.
+ * Refactors parts of the code to prepare for a future snippet storage update.
 
 = Version 2.5.1 - 6 Feb 2016 =
  * Makes strings inside javascripts translatable.
