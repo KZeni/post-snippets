@@ -128,6 +128,9 @@ Contributions are appreciated and encouraged.
 
 == Changelog ==
 
+= Version 2.5.3 - 14 Feb 2016 =
+ * Fixes an issue with the compression library for import and export.
+
 = Version 2.5.2 - 7 Feb 2016 =
  * Fixes an issue than can occur when other plugins bootstrap WordPress Admin
    and then includes `admin_head` but not `admin_footer`, like download monitor.
