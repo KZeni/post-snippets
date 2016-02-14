@@ -80,7 +80,7 @@ class ImportExport
 
             if (isset($file['file']) && !is_wp_error($file)) {
                 require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
-                $zip = new PclZip($file['file']);
+                $zip = new \PclZip($file['file']);
                 $dir = wp_upload_dir();
                 $upload_dir = $dir['basedir'] . '/';
                 chdir($upload_dir);
@@ -167,7 +167,7 @@ class ImportExport
         // Create a zip archive
         require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
         chdir($upload_dir);
-        $zip = new PclZip('./'.self::FILE_ZIP);
+        $zip = new \PclZip('./'.self::FILE_ZIP);
         $zipped = $zip->create('./'.self::FILE_CFG);
 
         // Delete the snippet file
