@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Post Snippets
-Plugin URI: https://johansteen.se/code/post-snippets/
+Plugin URI: https://code.bitbebop.com/wordpress/post-snippets/
 Description: Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes.
 Author: Johan Steen
-Author URI: https://johansteen.se/
+Author URI: https://code.bitbebop.com/
 Version: 2.5.3
 License: GPLv2 or later
 Text Domain: post-snippets
@@ -34,7 +34,7 @@ spl_autoload_register('PostSnippets::autoload');
  * Init Singleton Class.
  *
  * @author  Johan Steen <artstorm at gmail dot com>
- * @link    https://johansteen.se/
+ * @link    https://code.bitbebop.com/
  */
 class PostSnippets
 {

@@ -40,8 +40,8 @@
 			return {
 					longname  : 'Post Snippets',
 					author 	  : 'Johan Steen',
-					authorurl : 'https://johansteen.se/',
-					infourl   : 'https://johansteen.se/code/post-snippets/',
+					authorurl : 'https://code.bitbebop.com/',
+					infourl   : 'https://code.bitbebop.com/wordpress/post-snippets/',
 					version   : '1.9'
 			};
 		}

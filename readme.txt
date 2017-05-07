@@ -1,6 +1,6 @@
 === Post Snippets ===
 Contributors: artstorm
-Donate link: https://johansteen.se/donate/
+Donate link: https://code.bitbebop.com/donate/
 Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
 Requires at least: 3.3
 Tested up to: 4.4.2
@@ -40,7 +40,7 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 = Related Links =
 
-* [Plugin Page](https://johansteen.se/code/post-snippets/
+* [Plugin Page](https://code.bitbebop.com/wordpress/post-snippets/
   "Post snippets plugin page")
 * [Support Forum](http://wordpress.org/support/plugin/post-snippets
   "Use this for support and feature requests")
