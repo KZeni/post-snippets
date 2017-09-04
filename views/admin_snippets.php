@@ -1,6 +1,12 @@
 <form method="post" action="">
     <?php wp_nonce_field('update_snippets', 'update_snippets_nonce'); ?>
 
+    <?php
+    \PostSnippets\Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'), 'button-primary', false);
+    \PostSnippets\Admin::submit('add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false);
+    \PostSnippets\Admin::submit('delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false);
+    ?>
+    <br /><br />
     <table class="widefat fixed" cellspacing="0">
         <thead>
         <tr>
@@ -22,11 +28,13 @@
 
         <tbody>
 <?php
+
+
 $snippets = get_option(\PostSnippets::OPTION_KEY);
 if (!empty($snippets)) {
     foreach ($snippets as $key => $snippet) {
         ?>
-            <tr class='recent'>
+        <tr class='recent'>
             <th scope='row' class='check-column'><input type='checkbox' name='checked[]' value='<?php echo $key;
         ?>' /></th>
             <td class='row-title'>
@@ -77,9 +85,10 @@ if (!empty($snippets)) {
         ?>
         </tbody>
     </table>
+    <br />
 
 <?php
-        \PostSnippets\Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'));
+        \PostSnippets\Admin::submit('update-snippets', __('Update Snippets', 'post-snippets'), 'button-primary', false);
         \PostSnippets\Admin::submit('add-snippet', __('Add New Snippet', 'post-snippets'), 'button-secondary', false);
         \PostSnippets\Admin::submit('delete-snippets', __('Delete Selected', 'post-snippets'), 'button-secondary', false);
         echo '</form>';
