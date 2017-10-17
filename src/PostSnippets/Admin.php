@@ -28,6 +28,9 @@ class Admin
         add_action('admin_init', array(&$this, 'init'));
         add_action('current_screen', array(&$this, 'addHeaderXss'));
         add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
+
+	    // Add admin notice that asks for newsletter sign-up. Also check if should be hidden.
+	    add_action( 'admin_notices', array ( $this, 'admin_notice_newsletter' ) );
     }
 
 
@@ -104,9 +107,15 @@ class Admin
         );
         wp_localize_script('post-snippets', 'post_snippets', $translation_array);
 
+        // Add CSS for Pro features page
 	    $features_style_url = plugins_url('/assets/features.css', \PostSnippets::FILE);
 	    wp_register_style('post-snippets-features', $features_style_url, false, '2.0');
 	    wp_enqueue_style('post-snippets-features');
+
+	    // Add CSS for newsletter opt-in
+	    $features_style_url = plugins_url('/assets/newsletter.css', \PostSnippets::FILE);
+	    wp_register_style('post-snippets-newsletter', $features_style_url, false, '2.0');
+	    wp_enqueue_style('post-snippets-newsletter');
 
         wp_enqueue_script('post-snippets');
     }
@@ -619,4 +628,36 @@ class Admin
 
         echo $btn;
     }
+
+	/**
+	 *
+	 * Show newsletter opt-in, only in Post Snippets.
+	 * Not on Pro features tab/page.
+	 * Not when user selected to Hide opt-in.
+	 *
+	 * @since   2.5.4
+	 */
+	public function admin_notice_newsletter() {
+
+		// Hide newsletter opt-in if option is true
+		if ( get_option( 'ps_hide_admin_notice_newsletter' ) == true ) {
+			return;
+		}
+
+		// Set option if "hide" button click detected (custom querystring value set to 1).
+		if ( ! empty( $_REQUEST['ps-dismiss-newsletter-nag'] ) ) {
+			update_option( 'ps_hide_admin_notice_newsletter', true );
+			return;
+		}
+
+		// Show newsletter notice.
+		if ( get_current_screen()->id == 'settings_page_post-snippets/post-snippets' ) {
+			$active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
+			if ( $active_tab != 'features' ) {
+				include_once( PS_PATH . '/views/admin_notice_newsletter.php' );
+			}
+
+		}
+	}
+
 }
