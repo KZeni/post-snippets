@@ -104,6 +104,10 @@ class Admin
         );
         wp_localize_script('post-snippets', 'post_snippets', $translation_array);
 
+	    $features_style_url = plugins_url('/assets/features.css', \PostSnippets::FILE);
+	    wp_register_style('post-snippets-features', $features_style_url, false, '2.0');
+	    wp_enqueue_style('post-snippets-features');
+
         wp_enqueue_script('post-snippets');
     }
 
@@ -331,25 +335,25 @@ class Admin
         $tabs = array(
             'snippets' => __('Manage Snippets', 'post-snippets'),
             'options' => __('Options', 'post-snippets'),
-            'tools' => __('Import/Export', 'post-snippets')
+            'tools' => __('Import/Export', 'post-snippets'),
+            'features' => __('Pro features', 'post-snippets'),
         );
         echo '<h2 class="nav-tab-wrapper">';
         foreach ($tabs as $tab => $title) {
             $active = ($active_tab == $tab) ? ' nav-tab-active' : '';
-            echo "<a href='{$base_url}{$tab}' class='nav-tab {$active}'>{$title}</a>";
+            echo "<a href='{$base_url}{$tab}' class='nav-tab {$active} tab-{$tab}'>{$title}</a>";
         }
         echo '</h2>';
-        echo '<p class="description">';
-        _e('Use the help dropdown button for additional information.', 'post-snippets');
-        echo '</p>';
 
         // Tab content
         if ($active_tab == 'snippets') {
             $this->tabSnippets();
         } elseif ($active_tab == 'options') {
             $this->tabOptions();
-        } else {
+        } elseif ($active_tab == 'tools') {
             $this->tabTools();
+        } else {
+	        $this->tabFeatures();
         }
 
         // Close it
@@ -363,7 +367,11 @@ class Admin
      */
     private function tabSnippets()
     {
-        $data = array();
+	    echo '<p class="description">';
+	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
+	    echo '</p>';
+
+	    $data = array();
         echo View::render('admin_snippets', $data);
     }
 
@@ -374,7 +382,11 @@ class Admin
      */
     private function tabOptions()
     {
-        $data = array();
+	    echo '<p class="description">';
+	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
+	    echo '</p>';
+
+	    $data = array();
         echo View::render('admin_options', $data);
     }
 
@@ -385,7 +397,11 @@ class Admin
      */
     private function tabTools()
     {
-        $ie = new ImportExport();
+	    echo '<p class="description">';
+	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
+	    echo '</p>';
+
+	    $ie = new ImportExport();
 
         // Create header and export html form
         printf("<h3>%s</h3>", __('Import/Export', 'post-snippets'));
@@ -401,6 +417,19 @@ class Admin
         $ie->exportSnippets();
         echo $ie->importSnippets();
     }
+
+	/**
+	 * Tab for Pro features
+	 *
+	 * @since   Post Snippets 2.5.4
+	 */
+	private function tabFeatures()
+	{
+		$features = new Features();
+
+		echo $features->showFeatures();
+
+	}
 
 
     /**
@@ -582,7 +611,7 @@ class Admin
      */
     public static function submit($name, $label, $class = 'button-primary', $wrap = true)
     {
-        $btn = sprintf('<input type="submit" name="%s" value="%s" class="%s" />', $name, $label, $class);
+        $btn = sprintf('<input type="submit" name="%s" value="%s" class="%s" />&nbsp;&nbsp;&nbsp;', $name, $label, $class);
 
         if ($wrap) {
             $btn = "<div class=\"submit\">{$btn}</div>";
