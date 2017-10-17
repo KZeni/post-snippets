@@ -211,7 +211,7 @@ class PostSnippets
     }
 
     /**
-     * Displays a warning when installed in an old Wordpress version.
+     * Displays a warning when installed in an old WordPress version.
      */
     public function wpVersionError()
     {
