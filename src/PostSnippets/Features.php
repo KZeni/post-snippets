@@ -107,12 +107,10 @@ ob_start();
 
                     <div class="ps_features_wrap">
                         <p class="ps_features_wrap_intro">
-							<?php _e( 'Vote for new features in <strong>Post Snippets Pro</strong>! It\'s the professional version of Post Snippets, starting at $49 per year. You get three votes. The Pro version will make development and support of both versions sustainable, so you get a <strong>higher quality</strong> plugin.</p>
+							<?php _e( 'Vote for new features in <strong>Post Snippets Pro</strong>! It\'s the professional version of Post Snippets, starting at $49 per year. You get three votes. The Pro version makes development and support of both versions sustainable, so you get a <strong>higher quality</strong> plugin.', 'post-snippets' ); ?></p>
 
-<p class="ps_features_wrap_intro">Other suggestions? Send an email to <a href="mailto:david@postsnippets.com">david@postsnippets.com</a>.', 'post-snippets' ); ?>
+						<p class="ps_features_wrap_intro"><?php _e( 'Other suggestions? Send an email to <a href="mailto:david@postsnippets.com">david@postsnippets.com</a>.', 'post-snippets' ); ?>
                         </p>
-
-
 
                         <p class="ps-votes-left" style="display: none;">
 		                    <?php _e( 'You have 3 votes left!', 'post-snippets' ); ?>
@@ -181,7 +179,6 @@ ob_start();
                                                 jQuery('.ml-subscribe-form-<?php echo $feature['form-id'] ?> .ml-block-success').show();
                                                 jQuery('.ml-subscribe-form-<?php echo $feature['form-id'] ?> .ml-block-form, .subscribe-message').hide();
                                             }
-                                            ;
                                         </script>
 
                                     </div>
