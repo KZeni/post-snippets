@@ -122,31 +122,31 @@ ob_start();
 
 							<?php
 							shuffle( $features );
-							foreach ( $features as $extension ) : ?>
+							foreach ( $features as $feature ) : ?>
 
                                 <li class="product">
 
-									<?php if ( ! empty( $extension['image'] ) ) { ?>
+									<?php if ( ! empty( $feature['image'] ) ) { ?>
                                         <img
-                                                src=" <?php echo PS_URL . 'admin/extension_logos/' . str_replace( ' ', '', strtolower( $extension['title'] ) ) . '.png'; ?>"/>
+                                                src=" <?php echo PS_URL . 'admin/feature_logos/' . str_replace( ' ', '', strtolower( $feature['title'] ) ) . '.png'; ?>"/>
 									<?php } else { ?>
-                                        <h2><?php echo $extension['title'] ?></h2>
+                                        <h2><?php echo $feature['title'] ?></h2>
 									<?php } ?>
 
-                                    <p><?php echo $extension['description'] ?></p>
+                                    <p><?php echo $feature['description'] ?></p>
 
 									<?php //include( PS_PATH . 'admin/views/admin-features-interest-form.php' ); ?>
 
-                                    <div id="mlb2-<?php echo $extension['form-id'] ?>"
-                                         class="ml-subscribe-form ml-subscribe-form-<?php echo $extension['form-id'] ?>">
+                                    <div id="mlb2-<?php echo $feature['form-id'] ?>"
+                                         class="ml-subscribe-form ml-subscribe-form-<?php echo $feature['form-id'] ?>">
 
                                         <div class="subscribe-form ml-block-success" style="display:none">
                                             <div class="form-section mb0">
-                                                <p class="ps-extension-success-message"><?php _e( 'Thanks, I\'m deciding what features to build first, your vote helps!', 'post-snippets' ); ?></p>
+                                                <p class="ps-features-success-message"><?php _e( 'Thanks, I\'m deciding what features to build first, your vote helps!', 'post-snippets' ); ?></p>
                                             </div>
                                         </div>
 
-                                        <form class="ml-block-form" action="//app.mailerlite.com/webforms/submit/<?php echo $extension['form-action-id'] ?>"
+                                        <form class="ml-block-form" action="//app.mailerlite.com/webforms/submit/<?php echo $feature['form-action-id'] ?>"
                                               data-id="177069" data-code="c7d6k5" method="POST" target="_blank">
                                             <div class="subscribe-form horizontal">
                                                 <div class="form-section horizontal" style="display: inline">
@@ -177,9 +177,9 @@ ob_start();
                                         </form>
 
                                         <script>
-                                            function ml_webform_success_<?php echo $extension['form-id'] ?>() {
-                                                jQuery('.ml-subscribe-form-<?php echo $extension['form-id'] ?> .ml-block-success').show();
-                                                jQuery('.ml-subscribe-form-<?php echo $extension['form-id'] ?> .ml-block-form, .subscribe-message').hide();
+                                            function ml_webform_success_<?php echo $feature['form-id'] ?>() {
+                                                jQuery('.ml-subscribe-form-<?php echo $feature['form-id'] ?> .ml-block-success').show();
+                                                jQuery('.ml-subscribe-form-<?php echo $feature['form-id'] ?> .ml-block-form, .subscribe-message').hide();
                                             }
                                             ;
                                         </script>
