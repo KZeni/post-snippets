@@ -1,31 +1,26 @@
 <?php
-/*
-Plugin Name: Post Snippets
-Plugin URI: https://code.bitbebop.com/wordpress/post-snippets/
-Description: Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes.
-Author: Johan Steen
-Author URI: https://code.bitbebop.com/
-Version: 2.5.3
-License: GPLv2 or later
-Text Domain: post-snippets
-Domain Path: /lang
-
-Copyright 2009-2016 Johan Steen  (email : artstorm [at] gmail [dot] com)
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+/**
+ * Post Snippets
+ *
+ * @package     PS
+ * @author      David de Boer <david@davdeb.com>
+ * @license     GPL-2.0+
+ * @link        https://www.postsnippets.com
+ * @copyright   2017 David de Boer
+ * @copyright   2009-2017 Johan Steen
+ *
+ * @wordpress-plugin
+ * Plugin Name: Post Snippets
+ * Plugin URI: https://www.postsnippets.com
+ * Description: Create custom shortcodes and reusable content and insert them in into your posts and pages.
+ * Version: 2.5.3
+ * Author: David de Boer
+ * Author URI: https://www.postsnippets.com
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: post-snippets
+ * Domain Path: /lang
+ */
 
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
