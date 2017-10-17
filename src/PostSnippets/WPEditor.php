@@ -4,8 +4,6 @@ namespace PostSnippets;
 /**
  * Post Snippets WP Editor.
  *
- * @author   Johan Steen <artstorm at gmail dot com>
- * @link     https://code.bitbebop.com/
  */
 class WPEditor
 {

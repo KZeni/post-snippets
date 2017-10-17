@@ -6,8 +6,6 @@ namespace PostSnippets;
  *
  * Class to handle import and export of Snippets.
  *
- * @author   Johan Steen <artstorm at gmail dot com>
- * @link     https://code.bitbebop.com/
  */
 class ImportExport
 {

@@ -4,8 +4,6 @@ namespace PostSnippets;
 /**
  * View Handling.
  *
- * @author   Johan Steen <artstorm at gmail dot com>
- * @link     https://code.bitbebop.com/
  */
 class View
 {

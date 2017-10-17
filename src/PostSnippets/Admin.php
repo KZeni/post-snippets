@@ -7,8 +7,6 @@ namespace PostSnippets;
  * Class that renders out the HTML for the settings screen and contains helpful
  * methods to simply the maintainance of the admin screen.
  *
- * @author   Johan Steen <artstorm at gmail dot com>
- * @link     https://code.bitbebop.com/
  */
 class Admin
 {

@@ -2,8 +2,6 @@
 
 # Build Script for WordPress Plugins
 #
-# @author       Johan Steen <artstorm at gmail dot com>
-# @uri          https://code.bitbebop.com/
 
 # ------------------------------------------------------------------------------
 # Variables and Setup

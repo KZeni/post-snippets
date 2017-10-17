@@ -4,8 +4,6 @@ namespace PostSnippets;
 /**
  * Shortcode Handling.
  *
- * @author   Johan Steen <artstorm at gmail dot com>
- * @link     https://code.bitbebop.com/
  */
 class Shortcode
 {

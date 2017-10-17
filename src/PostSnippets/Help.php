@@ -4,8 +4,6 @@ namespace PostSnippets;
 /**
  * Handles the plugin help screen.
  *
- * @author  Johan Steen <artstorm at gmail dot com>
- * @link    https://code.bitbebop.com/
  */
 class Help
 {
