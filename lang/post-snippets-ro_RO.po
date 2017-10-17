@@ -255,18 +255,18 @@ msgid "Post Snippets"
 msgstr "Fragmente post"
 
 #. Plugin URI of the plugin/theme
-msgid "https://code.bitbebop.com/wordpress/post-snippets/"
-msgstr "https://code.bitbebop.com/wordpress/post-snippets/"
+msgid "https://www.postsnippets.com/"
+msgstr "https://www.postsnippets.com/"
 
 #. Description of the plugin/theme
 msgid "Build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts. Variables to replace parts of the snippet on insert can be used. The snippets can be inserted as-is or as shortcodes."
 msgstr "Construieste o bibliotecă, cu fragmente de cod HTML, codul PHP sau textul reoccurring pe care le utilizaţi frecvent în mesajele dumneavoastră. Variabile pentru a înlocui părţi ale fragmentul pe Inserare poate fi utilizat.Fragmente poate fi introdus ca-ca este sau scurte."
 
 #. Author of the plugin/theme
-msgid "Johan Steen"
-msgstr "Johan Steen"
+msgid "David de Boer"
+msgstr "David de Boer"
 
 #. Author URI of the plugin/theme
-msgid "https://code.bitbebop.com/"
-msgstr "https://code.bitbebop.com/"
+msgid "https://www.postsnippets.com/"
+msgstr "https://www.postsnippets.com/"
 

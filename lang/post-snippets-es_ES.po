@@ -124,8 +124,8 @@ msgid "Stores snippets of HTML code or reoccurring text that you often use in yo
 msgstr "Almacena de snippets(fragmentos) de código HTML o texto recurrente para usarlo en tus entradas. Puedes utilizar las variables predefinidas para reemplazar partes del snippet(fragmento) en inserción. Todos los snippets(fragmentos) están disponibles en el editor de entradas con un botón de TinyMCE, Quicktags o Shortcodes."
 
 #. Author of an extension
-msgid "Johan Steen"
-msgstr "Johan Steen"
+msgid "David de Boer"
+msgstr "David de Boer"
 
 #. Author URI of an extension
 msgid "http://coding.cglounge.com/"

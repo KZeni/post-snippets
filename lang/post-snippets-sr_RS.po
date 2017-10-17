@@ -328,8 +328,8 @@ msgid "Post Snippets"
 msgstr "Post Snippets"
 
 #. Plugin URI of the plugin/theme
-msgid "https://code.bitbebop.com/wordpress/post-snippets/"
-msgstr "https://code.bitbebop.com/wordpress/post-snippets/"
+msgid "https://www.postsnippets.com/"
+msgstr "https://www.postsnippets.com/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -343,9 +343,9 @@ msgstr ""
 "brojeve ."
 
 #. Author of the plugin/theme
-msgid "Johan Steen"
-msgstr "Johan Steen"
+msgid "David de Boer"
+msgstr "David de Boer"
 
 #. Author URI of the plugin/theme
-msgid "https://code.bitbebop.com/"
-msgstr "https://code.bitbebop.com/"
+msgid "https://www.postsnippets.com/"
+msgstr "https://www.postsnippets.com/"

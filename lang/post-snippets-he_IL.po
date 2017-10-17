@@ -1,5 +1,5 @@
 # Translation Template for Post Snippets.
-# Copyright (C) 2009 Johan Steen
+# Copyright (C) 2009 David de Boer
 # This file is distributed under the same license as the PACKAGE package.
 #
 msgid ""
@@ -108,8 +108,8 @@ msgid "Stores snippets of HTML code or reoccurring text that you often use in yo
 msgstr "מאחסן סניפטים (קטעי קוד) של שפת HTML או טקסט בו אתה נוהג להשתמש בצורה תכופה בפוסטים שלך. אתה יכול להגדיר מראש משתנים איתם תוכל להוסיף סניפטים אלו בצורה מהירה. כמו כן בעורך הפוסטים שלך תמצא כפתור גישה מהירה לסניפטים שלך."
 
 #. Author of an extension
-msgid "Johan Steen"
-msgstr "Johan Steen"
+msgid "David de Boer"
+msgstr "David de Boer"
 
 #. Author URI of an extension
 msgid "http://coding.cglounge.com/"
