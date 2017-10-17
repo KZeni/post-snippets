@@ -367,7 +367,7 @@ class Admin
      */
     private function tabSnippets()
     {
-	    echo '<p class="description">';
+	    echo '<p class="description post-snippets-documentation-note">';
 	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
 	    echo '</p>';
 
@@ -382,7 +382,7 @@ class Admin
      */
     private function tabOptions()
     {
-	    echo '<p class="description">';
+	    echo '<p class="description post-snippets-documentation-note">';
 	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
 	    echo '</p>';
 
@@ -397,7 +397,7 @@ class Admin
      */
     private function tabTools()
     {
-	    echo '<p class="description">';
+	    echo '<p class="description post-snippets-documentation-note">';
 	    _e('Click \'Help\' in the top right for the documentation!', 'post-snippets');
 	    echo '</p>';
 

@@ -78,3 +78,8 @@
 	background-color: #ffaaaa !important;
 	border: 1px solid #ff0000 !important;
 }
+
+.post-snippets-documentation-note {
+    width: 98%;
+    text-align: right;
+}
