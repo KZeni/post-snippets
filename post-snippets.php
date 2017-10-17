@@ -25,12 +25,10 @@
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
 
-/**
- * Init Singleton Class.
- *
- * @author  Johan Steen <artstorm at gmail dot com>
- * @link    https://code.bitbebop.com/
- */
+if ( ! defined( 'PS_PATH' ) ) {
+	define( 'PS_PATH', plugin_dir_path( __FILE__ ) );
+}
+
 class PostSnippets
 {
     /** Holds the plugin instance */
