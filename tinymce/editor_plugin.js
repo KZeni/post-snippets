@@ -39,9 +39,9 @@
 		getInfo : function() {
 			return {
 					longname  : 'Post Snippets',
-					author 	  : 'Johan Steen',
-					authorurl : 'https://code.bitbebop.com/',
-					infourl   : 'https://code.bitbebop.com/wordpress/post-snippets/',
+					author 	  : 'David de Boer',
+					authorurl : 'https://www.postsnippets.com/',
+					infourl   : 'https://www.postsnippets.com/',
 					version   : '1.9'
 			};
 		}
