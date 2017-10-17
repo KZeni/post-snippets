@@ -1,52 +1,37 @@
 === Post Snippets ===
-Contributors: artstorm
-Donate link: https://code.bitbebop.com/donate/
-Tags: post, admin, snippet, shortcode, html, custom, page, dynamic, editor, php, code
+Contributors: davdebcom
+Tags: custom snippet, custom shortcode, snippet, snippets, shortcode, shortcodes, block, blocks, html
 Requires at least: 3.3
-Tested up to: 4.4.2
+Tested up to: 4.9
+Requires PHP: 5.3
 Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Keep a snippet library of text, HTML or PHP code to be used in posts. Variables
-can be set for more flexibility. Inserts directly or as shortcodes.
+Create custom shortcodes and reusable content and insert them in into your posts and pages.
 
 == Description ==
 
-This plugin lets you build a library with snippets of HTML, PHP code or
-reoccurring text that you often use in your posts and pages. You can use
-predefined variables to replace parts of the snippet on insert. All snippets are
-available in the post editor via a button in the Visual and HTML modes. The
-snippet can be inserted as defined, or as a shortcode to keep flexibility for
-updating the snippet. PHP code is supported for snippets inserted as shortcodes.
+> Create custom shortcodes and reusable content and insert them in into your posts and pages.
+
+This plugin lets you build a library with snippets of HTML, PHP code or reoccurring text that you often use in your posts and pages. You can use predefined variables to replace parts of the snippet on insert. All snippets are available in the post editor via a button in the Visual mode. The snippet can be inserted as defined, or as a shortcode to keep flexibility for updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 = Features =
 
-* **Insert** All defined snippets is inserted from a button directly in the post
-  editor.
-* **Shortcodes** You can use this plugin to create your own shortcodes.
-* **PHP** A shortcode snippet can optionally be evaluated as PHP code.
-* **Buttons** The snippets are available in the viusal editor with a TinyMCE
-  button and in the HTML editor with a quicktag button.
-* **Admin** Easy to use administration panel where you can add, edit and remove
-  snippets.
-* **Variables** Each snippet can have as many custom variables as you like,
-  which can be used on insert.
+* **Insert** All defined snippets is inserted from a button directly in the post editor.
+* **Shortcodes** You can use this plugin to create your own custom shortcodes.
+* **PHP** A shortcode snippet can optionally be processed as PHP code.
+* **Buttons** The snippets can be found in the (visual) WordPress editor with a button and in the HTML editor with a quicktag.
+* **User-friendly** Easy to use 'Manage Snippets' page where you can add, edit and remove snippets.
+* **Variables** Each snippet can have as many custom variables as you like, which can be used on insert.
 * **Import/Export** Snippets can be imported and exported between sites.
-* **Documentation** Full documentation is available directly from the help panel
-  in the plugin administration screen.
-* **Uninstall** If you delete the plugin from your plugins panel it cleans up
-  all data it has created in the Wordpress database.
+* **Documentation** Full documentation is available directly from the help panel in the plugin (top right in WordPress).
+* **Uninstall** If you delete the plugin from your plugins panel it cleans up all data it has created in the WordPress database.
 
 = Related Links =
 
-* [Plugin Page](https://code.bitbebop.com/wordpress/post-snippets/
-  "Post snippets plugin page")
-* [Support Forum](http://wordpress.org/support/plugin/post-snippets
-  "Use this for support and feature requests")
-* [GitHub](https://github.com/artstorm/post-snippets
-  "Develop and contribute your code or report bugs")
-
+* [Website](https://www.postsnippets.com/)
+* [Support](http://wordpress.org/support/plugin/post-snippets)
 
 == Installation ==
 
@@ -55,15 +40,22 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 * PHP version 5.3.0 or greater.
 * WordPress version 3.3 or greater.
 
-= Install =
+= Automatic installation =
 
-1. Upload the 'post-snippets' folder  to the '/wp-content/plugins/' directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Go to Settings -> Post Snippets and start entering your snippets.
+1. Install the plugin via Plugins > New plugin. Search for 'Post Snippets'.
+2. Activate the 'Post Snippets' plugin through the 'Plugins' menu in WordPress.
+3. Go to Settings > Post Snippets and start entering your snippets.
+
+= Manual installation =
+
+1. Unpack the downloaded package
+2. Unzip and upload the directory 'post-snippets' to the `/wp-content/plugins/` directory
+3. Activate the 'Post Snippets' plugin through the 'Plugins' menu in WordPress
+4. Go to Settings > Post Snippets and start entering your snippets.
 
 = Uninstall =
 
-1. Deactivate Post Snippets in the 'Plugins' menu in Wordpress.
+1. Deactivate Post Snippets in the 'Plugins' menu in WordPress.
 2. Select Post Snippets in the 'Recently Active Plugins' section and select
    'Delete' from the 'Bulk Actions' drop down menu.
 3. This will delete all the plugin files from the server as well as erasing all
@@ -71,60 +63,37 @@ updating the snippet. PHP code is supported for snippets inserted as shortcodes.
 
 == Frequently Asked Questions ==
 
-= Where can I find usage and developer information? =
+= Where can I the documentation? =
 
-Documentation for the plugin is available directly from the help panel in the
-plugin administration screen.
+Documentation for the plugin is available directly from the Help panel in the
+plugin administration screen (top right corner of WordPress).
 
-= Why do importing Snippets on a multi site install fail? =
+= Why does importing Snippets on a Multisite installation fail? =
 
-Upload of zip files must be allowed, enable this in Sites Network Admin ->
-Settings -> Upload Settings -> Upload file types.
+Uploading of zip files must be allowed, enable this in Sites Network Admin > Settings > Upload Settings > Upload file types.
 
 = How can I use the content in an enclosed shortcode? =
 
-If the shortcode is enclosed and contains content between the tags in a post.
-Example: `[shortcode]Some text[/shortcode]` the text within will be availble in
-a variable called content. So in your snippet use {content} to display it. Don't
-enter 'content' in the variable field, it's automatically assigned.
-
-= Where can I send bug reports? =
-
-Please visit the GitHub repository for
-[Post Snippet](https://github.com/artstorm/post-snippets)
-and open an [issue](https://github.com/artstorm/post-snippets/issues).
-Please create an issue that conforms with
-[necolas's guidelines](https://github.com/necolas/issue-guidelines).
+If the shortcode is enclosed and contains content between the tags in a post. Example: `[shortcode]Some text[/shortcode]` the text within will be available in a variable called content. So in your snippet use {content} to display it. Don't enter 'content' in the variable field, it's automatically assigned.
 
 = Where can I get support? =
 
-Please visit the [Support Forum](http://wordpress.org/tags/post-snippets?forum_id=10 "Use this for support and feature requests")
-for questions, answers, support and feature requests.
+Please visit the [Support Forum](https://wordpress.org/support/plugin/post-snippets) for questions, answers, support and feature requests.
 
-= How can I disable the PHP Code Execution feature? =
+= Can I disable the PHP Code Execution feature? =
 
-﻿To disable the "PHP Code" execution feature in this plugin, add the following
-code your theme's functions.php or to wp-config.php:
-`define('POST_SNIPPETS_DISABLE_PHP', true);`
+To disable the "PHP Code" execution feature in this plugin, add the following code your theme's functions.php or to wp-config.php: `define('POST_SNIPPETS_DISABLE_PHP', true);`
 
 This is useful if you are using this plugin for client sites, and don't want
 your clients to be able to use PHP code in a post snippet.
 
-= How can I contribute to the plugin? =
-
-If you want to contribute improved code or new features for the plugin. Please
-open a pull request at the [Post Snippets GitHub repository](https://github.com/artstorm/post-snippets).
-Please open a pull request that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
-Contributions are appreciated and encouraged.
-
-
 == Screenshots ==
 
-1. The Admin page where you create and manage snippets.
-2. The TinyMCE button for Post Snippets.
-3. The Post Snippet insert dialog.
-4. Help system available on the admin page.
-
+1. Settings > Post Snippets: the admin page where you create and manage snippets.
+2. The convenient button for Post Snippets in the WordPress editor.
+3. The Post Snippet insert dialog that shows all snippets.
+4. Example of an inserted snippet, with optional variables.
+5. Easy to access inline documentation (top right 'Help' button in WordPress).
 
 == Changelog ==
 
