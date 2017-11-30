@@ -4,7 +4,7 @@ Tags: custom snippet, custom shortcode, snippet, snippets, shortcode, shortcodes
 Requires at least: 3.3
 Tested up to: 4.9
 Requires PHP: 5.3
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,14 @@ your clients to be able to use PHP code in a post snippet.
 5. Easy to access inline documentation (top right 'Help' button in WordPress).
 
 == Changelog ==
+
+= Version 2.5.4 - 30 Nov 2017 =
+ * UI improvement: Add update, add new and delete buttons to top of Snippets list, not just bottom
+ * Add better note to guide new users to the documentation ('Help' in the top right of the screen)
+ * Update URL's etc to https://www.postsnippets.com and update other plugin details
+ * Add 'Get started' admin notice to guide new users to Post Snippets in WordPress Settings
+ * Add a newsletter opt-in so users can get Post Snippets updates via email
+ * Add 'Pro features' page for feature voting, tell me what you need in Post Snippets
 
 = Version 2.5.3 - 14 Feb 2016 =
  * Fixes an issue with the compression library for import and export.

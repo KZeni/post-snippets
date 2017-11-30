@@ -13,7 +13,7 @@
  * Plugin Name: Post Snippets
  * Plugin URI: https://www.postsnippets.com
  * Description: Create custom shortcodes and reusable content and insert them in into your posts and pages.
- * Version: 2.5.3
+ * Version: 2.5.4
  * Author: David de Boer
  * Author URI: https://www.postsnippets.com
  * License: GPL-2.0+
