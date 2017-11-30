@@ -124,7 +124,12 @@ ob_start();
 
                     <div class="ps_features_wrap">
                         <p class="ps_features_wrap_intro">
-							<?php echo sprintf( __( 'Vote for new features in <strong>Post Snippets Pro</strong>! It\'s the professional version of Post Snippets, starting at $%s per year. You get three votes. The Pro version makes development and support of both versions sustainable, so you get a <strong>higher quality</strong> plugin.', 'post-snippets' ), $price ); ?></p>
+							<?php echo __( 'Vote for new features in <strong>Post Snippets Pro</strong>!', 'post-snippets' ); ?>
+                        </p>
+
+                        <p class="ps_features_wrap_intro">
+		                    <?php echo sprintf( __( 'It\'s the professional version of Post Snippets, starting at $%s per year. You get three votes. The Pro version makes development and support for both versions sustainable, so you get a <strong>higher quality</strong> plugin.', 'post-snippets' ), $price ); ?>
+                        </p>
 
 						<p class="ps_features_wrap_intro"><?php _e( 'Other suggestions? Send an email to <a href="mailto:david@postsnippets.com">david@postsnippets.com</a>.', 'post-snippets' ); ?>
                         </p>
@@ -170,10 +175,10 @@ ob_start();
                                                                placeholder="Email*" value="<?php echo wp_get_current_user()->user_email; ?>">
                                                     </div>
                                                     <div class="form-group ml-field-ps_price ml-validate-required" style="display: inline">
-                                                        <input style="display: none" type="text" name="fields[ps_price]" class="form-control" placeholder="PS Price*" value="<?php echo $price ?>" spellcheck="false" autocapitalize="off" autocorrect="off">
+                                                        <input style="display: none" type="text" name="fields[ps_price]" class="form-control" placeholder="PS Price*" value="<?php echo $price ?>" spellcheck="false">
                                                     </div>
                                                     <div class="form-group ml-field-ps_count ml-validate-required" style="display: inline">
-                                                        <input style="display: none" type="text" name="fields[ps_count]" class="form-control" placeholder="PS Count*" value="<?php echo $snippet_count ?>" spellcheck="false" autocapitalize="off" autocorrect="off">
+                                                        <input style="display: none" type="text" name="fields[ps_count]" class="form-control" placeholder="PS Count*" value="<?php echo $snippet_count ?>" spellcheck="false">
                                                     </div>
                                                 </div>
                                                 <div class="form-section horizontal test" style="display: inline;">
@@ -224,6 +229,7 @@ ob_start();
         </div><!-- .wrap -->
 
 
+        <!-- START: Post Snippets Feature voting -->
         <script type="text/javascript">
 
             //localStorage.removeItem('PostSnippetsVotes');
@@ -245,7 +251,7 @@ ob_start();
                 }
 
                 // When vote button clicked:
-                $("button").click(function (e) {
+                $("button").click(function () {
 
                     // Decrease remaining of votes by one
                     votes--;
@@ -275,7 +281,7 @@ ob_start();
             });
 
         </script>
-
+        <!-- END: Post Snippets Feature voting -->
 
         <script type="text/javascript"
                 src="//static.mailerlite.com/js/w/webforms.min.js?vb01ce49eaf30b563212cfd1f3d202142"></script>
