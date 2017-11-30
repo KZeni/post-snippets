@@ -29,6 +29,10 @@ if ( ! defined( 'PS_PATH' ) ) {
 	define( 'PS_PATH', plugin_dir_path( __FILE__ ) );
 }
 
+if ( ! defined( 'PS_URL' ) ) {
+	define( 'PS_URL', plugins_url( '', __FILE__ ) . '/' );
+}
+
 class PostSnippets
 {
     /** Holds the plugin instance */
