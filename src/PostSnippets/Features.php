@@ -15,6 +15,23 @@ class Features {
 
 	public function showFeatures() {
 
+		// Get amount of snippets
+		$snippet_count = count( get_option( 'post_snippets_options' ) );
+
+		// Get price for this site
+		$prices = array ( '9', '19', '29', '39', '49', '59', '69', '79' );
+
+		if ( get_option( 'ps_pro_features_price' ) == false ) {
+
+			// The option already exists, so we just update it.
+			update_option( 'ps_pro_features_price', $prices[ array_rand( $prices ) ] );
+
+		}
+
+		// Now get the final price
+		$price = get_option( 'ps_pro_features_price' );
+
+		// Setup features
 		$features = array (
 			array (
 				'title'          => __( 'Advanced Import/Export', 'post-snippets' ),
@@ -82,7 +99,7 @@ class Features {
 			array (
 				'title'          => __( 'Groups', 'post-snippets' ),
 				'image'          => '',
-				'description'    => __( 'Organize snippets into groups to keep similar tags together for easier organizing.', 'post-snippets' ),
+				'description'    => __( 'Organize snippets into groups to keep similar snippets together.', 'post-snippets' ),
 				'form-action-id' => 'p4c2b9',
 				'form-id'        => '6154171'
 			),
@@ -107,7 +124,7 @@ ob_start();
 
                     <div class="ps_features_wrap">
                         <p class="ps_features_wrap_intro">
-							<?php _e( 'Vote for new features in <strong>Post Snippets Pro</strong>! It\'s the professional version of Post Snippets, starting at $49 per year. You get three votes. The Pro version makes development and support of both versions sustainable, so you get a <strong>higher quality</strong> plugin.', 'post-snippets' ); ?></p>
+							<?php echo sprintf( __( 'Vote for new features in <strong>Post Snippets Pro</strong>! It\'s the professional version of Post Snippets, starting at $%s per year. You get three votes. The Pro version makes development and support of both versions sustainable, so you get a <strong>higher quality</strong> plugin.', 'post-snippets' ), $price ); ?></p>
 
 						<p class="ps_features_wrap_intro"><?php _e( 'Other suggestions? Send an email to <a href="mailto:david@postsnippets.com">david@postsnippets.com</a>.', 'post-snippets' ); ?>
                         </p>
@@ -152,10 +169,16 @@ ob_start();
                                                         <input style="display: none" type="text" name="fields[email]" class="form-control"
                                                                placeholder="Email*" value="<?php echo wp_get_current_user()->user_email; ?>">
                                                     </div>
+                                                    <div class="form-group ml-field-ps_price ml-validate-required" style="display: inline">
+                                                        <input style="display: none" type="text" name="fields[ps_price]" class="form-control" placeholder="PS Price*" value="<?php echo $price ?>" spellcheck="false" autocapitalize="off" autocorrect="off">
+                                                    </div>
+                                                    <div class="form-group ml-field-ps_count ml-validate-required" style="display: inline">
+                                                        <input style="display: none" type="text" name="fields[ps_count]" class="form-control" placeholder="PS Count*" value="<?php echo $snippet_count ?>" spellcheck="false" autocapitalize="off" autocorrect="off">
+                                                    </div>
                                                 </div>
                                                 <div class="form-section horizontal test" style="display: inline;">
                                                     <button type="submit" class="primary ps-vote-button">
-						                                <?php _e( 'I need this in Pro - $49', 'post-snippets' ); ?>
+						                                <?php echo sprintf( __( 'I need this in Pro - $%s', 'post-snippets' ), $price); ?>
                                                     </button>
 
                                                     <p class="ps-voted-note" style="display: none;">
@@ -240,7 +263,6 @@ ob_start();
 
                         // Remove features, do show Thank you message
                         $(psFeatures).find(".products").each(function (index, element) {
-                            console.log('found');
                             $(element).fadeOut();
                             $(".ps-votes-left").fadeOut();
                             $(".ps-voted-note-large").fadeIn();
