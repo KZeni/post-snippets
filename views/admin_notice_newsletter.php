@@ -12,6 +12,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+// Get amount of snippets
+$snippet_count = count( get_option( 'post_snippets_options' ) );
+
 ?>
 
 <div id="ps-newsletter-notice" class="updated">
@@ -38,6 +42,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<input style="display: inline" type="text" name="fields[email]" class="form-control"
 						       placeholder="Email*" value="<?php echo wp_get_current_user()->user_email; ?>">
 					</div>
+                    <div class="form-group ml-field-ps_count ml-validate-required" style="display: none">
+                        <input style="display: none" type="text" name="fields[ps_count]" class="form-control" placeholder="PS Count*" value="<?php echo $snippet_count ?>" spellcheck="false" autocapitalize="off" autocorrect="off">
+                    </div>
+
 				</div>
 				<div class="form-section horizontal" style="display: inline">
 					<button type="submit" class="primary">
