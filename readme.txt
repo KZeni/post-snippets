@@ -164,7 +164,7 @@ your clients to be able to use PHP code in a post snippet.
 = Version 2.3 - 1 Jun 2013 =
  * Updates `PostSnippets::getSnippet($name, $variables)` to be able
    to accept an array with variables and not only a querystring. Fixes
-   [issue #22](https://github.com/artstorm/post-snippets/issues/22).
+   [issue #22](https://github.com/davdebcom/post-snippets/issues/22).
  * Removes `get_post_snippet()` which was deprecated in version 2.1.
  * Adds POST_SNIPPETS_DISABLE_PHP constant to easy disable the PHP code
    execution in snippets. Add
@@ -184,7 +184,7 @@ your clients to be able to use PHP code in a post snippet.
    Post Snippets Admin. Add
    `define('POST_SNIPPETS_ALLOW_EDIT_POSTS', true);`
    to wp-config.php to enable access for those users. Fixes
-   [issue #12](https://github.com/artstorm/post-snippets/issues/12).
+   [issue #12](https://github.com/davdebcom/post-snippets/issues/12).
  * Optimizes code for the admin section.
 
 = Version 2.2 - 26 Apr 2013 =
@@ -211,7 +211,7 @@ your clients to be able to use PHP code in a post snippet.
    users are not affected by this change.
  * Refactored code to comply with the PSR-0 standard.
  * Migrated to GitHub to maintain the code in development.
-   [Post Snippets at GitHub](https://github.com/artstorm/post-snippets).
+   [Post Snippets at GitHub](https://github.com/davdebcom/post-snippets).
  * Included Polish translation (pl_PL) by Tomasz Wesołowski.
  * Included Slovak translation (sk_SK) by Branco Radenovich.
 
