@@ -27,8 +27,11 @@ class Admin
         add_action('current_screen', array(&$this, 'addHeaderXss'));
         add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
 
-	    // Add admin notice that asks for newsletter sign-up. Also check if should be hidden.
+	    // Newsletter sign-up admin notice
 	    add_action( 'admin_notices', array ( $this, 'admin_notice_newsletter' ) );
+
+	    // Get started admin notice
+	    add_action( 'admin_notices', array ( $this, 'admin_notice_get_started' ) );
     }
 
 
@@ -653,6 +656,37 @@ class Admin
 			$active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
 			if ( $active_tab != 'features' ) {
 				include_once( PS_PATH . '/views/admin_notice_newsletter.php' );
+			}
+
+		}
+	}
+
+
+	/**
+	 *
+	 * Show 'Get started' admin notice', everywhere.
+	 * Not when user already clicked or dismissed.
+	 *
+	 * @since   2.5.4
+	 */
+	public function admin_notice_get_started() {
+
+		// Hide newsletter opt-in if option is true
+		if ( get_option( 'ps_hide_admin_notice_get_started' ) == true ) {
+			return;
+		}
+
+		// Set option if "hide" button click detected (custom querystring value set to 1).
+		if ( ! empty( $_REQUEST['ps-dismiss-get-started-nag'] ) ) {
+			update_option( 'ps_hide_admin_notice_get_started', true );
+			return;
+		}
+
+		// Show newsletter notice.
+		if ( get_current_screen()->id !== 'settings_page_post-snippets/post-snippets' ) {
+			$active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
+			if ( $active_tab != 'features' ) {
+				include_once( PS_PATH . '/views/admin_notice_get_started.php' );
 			}
 
 		}
