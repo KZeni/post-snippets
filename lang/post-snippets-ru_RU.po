@@ -1,5 +1,5 @@
 # Translation Template for Post Snippets.
-# Copyright (C) 2009 David de Boer
+# Copyright (C) 2009 Johan Steen
 # This file is distributed under the same license as the PACKAGE package.
 #
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Post Snippets\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/post-snippets\n"
 "POT-Creation-Date: 2009-03-24 09:38+0000\n"
-"PO-Revision-Date: 2015-08-07 15:16+0300\n"
+"PO-Revision-Date: 2017-11-30 10:33+0100\n"
 "Last-Translator: Fat Cow <zhr@tut.by>\n"
 "Language-Team: Fat Cow <zhr@tut.by>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Language: ru_RU\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: post-snippets.php:70
 msgid "Post Snippets requires WordPress version 2.7 or later!"
@@ -95,16 +95,16 @@ msgstr "Post Snippets"
 
 #. Plugin URI of an extension
 msgid "http://coding.cglounge.com/wordpress-plugins/post-snippets/"
-msgstr "http://coding.cglounge.com/wordpress-plugins/post-snippets/"
+msgstr "https://www.postsnippets.com/"
 
 #. Description of an extension
 msgid "Stores snippets of HTML code or reoccurring text that you often use in your posts. You can use predefined variables to replace parts of the snippet on insert. All snippets are available in the post editor with a TinyMCE button, Quicktags or Shortcodes."
 msgstr "Магазины фрагмент HTML-код или повторение текста, который вы часто используете в должности. Вы можете использовать предопределенные переменные для замены частей, взяв на вставки. Все фрагменты имеются в должности редактора с TinyMCE кнопки, Quicktags или Shortcodes. "
 
 #. Author of an extension
-msgid "David de Boer"
+msgid "Johan Steen"
 msgstr "David de Boer"
 
 #. Author URI of an extension
 msgid "http://coding.cglounge.com/"
-msgstr "http://coding.cglounge.com/"
+msgstr "https://www.postsnippets.com/"

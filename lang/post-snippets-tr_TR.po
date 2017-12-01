@@ -1,5 +1,5 @@
 # Translation Template for Post Snippets.
-# Copyright (C) 2009 David de Boer
+# Copyright (C) 2009 Johan Steen
 # This file is distributed under the same license as the PACKAGE package.
 #
 msgid ""
@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: Post Snippets\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/post-snippets\n"
 "POT-Creation-Date: 2009-03-24 09:38+0000\n"
-"PO-Revision-Date: 2011-01-23 02:21+0200\n"
+"PO-Revision-Date: 2017-11-30 10:31+0100\n"
 "Last-Translator: JSEL <jselivingston@gmail.com>\n"
 "Language-Team: www.tml.web.tr <jselivingston@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Country: TURKEY\n"
-"X-Poedit-Language: Turkish\n"
+"Language: tr_TR\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: post-snippets.php:70
 msgid "Post Snippets requires WordPress version 2.7 or later!"
@@ -40,18 +40,15 @@ msgstr "Yeni Snippet Ekle"
 msgid "Delete Selected"
 msgstr "Seçili Olanları Sil"
 
-#: post-snippets.php:230
-#: post-snippets.php:239
+#: post-snippets.php:230 post-snippets.php:239
 msgid "Title"
 msgstr "Başlık"
 
-#: post-snippets.php:231
-#: post-snippets.php:240
+#: post-snippets.php:231 post-snippets.php:240
 msgid "Variables"
 msgstr "Değişkenler"
 
-#: post-snippets.php:232
-#: post-snippets.php:241
+#: post-snippets.php:232 post-snippets.php:241
 msgid "Snippet"
 msgstr "Snippet"
 
@@ -97,17 +94,16 @@ msgstr "Post Snippets"
 
 #. Plugin URI of an extension
 msgid "http://coding.cglounge.com/wordpress-plugins/post-snippets/"
-msgstr "http://coding.cglounge.com/wordpress-plugins/post-snippets/"
+msgstr "https://www.postsnippets.com/"
 
 #. Description of an extension
 msgid "Stores snippets of HTML code or reoccurring text that you often use in your posts. You can use predefined variables to replace parts of the snippet on insert. All snippets are available in the post editor with a TinyMCE button, Quicktags or Shortcodes."
 msgstr "Yazılarınızda sıklıkla kullandığınız HTML kodu veya metinlerdeki snippetlerı kaydeder. Tanımladığınız değişkenleri kullanarak snippet bölümlerini de değiştirebilirsiniz. Tüm snippetlara yazı editöründe yer alan TinyMCE, Quicktags veya Shortcodes düğmeleri aracılığıyla ulaşabilirsiniz."
 
 #. Author of an extension
-msgid "David de Boer"
+msgid "Johan Steen"
 msgstr "David de Boer"
 
 #. Author URI of an extension
 msgid "http://coding.cglounge.com/"
-msgstr "http://coding.cglounge.com/"
-
+msgstr "https://www.postsnippets.com/"
