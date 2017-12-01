@@ -22,10 +22,10 @@ class Admin
      */
     public function __construct()
     {
-        add_action('admin_menu', array(&$this, 'menu'));
-        add_action('admin_init', array(&$this, 'init'));
-        add_action('current_screen', array(&$this, 'addHeaderXss'));
-        add_filter('plugin_action_links', array(&$this, 'actionLinks'), 10, 2);
+	    add_action( 'admin_menu', array ( &$this, 'menu' ) );
+	    add_action( 'admin_init', array ( &$this, 'init' ) );
+	    add_action( 'current_screen', array ( &$this, 'addHeaderXss' ) );
+	    add_filter( 'plugin_action_links_' . plugin_basename( PS_PATH . 'post-snippets.php' ), array ( $this, 'actionLinks' ) );
 
 	    // Newsletter sign-up admin notice
 	    add_action( 'admin_notices', array ( $this, 'admin_notice_newsletter' ) );
@@ -135,26 +135,19 @@ class Admin
         }
     }
 
-    /**
-     * Quick link to the Post Snippets Settings page from the Plugins page.
-     *
-     * @param array Array of all plugin links
-     * @param string The current plugin file we're filtering.
-     * @return  Array with all the plugin's action links
-     */
-    public function actionLinks($links, $file)
-    {
-        $pluginFile = plugin_basename(dirname(\PostSnippets::FILE));
-        $pluginFile .= '/post-snippets.php';
+	/**
+	 * Quick link to the Post Snippets Settings page from the Plugins page.
+	 *
+	 * @param array $links Array of all plugin links
+	 *
+	 * @return array $links Array with all the plugin's action links
+	 */
+	public function actionLinks( $links ) {
 
-        if ($file == $pluginFile) {
-            $url = 'options-general.php?page=post-snippets/post-snippets.php';
-            $link = "<a href='{$url}'>";
-            $link .= __('Settings', 'post-snippets').'</a>';
-            $links[] = $link;
-        }
-        return $links;
-    }
+		$links[] = '<a href="' . PS_MAIN_PAGE_URL . '">' . __( 'Settings', 'post-snippets' ) . '</a>';
+
+		return $links;
+	}
 
 
     // -------------------------------------------------------------------------
@@ -341,7 +334,7 @@ class Admin
 
         // Tabs
         $active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
-        $base_url = '?page=post-snippets/post-snippets.php&amp;tab=';
+        $base_url = '?page=' . PS_DIRECTORY . '/post-snippets.php&amp;tab=';
         $tabs = array(
             'snippets' => __('Manage Snippets', 'post-snippets'),
             'options' => __('Options', 'post-snippets'),
@@ -652,7 +645,7 @@ class Admin
 		}
 
 		// Show newsletter notice.
-		if ( get_current_screen()->id == 'settings_page_post-snippets/post-snippets' ) {
+		if (  strpos(get_current_screen()->id, '/post-snippets' ) !== false ) {
 			$active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
 			if ( $active_tab != 'features' ) {
 				include_once( PS_PATH . '/views/admin_notice_newsletter.php' );
@@ -676,14 +669,14 @@ class Admin
 			return;
 		}
 
-		// Set option if "hide" button click detected (custom querystring value set to 1).
+		// Set option if "hide" button click detected (custom query string value set to 1).
 		if ( ! empty( $_REQUEST['ps-dismiss-get-started-nag'] ) ) {
 			update_option( 'ps_hide_admin_notice_get_started', true );
 			return;
 		}
 
 		// Show newsletter notice.
-		if ( get_current_screen()->id !== 'settings_page_post-snippets/post-snippets' ) {
+		if (  strpos(get_current_screen()->id, '/post-snippets' ) == false ) {
 			$active_tab = isset($_GET[ 'tab' ]) ? $_GET[ 'tab' ] : 'snippets';
 			if ( $active_tab != 'features' ) {
 				include_once( PS_PATH . '/views/admin_notice_get_started.php' );

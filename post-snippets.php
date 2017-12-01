@@ -25,12 +25,28 @@
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
 
+if ( ! defined( 'PS_MAIN_FILE' ) ) {
+	define( 'PS_MAIN_FILE', basename(__FILE__) );
+}
+
+if ( ! defined( 'PS_MAIN_FILE_PATH' ) ) {
+	define( 'PS_MAIN_FILE_PATH', __FILE__ );
+}
+
+if ( ! defined( 'PS_DIRECTORY' ) ) {
+	define( 'PS_DIRECTORY', plugin_basename(dirname( __FILE__ )) );
+}
+
 if ( ! defined( 'PS_PATH' ) ) {
 	define( 'PS_PATH', plugin_dir_path( __FILE__ ) );
 }
 
 if ( ! defined( 'PS_URL' ) ) {
 	define( 'PS_URL', plugins_url( '', __FILE__ ) . '/' );
+}
+
+if ( ! defined( 'PS_MAIN_PAGE_URL' ) ) {
+	define( 'PS_MAIN_PAGE_URL', esc_url( admin_url( 'options-general.php?page=' . PS_DIRECTORY . '/' . PS_MAIN_FILE ) ) );
 }
 
 class PostSnippets

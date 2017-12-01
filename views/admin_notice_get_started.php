@@ -29,7 +29,7 @@ $snippet_count = count( get_option( 'post_snippets_options' ) );
     <p>
 		<?php _e( 'You\'ve just installed Post Snippets, find it under \'Settings\'.', 'post-snippets' ); ?>
         &nbsp;&nbsp;
-        <a href="<?php echo esc_url( admin_url( 'options-general.php?page=post-snippets/post-snippets.php&ps-dismiss-get-started-nag=1' )); ?>" class="button-primary"
+        <a href="<?php echo PS_MAIN_PAGE_URL . '&ps-dismiss-get-started-nag=1'; ?>" class="button-primary"
            style="vertical-align: baseline;"><?php _e( 'Go to Post Snippets', 'post-snippets' ); ?></a>
         <a href="<?php echo esc_url( add_query_arg( 'ps-dismiss-get-started-nag', 1 ) ); ?>"
            class="button-secondary"><?php _e( 'Hide this', 'post-snippets' ); ?></a>
