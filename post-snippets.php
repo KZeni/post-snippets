@@ -12,7 +12,7 @@
  * @wordpress-plugin
  * Plugin Name: Post Snippets
  * Plugin URI: https://www.postsnippets.com
- * Description: Create custom shortcodes and reusable content and insert them in into your posts and pages.
+ * Description: Create a library of reusable content and insert it into your posts and pages. Navigate to "Settings > Post Snippets" to get started.
  * Version: 2.5.4
  * Author: David de Boer
  * Author URI: https://www.postsnippets.com
