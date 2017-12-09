@@ -88,7 +88,6 @@ class PostSnippets
             dirname(plugin_basename(__FILE__)).'/lang/'
         );
 
-        register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
         add_action('after_setup_theme', array(&$this, 'phpExecState'));
 
         new \PostSnippets\Admin;
@@ -121,25 +120,6 @@ class PostSnippets
 
         require 'src'.DIRECTORY_SEPARATOR.$fileName.'.php';
     }
-
-    /**
-     * Fired when the plugin is uninstalled.
-     */
-    public function uninstall()
-    {
-        // Delete all snippets
-        delete_option('post_snippets_options');
-
-        // Delete any per user settings
-        global $wpdb;
-        $wpdb->query(
-            "
-            DELETE FROM $wpdb->usermeta
-            WHERE meta_key = 'post_snippets'
-            "
-        );
-    }
-
 
     // -------------------------------------------------------------------------
     // Helpers
