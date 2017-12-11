@@ -29,17 +29,25 @@
                             </div>
                             <div class="text-right">
                                 <a href="#" class="handle"> <i class="dashicons dashicons-move"></i></a>
-                                <a href="#" class="toggle-post-snippets-data"><i class="dashicons dashicons-arrow-down"></i> <i class="dashicons dashicons-arrow-up"></i></a>
+                                <a href="#" class="toggle-post-snippets-data">
+                                    <i class="dashicons dashicons-arrow-down"></i>
+                                    <i class="dashicons dashicons-arrow-up"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="post-snippets-data">
-                            <div class="post-snippets-data-cell"><input type='checkbox'  name='checked[]' value='<?php echo $key; ?>'/></div>
-                            <div class="post-snippets-data-cell"><input type='text' class="post-snippet-title" name='<?php echo $key; ?>_title' value='<?php echo $snippet['title'];?>'/></div>
+                            <div class="post-snippets-data-cell">
+                                <input type='checkbox'  name='checked[]' value='<?php echo $key; ?>'/>
+                            </div>
+                            <div class="post-snippets-data-cell">
+                                <input type='text' class="post-snippet-title" name='<?php echo $key; ?>_title' value='<?php echo $snippet['title'];?>'/>
+                            </div>
                             <div class="post-snippets-data-cell">
                                 <input type='text' name='<?php echo $key;?>_vars' value='<?php echo $snippet['vars'];?>'/>
                                 <br/>
                                 <br/>
-                                <?php  \PostSnippets\Admin::checkbox( __( 'Shortcode', 'post-snippets' ), $key . '_shortcode', $snippet['shortcode'] );
+                                <?php
+                                \PostSnippets\Admin::checkbox( __( 'Shortcode', 'post-snippets' ), $key . '_shortcode', $snippet['shortcode'] );
                                 echo '<br/><strong>Shortcode Options:</strong><br/>';
                                 if ( ! defined( 'POST_SNIPPETS_DISABLE_PHP' ) ) {
                                     \PostSnippets\Admin::checkbox(
@@ -54,7 +62,7 @@
                             </div>
                             <div class="post-snippets-data-cell">
                                 <div>
-                                    <textarea name="<?php echo $key;?>_snippet" class="large-text" style='width: 100%;'rows="5"><?php echo htmlspecialchars( $snippet['snippet'], ENT_NOQUOTES ); ?></textarea>
+                                    <textarea name="<?php echo $key;?>_snippet" class="large-text" style='width: 100%;' rows="5"><?php echo htmlspecialchars( $snippet['snippet'], ENT_NOQUOTES ); ?></textarea>
                                     <?php _e( 'Description', 'post-snippets' ) ?>:
                                     <input type='text' style='width: 100%;' name='<?php echo $key;
                                     ?>_description' value='<?php if ( isset( $snippet['description'] ) ) {
