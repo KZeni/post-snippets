@@ -84,9 +84,36 @@ jQuery(document).ready(function ($) {
         return false;
     });
     /**
+     * Save title on the go
+     */
+    $('.save-title').on('click', function () {
+        var wrap = $(this).closest('.post-snippets-item');
+        var key = wrap.data('order');
+        var title = wrap.find('input.post-snippet-title').val().trim();
+
+        if (key === undefined) {
+            alert('something went wrong try again');
+            return false;
+        }
+        if ((title === undefined) || title === '') {
+            alert('Invalid Title');
+            return false;
+        }
+        var data = {
+            'action': 'update_post_snippet_title',
+            'key': key,
+            'title': title
+        };
+        $.post(ajaxurl, data, function (res) {
+            wrap.toggleClass('edit');
+        });
+        return false;
+    });
+
+    /**
      * toggle edit title mode
      */
-    $('.post-snippets-toolbar .edit-title, .post-snippets-toolbar .save-title').on('click', function () {
+    $('.post-snippets-toolbar .edit-title').on('click', function () {
         $(this).closest('.post-snippets-item').toggleClass('edit');
         return false;
     });

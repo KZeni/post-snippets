@@ -34,7 +34,9 @@ class Admin {
 
         // Get started admin notice
         add_action( 'admin_notices', array( $this, 'admin_notice_get_started' ) );
+
         add_action( 'wp_ajax_update_post_snippets_order', array( $this, 'update_snippets_order' ) );
+        add_action( 'wp_ajax_update_post_snippet_title', array( $this, 'update_post_snippet_title' ) );
     }
 
 
@@ -697,6 +699,28 @@ class Admin {
         }
         update_option('post_snippets_options', $updated_order);
         wp_send_json_success( );
+    }
+    /**
+     * Save Updated title
+     */
+    public function update_post_snippet_title() {
+        if ( ! isset( $_POST['key'] ) || empty( $_POST['title'] ) ) {
+            wp_send_json_error();
+        }
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error();
+        }
+        $key      = intval( $_POST['key'] );
+        $title    = sanitize_title( $_POST['title'] );
+        $snippets = get_option( 'post_snippets_options', [] );
+        if ( empty( $snippets ) ) {
+            wp_send_json_error();
+        }
+        if ( isset( $snippets[ $key ] ) ) {
+            $snippets[ $key ]['title'] = $title;
+            update_option( 'post_snippets_options', $snippets );
+        }
+        wp_send_json_success();
     }
 
 }
