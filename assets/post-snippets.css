@@ -99,7 +99,7 @@
 	display: none;
 }
 .post-snippets-item .text-left input[type="checkbox"]{
-	margin-left: 10px;
+	margin-left: 8px;
 	/*margin-right: 50px;*/
 }
 .post-snippets-item.open .dashicons-arrow-up{
@@ -141,6 +141,8 @@
 	text-align: left;
 }
 .post-snippets-toolbar{
+	padding: 8px 10px;
+	overflow: hidden;
 }
 .post-snippets-toolbar .edit-title,
 .post-snippets-toolbar .save-title{
@@ -152,13 +154,16 @@
 }
 .post-snippets-toolbar div{
 	display: inline-block;
-	width: 48%;
 	text-align: left;
-	padding: 5px;
 	font-weight: bold;
+	float: left;
+	width: 70%;
 }
+
 .post-snippets-toolbar div:last-child{
 	text-align: right;
+	width: 24%;
+	float: right;
 }
 .post-snippets-toolbar div:last-child a{
 	color: inherit;
@@ -181,4 +186,10 @@
 }
 .mb-20{
 	margin-bottom: 20px !important;
+}
+.post-snippets-wrap input[type="checkbox"]{
+	margin: 0  20px 0 0 !important;
+}
+@media screen and ( max-width: 782px ) {
+
 }
