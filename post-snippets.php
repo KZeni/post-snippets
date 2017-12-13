@@ -22,6 +22,50 @@
  * Domain Path: /lang
  */
 
+// Create a helper function for easy SDK access.
+function ps_fs() {
+	global $ps_fs;
+
+	if ( ! isset( $ps_fs ) ) {
+		// Include Freemius SDK.
+		require_once dirname(__FILE__) . '/freemius/start.php';
+
+		$ps_fs = fs_dynamic_init( array(
+			'id'                  => '1576',
+			'slug'                => 'post-snippets',
+			'type'                => 'plugin',
+			'public_key'          => 'pk_58a2ec84c44485a459aae07bfaf5f',
+			'is_premium'          => false,
+			'has_addons'          => false,
+			'has_paid_plans'      => false,
+			'menu'                => array(
+				'slug'           => 'post-snippets/post-snippets.php',
+				'override_exact' => true,
+				//'account'        => false,
+				'parent'         => array(
+					'slug' => 'options-general.php',
+				),
+			),
+		) );
+	}
+
+	return $ps_fs;
+}
+
+// Init Freemius.
+ps_fs();
+// Signal that SDK was initiated.
+do_action( 'ps_fs_loaded' );
+
+function ps_fs_settings_url() {
+	return admin_url( 'options-general.php?page=post-snippets%2Fpost-snippets.php&tab=options' );
+}
+
+ps_fs()->add_filter( 'connect_url', 'ps_fs_settings_url' );
+ps_fs()->add_filter( 'after_skip_url', 'ps_fs_settings_url' );
+ps_fs()->add_filter( 'after_connect_url', 'ps_fs_settings_url' );
+ps_fs()->add_filter( 'after_pending_connect_url', 'ps_fs_settings_url' );
+
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
 
