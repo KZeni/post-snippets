@@ -19,7 +19,7 @@ class Features {
 		$snippet_count = count( get_option( 'post_snippets_options' ) );
 
 		// Get price for this site
-		$prices = array ( '9', '19', '29', '39', '49', '59', '69', '79' );
+		$prices = array ( '39', '49', '59', '69', '79', '89', '99' );
 
 		if ( get_option( 'ps_pro_features_price' ) == false ) {
 
@@ -241,7 +241,7 @@ ob_start();
                 var votes = 3;
 
                 // If there are 0votex left in storage, don't show features, do show Thank you message
-                if (localStorage.getItem('PostSnippetsVotes') == '0') {
+                if (localStorage.getItem('PostSnippetsVotesV3') == '0') {
                     $(psFeatures).find(".products").each(function (index, element) {
                         $(element).hide();
                         $(".ps-voted-note-large").show();
@@ -265,7 +265,7 @@ ob_start();
                     if (votes == 0) {
 
                         // Store votes in localStorage
-                        localStorage.setItem('PostSnippetsVotes', votes);
+                        localStorage.setItem('PostSnippetsVotesV3', votes);
 
                         // Remove features, do show Thank you message
                         $(psFeatures).find(".products").each(function (index, element) {
