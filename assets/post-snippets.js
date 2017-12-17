@@ -79,8 +79,17 @@ jQuery(document).ready(function ($) {
      * toggle folding
      */
     $('.toggle-post-snippets-data').on('click', function () {
-        $(this).closest('.post-snippets-item').find('.post-snippets-data').slideToggle('fast');
+        var item = $(this).closest('.post-snippets-item');
+        var openItems = getFromLocalStorage();
+        var key = parseInt(item.data('order'));
+        if( _.contains(openItems, key) ){
+            setInLocalStorage(_.without(openItems, key));
+        }else{
+            setInLocalStorage(_.union(openItems, [key]));
+        }
         $(this).closest('.post-snippets-item').toggleClass('open');
+
+        // $(this).closest('.post-snippets-item').toggleClass('open');
         return false;
     });
     /**
@@ -123,6 +132,8 @@ jQuery(document).ready(function ($) {
     $(".post-snippets").sortable({
         handle: ".handle",
         items: ".post-snippets-item",
+        placeholder: "dashed-placeholder",
+        forcePlaceholderSize: true,
         update: function () {
             var order = $('.post-snippets').sortable("toArray",{option:"sort", attribute:"data-order"});
             var data = {
@@ -130,9 +141,80 @@ jQuery(document).ready(function ($) {
                 'order': order
             };
             $.post(ajaxurl,data,function (res) {
-                console.log(res);
             });
+        },
+        start: function( event, ui ) {
+            ui.placeholder.height(ui.item.height());
         }
     });
     $(".post-snippets").disableSelection();
+
+    /**
+     * Set value in localStorage
+     * @param value
+     * @param name
+     */
+    function setInLocalStorage(value, name) {
+      var optionName = name || 'openSnippets';
+      localStorage.setItem(optionName, JSON.stringify(value));
+    }
+
+    /**
+     * get saved value
+     * @param name
+     * @returns {Array}
+     */
+    function getFromLocalStorage(name) {
+        var optionName = name || 'openSnippets';
+        var savedValue  = localStorage.getItem(optionName);
+        if(savedValue !== null){
+            return JSON.parse(savedValue);
+        }
+        return [];
+    }
+
+    /**
+     * handle open close
+     */
+    $('.post-snippets .post-snippets-item').each(function () {
+       var key = $(this).data('order');
+       var openSnippets = getFromLocalStorage();
+       if( _.contains(openSnippets, key) ){
+           $(this).addClass('open');
+       }
+    });
+
+    /**
+     * Handle Expand Collapse
+     */
+    $('.expand-collapse a').on('click', function () {
+        var isExpand = ! $('.expand-collapse').hasClass('expanded');
+        if( isExpand ){
+            $('.post-snippets-item').not('.open').find('.toggle-post-snippets-data').trigger('click');
+        }else{
+            $('.post-snippets-item.open').find('.toggle-post-snippets-data').trigger('click');
+        }
+        $('.expand-collapse').toggleClass('expanded');
+        return false;
+    });
+
+    $('.snippet-duplicate').on('click', function () {
+        var item = $(this).closest('.post-snippets-item');
+        var key = $('.post-snippets-item').length + 1;
+        var title = item.find('input.post-snippet-title').val();
+        var duplicate = item.clone(true);
+        duplicate.data('order', key);
+        duplicate.attr('id', 'key-'+key);
+        duplicate.find('input.post-snippet-title').attr('title', key + '_title');
+        duplicate.find('input.post-snippet-title').val(title + '-duplicate-' + key);
+        duplicate.find('span.post-snippet-title').text(title + '-duplicate-' + key);
+        duplicate.appendTo('.post-snippets');
+        var offset = $('.post-snippets-item:last-child').offset().top;
+        $('html, body').animate({scrollTop: offset}, 500);
+
+        return false;
+    });
+    
+
+
 });

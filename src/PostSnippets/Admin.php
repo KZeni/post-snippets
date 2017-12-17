@@ -121,6 +121,7 @@ class Admin {
         wp_enqueue_style( 'post-snippets-newsletter' );
 
         wp_enqueue_script( 'jquery-ui-sortable' );
+        wp_enqueue_script( 'underscore' );
         wp_enqueue_script( 'post-snippets' );
     }
 

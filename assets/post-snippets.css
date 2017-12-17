@@ -90,6 +90,11 @@
 	margin-bottom: 20px;
 	margin-top: 10px;
 }
+.post-snippets-table a:focus,
+.post-snippets a:focus{
+	box-shadow: none !important;
+	border:none !important;
+}
 .post-snippets-item {
 	background: #efefef;
 	margin-bottom: 10px;
@@ -187,8 +192,30 @@
 .mb-20{
 	margin-bottom: 20px !important;
 }
+.text-right{
+	text-align: right !important;
+}
 .post-snippets-wrap input[type="checkbox"]{
 	margin: 0  20px 0 0 !important;
+}
+.expand-collapse .collapse-all{
+	display: none;
+}
+.expand-collapse.expanded .collapse-all{
+	display: inline-block;
+}
+.expand-collapse.expanded .expand-all{
+	display: none;
+}
+.dashed-placeholder {
+	border: 1px dashed #999;
+	width: 100%;
+	height: 38px;
+	margin: 10px 0;
+}
+.post-snippets-toolbar-right a{
+	margin-left: 10px;
+	display: inline-block;
 }
 @media screen and ( max-width: 782px ) {
 

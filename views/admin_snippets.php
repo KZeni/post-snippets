@@ -11,9 +11,14 @@
         <thead>
         <tr>
             <th scope="col" class="check-column"><input type="checkbox" /></th>
-<!--            <th scope="col" style="width: 180px;">--><?php //_e('Title', 'post-snippets'); ?><!--</th>-->
-<!--            <th scope="col" style="width: 180px;">--><?php //_e('Variables', 'post-snippets'); ?><!--</th>-->
-<!--            <th scope="col">--><?php //_e('Snippet', 'post-snippets'); ?><!--</th>-->
+            <th scope="col" class="text-right expand-collapse">
+                <a href="#" class="expand-all">
+                    <?php _e('Expand All', 'post-snippets'); ?>
+                </a>
+                <a href="#" class="collapse-all">
+                    <?php _e('Collapse All', 'post-snippets'); ?>
+                </a>
+            </th>
         </tr>
         </thead>
     </table>
@@ -22,7 +27,7 @@
     if ( ! empty( $snippets ) ):?>
         <div class="post-snippets">
             <?php foreach ( $snippets as $key => $snippet ): ?>
-                <div class="post-snippets-item open" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
+                <div class="post-snippets-item" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
                         <div class="post-snippets-toolbar">
                             <div class="text-left">
                                 <input type='checkbox'  name='checked[]' value='<?php echo $key; ?>'/>
@@ -35,9 +40,12 @@
                                     <i class="dashicons dashicons-yes"></i>
                                 </a>
                             </div>
-                            <div class="text-right">
-                                <a href="#" class="handle"> <i class="dashicons dashicons-move"></i></a>
-                                <a href="#" class="toggle-post-snippets-data">
+                            <div class="text-right post-snippets-toolbar-right">
+                                <a href="#" title="Duplicate" class="snippet-duplicate">
+                                    <i class="dashicons dashicons-format-gallery"></i>
+                                </a>
+                                <a href="#" class="handle" title="Move"> <i class="dashicons dashicons-move"></i></a>
+                                <a href="#" class="toggle-post-snippets-data" title="Expand/Collapse">
                                     <i class="dashicons dashicons-arrow-down"></i>
                                     <i class="dashicons dashicons-arrow-up"></i>
                                 </a>
