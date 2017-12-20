@@ -48,9 +48,6 @@ function postsnippets_fs() {
 					'slug' => 'options-general.php',
 				),
 			),
-			// Set the SDK to work in a sandbox mode (for development & testing).
-			// IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
-			'secret_key'          => 'sk_myJP^AUJL0rY-%up5VAx4K_&3yv=<',
 		) );
 	}
 
