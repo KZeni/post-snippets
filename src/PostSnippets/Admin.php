@@ -351,7 +351,7 @@ class Admin {
             'tools'    => __( 'Import/Export', 'post-snippets' ),
         );
 
-        if( ps_fs()->is_not_paying()){
+        if( postsnippets_fs()->is_not_paying()){
             $tabs['features'] = __( 'Pro features', 'post-snippets' );
         }
 

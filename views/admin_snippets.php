@@ -41,7 +41,7 @@
                             </div>
                             <div class="text-right post-snippets-toolbar-right">
                                 <?php
-                                if ( ps_fs()->is__premium_only() ) : ?>
+                                if ( postsnippets_fs()->is__premium_only() ) : ?>
                                     <a href="#" title="Duplicate" class="snippet-duplicate">
                                         <i class="dashicons dashicons-format-gallery"></i>
                                     </a>
