@@ -35,17 +35,18 @@ function ps_fs() {
 			'slug'                => 'post-snippets',
 			'type'                => 'plugin',
 			'public_key'          => 'pk_58a2ec84c44485a459aae07bfaf5f',
-			'is_premium'          => false,
+			'is_premium'          => true,
+			// If your plugin is a serviceware, set this option to false.
+			'has_premium_version' => true,
 			'has_addons'          => false,
-			'has_paid_plans'      => false,
+			'has_paid_plans'      => true,
 			'menu'                => array(
-				'slug'           => 'post-snippets/post-snippets.php',
-				'override_exact' => true,
-				//'account'        => false,
-				'parent'         => array(
-					'slug' => 'options-general.php',
-				),
+				'first-path'     => 'plugins.php',
+				'support'        => false,
 			),
+			// Set the SDK to work in a sandbox mode (for development & testing).
+			// IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
+			'secret_key'          => 'sk_myJP^AUJL0rY-%up5VAx4K_&3yv=<',
 		) );
 	}
 
@@ -58,7 +59,7 @@ ps_fs();
 do_action( 'ps_fs_loaded' );
 
 function ps_fs_settings_url() {
-	return admin_url( 'options-general.php?page=post-snippets%2Fpost-snippets.php&tab=options' );
+	return admin_url( 'options-general.php?page=post-snippets' );
 }
 
 ps_fs()->add_filter( 'connect_url', 'ps_fs_settings_url' );
