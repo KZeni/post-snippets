@@ -94,7 +94,7 @@ class Admin {
             plugins_url( '/assets/post-snippets.js', \PostSnippets::FILE ),
             array( 'jquery' )
         );
-        if(ps_fs()->is__premium_only()){
+        if(postsnippets_fs()->is__premium_only()){
             wp_register_script(
                 'post-snippets-pro',
                 plugins_url( '/assets/post-snippets-pro.js', \PostSnippets::FILE ),
@@ -130,7 +130,7 @@ class Admin {
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'underscore' );
 
-        if(ps_fs()->is__premium_only()){
+        if(postsnippets_fs()->is__premium_only()){
             wp_enqueue_script( 'post-snippets-pro' );
         }
         
