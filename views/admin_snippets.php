@@ -24,7 +24,7 @@
     <?php
     $snippets = get_option( \PostSnippets::OPTION_KEY );
     if ( ! empty( $snippets ) ):?>
-        <div class="post-snippets">
+        <div class="post-snippets post-snippets-list">
             <?php foreach ( $snippets as $key => $snippet ): ?>
                 <div class="post-snippets-item" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
                         <div class="post-snippets-toolbar">
