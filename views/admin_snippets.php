@@ -1,6 +1,5 @@
 <form method="post" action="" class="post-snippets-wrap">
     <?php wp_nonce_field( 'update_snippets', 'update_snippets_nonce' ); ?>
-
     <?php
     \PostSnippets\Admin::submit( 'update-snippets', __( 'Update Snippets', 'post-snippets' ), 'button-primary', false );
     \PostSnippets\Admin::submit( 'add-snippet', __( 'Add New Snippet', 'post-snippets' ), 'button-secondary', false );
@@ -41,10 +40,14 @@
                                 </a>
                             </div>
                             <div class="text-right post-snippets-toolbar-right">
-                                <a href="#" title="Duplicate" class="snippet-duplicate">
-                                    <i class="dashicons dashicons-format-gallery"></i>
-                                </a>
-                                <a href="#" class="handle" title="Move"> <i class="dashicons dashicons-move"></i></a>
+                                <?php
+                                if ( ps_fs()->is__premium_only() ) : ?>
+                                    <a href="#" title="Duplicate" class="snippet-duplicate">
+                                        <i class="dashicons dashicons-format-gallery"></i>
+                                    </a>
+                                    <a href="#" class="handle" title="Move">
+                                        <i class="dashicons dashicons-move"></i></a>
+                                <?php endif ?>
                                 <a href="#" class="toggle-post-snippets-data" title="Expand/Collapse">
                                     <i class="dashicons dashicons-arrow-down"></i>
                                     <i class="dashicons dashicons-arrow-up"></i>

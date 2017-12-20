@@ -337,8 +337,12 @@ class Admin {
             'snippets' => __( 'Manage Snippets', 'post-snippets' ),
             'options'  => __( 'Options', 'post-snippets' ),
             'tools'    => __( 'Import/Export', 'post-snippets' ),
-            'features' => __( 'Pro features', 'post-snippets' ),
         );
+
+        if( ps_fs()->is_not_paying()){
+            $tabs['features'] = __( 'Pro features', 'post-snippets' );
+        }
+
         echo '<h2 class="nav-tab-wrapper">';
         foreach ( $tabs as $tab => $title ) {
             $active = ( $active_tab == $tab ) ? ' nav-tab-active' : '';

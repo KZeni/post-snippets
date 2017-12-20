@@ -12,7 +12,6 @@ namespace PostSnippets;
 
 class Features {
 
-
 	public function showFeatures() {
 
 		// Get amount of snippets
