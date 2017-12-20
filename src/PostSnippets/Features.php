@@ -232,8 +232,8 @@ ob_start();
         <!-- START: Post Snippets Feature voting -->
         <script type="text/javascript">
 
-            //localStorage.removeItem('PostSnippetsVotes');
-            //localStorage.setItem('PostSnippetsVotes', '0');
+            //localStorage.removeItem('PostSnippetsVotesV3');
+            //localStorage.setItem('PostSnippetsVotesV3', '0');
 
             jQuery(document).ready(function ($) {
 
@@ -241,7 +241,7 @@ ob_start();
                 var votes = 3;
 
                 // If there are 0votex left in storage, don't show features, do show Thank you message
-                if (localStorage.getItem('PostSnippetsVotes') == '0') {
+                if (localStorage.getItem('PostSnippetsVotesV3') == '0') {
                     $(psFeatures).find(".products").each(function (index, element) {
                         $(element).hide();
                         $(".ps-voted-note-large").show();
@@ -265,7 +265,7 @@ ob_start();
                     if (votes == 0) {
 
                         // Store votes in localStorage
-                        localStorage.setItem('PostSnippetsVotes', votes);
+                        localStorage.setItem('PostSnippetsVotesV3', votes);
 
                         // Remove features, do show Thank you message
                         $(psFeatures).find(".products").each(function (index, element) {
