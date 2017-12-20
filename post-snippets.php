@@ -23,14 +23,14 @@
  */
 
 // Create a helper function for easy SDK access.
-function ps_fs() {
-	global $ps_fs;
+function postsnippets_fs() {
+	global $postsnippets_fs;
 
-	if ( ! isset( $ps_fs ) ) {
+	if ( ! isset( $postsnippets_fs ) ) {
 		// Include Freemius SDK.
 		require_once dirname(__FILE__) . '/freemius/start.php';
 
-		$ps_fs = fs_dynamic_init( array(
+		$postsnippets_fs = fs_dynamic_init( array(
 			'id'                  => '1576',
 			'slug'                => 'post-snippets',
 			'type'                => 'plugin',
@@ -41,8 +41,12 @@ function ps_fs() {
 			'has_addons'          => false,
 			'has_paid_plans'      => true,
 			'menu'                => array(
-				'first-path'     => 'plugins.php',
+				'slug'           => 'post-snippets',
+				'override_exact' => true,
 				'support'        => false,
+				'parent'         => array(
+					'slug' => 'options-general.php',
+				),
 			),
 			// Set the SDK to work in a sandbox mode (for development & testing).
 			// IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
@@ -50,22 +54,22 @@ function ps_fs() {
 		) );
 	}
 
-	return $ps_fs;
+	return $postsnippets_fs;
 }
 
 // Init Freemius.
-ps_fs();
+postsnippets_fs();
 // Signal that SDK was initiated.
-do_action( 'ps_fs_loaded' );
+do_action( 'postsnippets_fs_loaded' );
 
-function ps_fs_settings_url() {
-	return admin_url( 'options-general.php?page=post-snippets' );
+function postsnippets_fs_settings_url() {
+	return admin_url( 'options-general.php?page=post-snippets%2Fpost-snippets.php&tab=options' );
 }
 
-ps_fs()->add_filter( 'connect_url', 'ps_fs_settings_url' );
-ps_fs()->add_filter( 'after_skip_url', 'ps_fs_settings_url' );
-ps_fs()->add_filter( 'after_connect_url', 'ps_fs_settings_url' );
-ps_fs()->add_filter( 'after_pending_connect_url', 'ps_fs_settings_url' );
+postsnippets_fs()->add_filter( 'connect_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_skip_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_connect_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_pending_connect_url', 'postsnippets_fs_settings_url' );
 
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
