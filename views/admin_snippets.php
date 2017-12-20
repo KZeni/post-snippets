@@ -43,7 +43,7 @@
                                 <?php
                                 if ( postsnippets_fs()->is__premium_only() ) : ?>
                                     <a href="#" title="Duplicate" class="snippet-duplicate">
-                                        <i class="dashicons dashicons-format-gallery"></i>
+                                        <i class="dashicons dashicons-admin-page"></i>
                                     </a>
                                     <a href="#" class="handle" title="Move">
                                         <i class="dashicons dashicons-move"></i></a>
