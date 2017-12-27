@@ -84,14 +84,8 @@ class Admin
      *
      * @return void
      */
-    public function init()
-    {
-        wp_register_script(
-            'post-snippets',
-            plugins_url('/assets/post-snippets.js', \PostSnippets::FILE),
-            array('jquery')
-        );
-
+    public function init() {
+        wp_register_script( 'post-snippets', plugins_url( '/assets/post-snippets.js', \PostSnippets::FILE ), array( 'jquery' ), PS_VERSION, true );
         $this->registerSettings();
     }
 
@@ -110,12 +104,12 @@ class Admin
 
         // Add CSS for Pro features page
 	    $features_style_url = plugins_url('/assets/features.css', \PostSnippets::FILE);
-	    wp_register_style('post-snippets-features', $features_style_url, false, '2.0');
+	    wp_register_style('post-snippets-features', $features_style_url, false, PS_VERSION);
 	    wp_enqueue_style('post-snippets-features');
 
 	    // Add CSS for newsletter opt-in
 	    $features_style_url = plugins_url('/assets/newsletter.css', \PostSnippets::FILE);
-	    wp_register_style('post-snippets-newsletter', $features_style_url, false, '2.0');
+	    wp_register_style('post-snippets-newsletter', $features_style_url, false, PS_VERSION);
 	    wp_enqueue_style('post-snippets-newsletter');
 
         wp_enqueue_script('post-snippets');
