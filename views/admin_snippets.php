@@ -24,7 +24,7 @@
     <?php
     $snippets = get_option( \PostSnippets::OPTION_KEY );
     if ( ! empty( $snippets ) ):?>
-        <div class="post-snippets">
+        <div class="post-snippets post-snippets-list">
             <?php foreach ( $snippets as $key => $snippet ): ?>
                 <div class="post-snippets-item" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
                         <div class="post-snippets-toolbar">
@@ -43,7 +43,7 @@
                                 <?php
                                 if ( postsnippets_fs()->is__premium_only() ) : ?>
                                     <a href="#" title="Duplicate" class="snippet-duplicate">
-                                        <i class="dashicons dashicons-format-gallery"></i>
+                                        <i class="dashicons dashicons-admin-page"></i>
                                     </a>
                                     <a href="#" class="handle" title="Move">
                                         <i class="dashicons dashicons-move"></i></a>

@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
         duplicate.find('input.post-snippet-title').attr('title', key + '_title');
         duplicate.find('input.post-snippet-title').val(title + '-duplicate-' + key);
         duplicate.find('span.post-snippet-title').text(title + '-duplicate-' + key);
-        duplicate.appendTo('.post-snippets');
+        duplicate.appendTo('.post-snippets-list');
         var offset = $('.post-snippets-item:last-child').offset().top;
         $('html, body').animate({scrollTop: offset}, 500);
 
