@@ -97,6 +97,10 @@ your clients to be able to use PHP code in a post snippet.
 
 == Changelog ==
 
+= Version 3.0.0 - 30 Dec 2017 =
+* Reviewed close to 30 issues and either closed, fixed or registered them to be fixed in the future, see https://github.com/davdebcom/post-snippets/issues/68.
+
+
 = Version 2.5.4 - 30 Nov 2017 =
  * UI improvement: Add update, add new and delete buttons to top of Snippets list, not just bottom
  * Add better note to guide new users to the documentation ('Help' in the top right of the screen)
