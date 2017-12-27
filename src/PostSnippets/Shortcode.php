@@ -53,7 +53,7 @@ class Shortcode
                             // avoid outputting {content} as part of the string
                             // lets remove possible occurences.
                             $generated_content = str_replace( "{content}", "", $generated_content );
-                            error_log($generated_content);
+
                             // Handle PHP shortcodes
                             $php = $snippet["php"];
                             if ( $php == true ) {

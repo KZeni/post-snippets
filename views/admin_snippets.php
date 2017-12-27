@@ -24,68 +24,74 @@
     <?php
     $snippets = get_option( \PostSnippets::OPTION_KEY );
     if ( ! empty( $snippets ) ):?>
+
         <div class="post-snippets post-snippets-list">
             <?php foreach ( $snippets as $key => $snippet ): ?>
-                <div class="post-snippets-item" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
-                        <div class="post-snippets-toolbar">
-                            <div class="text-left">
-                                <input type='checkbox'  name='checked[]' value='<?php echo $key; ?>'/>
-                                <input type='text' class="post-snippet-title" name='<?php echo $key; ?>_title' value='<?php echo $snippet['title'];?>'/>
-                                <span class="post-snippet-title"><?php echo $snippet['title'];?></span>
-                                <a href="#" class="edit-title">
-                                    <i class="dashicons dashicons-edit"></i>
-                                </a>
-                                <a href="#" class="save-title">
-                                    <i class="dashicons dashicons-yes"></i>
-                                </a>
-                            </div>
-                            <div class="text-right post-snippets-toolbar-right">
-                                <?php
-                                if ( postsnippets_fs()->is__premium_only() ) : ?>
-                                    <a href="#" title="Duplicate" class="snippet-duplicate">
-                                        <i class="dashicons dashicons-admin-page"></i>
-                                    </a>
-                                    <a href="#" class="handle" title="Move">
-                                        <i class="dashicons dashicons-move"></i></a>
-                                <?php endif ?>
-                                <a href="#" class="toggle-post-snippets-data" title="Expand/Collapse">
-                                    <i class="dashicons dashicons-arrow-down"></i>
-                                    <i class="dashicons dashicons-arrow-up"></i>
-                                </a>
-                            </div>
+                <div class="post-snippets-item ui-state-highlight" data-order="<?php echo $key; ?>" id="key-<?php echo $key; ?>">
+                    <div class="post-snippets-toolbar">
+                        <div class="text-left">
+                            <input type='checkbox'  name='checked[]' value='<?php echo $key; ?>'/>
+                            <input type='text' class="post-snippet-title" name='<?php echo "snippets[{$key}][title]"; ?>' value='<?php echo $snippet['title'];?>'/>
+                            <span class="post-snippet-title"><?php echo $snippet['title'];?></span>
+                            <a href="#" class="edit-title">
+                                <i class="dashicons dashicons-edit"></i>
+                            </a>
+                            <a href="#" class="save-title">
+                                <i class="dashicons dashicons-yes"></i>
+                            </a>
                         </div>
-                        <div class="post-snippets-data">
-                            <div class="post-snippets-data-cell">
-                                <div>
-                                    <textarea name="<?php echo $key;?>_snippet" class="large-text" style='width: 100%;' rows="5"><?php echo htmlspecialchars( $snippet['snippet'], ENT_NOQUOTES ); ?></textarea>
-                                    <?php _e( 'Description', 'post-snippets' ) ?>:
-                                    <input type='text' style='width: 100%;' name='<?php echo $key;
-                                    ?>_description' value='<?php if ( isset( $snippet['description'] ) ) {
-                                        echo esc_html( $snippet['description'] );
-                                    }
-                                    ?>'/><br/>
-                                </div>
-                            </div>
-                            <div class="post-snippets-data-cell">
-                                <strong>Variables:</strong><br/>
-                                <input type='text' name='<?php echo $key;?>_vars' value='<?php echo $snippet['vars'];?>'/>
-                                <br/>
-                                <br/>
-                                <?php
-                                \PostSnippets\Admin::checkbox( __( 'Shortcode', 'post-snippets' ), $key . '_shortcode', $snippet['shortcode'] );
-                                echo '<br/><strong>Shortcode Options:</strong><br/>';
-                                if ( ! defined( 'POST_SNIPPETS_DISABLE_PHP' ) ) {
-                                    \PostSnippets\Admin::checkbox(
-                                        __( 'PHP Code', 'post-snippets' ),
-                                        $key . '_php',
-                                        $snippet['php']
-                                    );
+                        <div class="text-right post-snippets-toolbar-right">
+                            <?php
+                            if ( postsnippets_fs()->is__premium_only() ) : ?>
+                                <a href="#" title="Duplicate" class="snippet-duplicate">
+                                    <i class="dashicons dashicons-admin-page"></i>
+                                </a>
+                                <a href="#" class="handle" title="Move">
+                                    <i class="dashicons dashicons-move"></i></a>
+                            <?php endif ?>
+                            <a href="#" class="toggle-post-snippets-data" title="Expand/Collapse">
+                                <i class="dashicons dashicons-arrow-down"></i>
+                                <i class="dashicons dashicons-arrow-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="post-snippets-data">
+                        <div class="post-snippets-data-cell">
+                            <div>
+                                <textarea class="snippet" name="<?php echo "snippets[{$key}][snippet]"; ?>" class="large-text" style='width: 100%;' rows="5"><?php echo htmlspecialchars( $snippet['snippet'], ENT_NOQUOTES ); ?></textarea>
+                                <?php _e( 'Description', 'post-snippets' ) ?>:
+                                <input type='text' style='width: 100%;' name="<?php echo "snippets[{$key}][description]"; ?>" value='<?php if ( isset( $snippet['description'] ) ) {
+                                    echo esc_html( $snippet['description'] );
                                 }
-                                $wptexturize = isset( $snippet['wptexturize'] ) ? $snippet['wptexturize'] : false;
-                                \PostSnippets\Admin::checkbox( 'wptexturize', $key . '_wptexturize', $wptexturize );
-                                ?>
+                                ?>'/><br/>
                             </div>
                         </div>
+                        <div class="post-snippets-data-cell">
+                            <strong>Variables:</strong><br/>
+                            <input type='text' name="<?php echo "snippets[{$key}][vars]"; ?>" value='<?php echo $snippet['vars'];?>'/>
+                            <br/>
+                            <br/>
+
+                            <label for="<?php echo "snippets[{$key}][shortcode]"; ?>">
+                                <input type="checkbox" name="<?php echo "snippets[{$key}][shortcode]"; ?>" id="<?php echo "snippets[{$key}][shortcode]"; ?>" value="1" <?php checked($snippet['shortcode'], '1' , true);?>>
+                                Shortcode
+                            </label>
+
+                            <br/><strong><?php _e('Shortcode Options:', 'post-snippets');?></strong><br/>
+                            <?php if ( ! defined( 'POST_SNIPPETS_DISABLE_PHP' ) ) :?>
+                                <label for="<?php echo "snippets[{$key}][php]"; ?>">
+                                    <input type="checkbox" name="<?php echo "snippets[{$key}][php]"; ?>" id="<?php echo "snippets[{$key}][php]"; ?>" value="1" <?php checked($snippet['php'], '1' , true);?>>
+                                    PHP Code
+                                </label>
+                                <br/>
+                            <?php endif; ?>
+
+                            <label for="<?php echo "snippets[{$key}][wptexturize]"; ?>">
+                                <input type="checkbox" name="<?php echo "snippets[{$key}][wptexturize]"; ?>" id="<?php echo "snippets[{$key}][wptexturize]"; ?>" value="1" <?php checked($snippet['wptexturize'], '1' , true);?>>
+                                wptexturize
+                            </label>
+                        </div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>

@@ -91,7 +91,10 @@ class Admin {
     public function init() {
         wp_register_script( 'post-snippets', plugins_url( '/assets/post-snippets.js', \PostSnippets::FILE ), array( 'jquery' ), PS_VERSION, true );
         if ( postsnippets_fs()->is__premium_only() ) {
-            wp_register_script('post-snippets-pro', plugins_url( '/assets/post-snippets-pro.js', \PostSnippets::FILE ), array( 'jquery', 'post-snippets' ),PS_VERSION, true );
+            wp_register_script( 'post-snippets-pro', plugins_url( '/assets/post-snippets-pro.js', \PostSnippets::FILE ), array(
+                'jquery',
+                'post-snippets'
+            ), PS_VERSION, true );
         }
 
         $this->registerSettings();
@@ -111,12 +114,12 @@ class Admin {
 
         // Add CSS for Pro features page
         $features_style_url = plugins_url( '/assets/features.css', \PostSnippets::FILE );
-        wp_register_style( 'post-snippets-features', $features_style_url, array(), PS_VERSION);
+        wp_register_style( 'post-snippets-features', $features_style_url, array(), PS_VERSION );
         wp_enqueue_style( 'post-snippets-features' );
 
         // Add CSS for newsletter opt-in
         $features_style_url = plugins_url( '/assets/newsletter.css', \PostSnippets::FILE );
-        wp_register_style( 'post-snippets-newsletter', $features_style_url, array(), PS_VERSION);
+        wp_register_style( 'post-snippets-newsletter', $features_style_url, array(), PS_VERSION );
         wp_enqueue_style( 'post-snippets-newsletter' );
 
         wp_enqueue_script( 'jquery-ui-sortable' );
@@ -241,27 +244,42 @@ class Admin {
              && isset( $_POST['update_snippets_nonce'] )
              && wp_verify_nonce( $_POST['update_snippets_nonce'], 'update_snippets' )
         ) {
-            $snippets = get_option( \PostSnippets::OPTION_KEY );
-            if ( ! empty( $snippets ) ) {
-                foreach ( $snippets as $key => $value ) {
-                    $new_snippets[ $key ]['title']     = trim( $_POST[ $key . '_title' ] );
-                    $new_snippets[ $key ]['vars']      = str_replace( ' ', '', trim( $_POST[ $key . '_vars' ] ) );
-                    $new_snippets[ $key ]['shortcode'] = isset( $_POST[ $key . '_shortcode' ] ) ? true : false;
+            $default            = array(
+                'title'       => '',
+                'snippet'     => '',
+                'description' => '',
+                'vars'        => '',
+                'shortcode'   => '0',
+                'php'         => '0',
+                'wptexturize' => '0',
+            );
+            $formatted_snippets = array();
+            if ( ! empty( $_POST['snippets'] ) ) {
+                $snippets = map_deep( $_POST['snippets'], 'trim' );
+                $i = 0;
 
-                    if ( ! defined( 'POST_SNIPPETS_DISABLE_PHP' ) ) {
-                        $new_snippets[ $key ]['php'] = isset( $_POST[ $key . '_php' ] ) ? true : false;
-                    } else {
-                        $new_snippets[ $key ]['php'] = isset( $snippets[ $key ]['php'] ) ? $snippets[ $key ]['php'] : false;
+                foreach ( $snippets as $snippet ){
+                    if ( empty( $snippets ) ) {
+                        continue;
                     }
+                    $snippet = wp_parse_args( $snippet, $default );
 
-                    $new_snippets[ $key ]['wptexturize'] = isset( $_POST[ $key . '_wptexturize' ] ) ? true : false;
+                    $snippet['title'] = str_replace( ' ', '', $snippet['title'] );
 
-                    $new_snippets[ $key ]['snippet']     = wp_specialchars_decode( trim( stripslashes( $_POST[ $key . '_snippet' ] ) ), ENT_NOQUOTES );
-                    $new_snippets[ $key ]['description'] = wp_specialchars_decode( trim( stripslashes( $_POST[ $key . '_description' ] ) ), ENT_NOQUOTES );
+                    if ( defined( 'POST_SNIPPETS_DISABLE_PHP' ) ) {
+                        $snippet['php'] = '0';
+                    }
+                    $snippet['snippet']     = wp_specialchars_decode( trim( stripslashes( $snippet['snippet'] ) ), ENT_NOQUOTES );
+                    $snippet['description'] = wp_specialchars_decode( trim( stripslashes( $snippet['description'] ) ), ENT_NOQUOTES );
+
+                    $formatted_snippets[ $i ] = $snippet;
+                    $i++;
                 }
-                update_option( \PostSnippets::OPTION_KEY, $new_snippets );
-                $this->message( __( 'Snippets have been updated.', 'post-snippets' ) );
+
             }
+
+            update_option( \PostSnippets::OPTION_KEY, $formatted_snippets );
+            $this->message( __( 'Snippets have been updated.', 'post-snippets' ) );
         }
     }
 
@@ -690,15 +708,15 @@ class Admin {
      */
     public function update_snippets_order() {
         if ( empty( $_POST['order'] ) || ! is_array( $_POST['order'] ) ) {
-            wp_send_json_error();
+            wp_send_json_error('order data not received');
         }
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error();
+            wp_send_json_error('permission denied');
         }
         $orders   = array_map( 'intval', $_POST['order'] );
         $snippets = get_option( 'post_snippets_options', [] );
         if ( empty( $snippets ) ) {
-            wp_send_json_error();
+            wp_send_json_error('snippets empty');
         }
         $updated_order = array();
         foreach ( $orders as $order ) {
@@ -707,7 +725,7 @@ class Admin {
             }
         }
         update_option( 'post_snippets_options', $updated_order );
-        wp_send_json_success();
+        wp_send_json_success('success');
     }
 
     /**
