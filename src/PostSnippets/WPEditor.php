@@ -159,7 +159,7 @@ class WPEditor
 
         # Adds the CSS stylesheet for the jQuery UI dialog
         $style_url = plugins_url('/assets/post-snippets.css', \PostSnippets::FILE);
-        wp_register_style('post-snippets', $style_url, false, '2.0');
+        wp_register_style( 'post-snippets', $style_url, false, PS_VERSION );
         wp_enqueue_style('post-snippets');
     }
 

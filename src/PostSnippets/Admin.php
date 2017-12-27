@@ -89,17 +89,9 @@ class Admin {
      * @return void
      */
     public function init() {
-        wp_register_script(
-            'post-snippets',
-            plugins_url( '/assets/post-snippets.js', \PostSnippets::FILE ),
-            array( 'jquery' )
-        );
-        if(postsnippets_fs()->is__premium_only()){
-            wp_register_script(
-                'post-snippets-pro',
-                plugins_url( '/assets/post-snippets-pro.js', \PostSnippets::FILE ),
-                array( 'jquery', 'post-snippets' )
-            );
+        wp_register_script( 'post-snippets', plugins_url( '/assets/post-snippets.js', \PostSnippets::FILE ), array( 'jquery' ), PS_VERSION, true );
+        if ( postsnippets_fs()->is__premium_only() ) {
+            wp_register_script('post-snippets-pro', plugins_url( '/assets/post-snippets-pro.js', \PostSnippets::FILE ), array( 'jquery', 'post-snippets' ),PS_VERSION, true );
         }
 
         $this->registerSettings();
@@ -119,21 +111,21 @@ class Admin {
 
         // Add CSS for Pro features page
         $features_style_url = plugins_url( '/assets/features.css', \PostSnippets::FILE );
-        wp_register_style( 'post-snippets-features', $features_style_url, false, '2.0' );
+        wp_register_style( 'post-snippets-features', $features_style_url, array(), PS_VERSION);
         wp_enqueue_style( 'post-snippets-features' );
 
         // Add CSS for newsletter opt-in
         $features_style_url = plugins_url( '/assets/newsletter.css', \PostSnippets::FILE );
-        wp_register_style( 'post-snippets-newsletter', $features_style_url, false, '2.0' );
+        wp_register_style( 'post-snippets-newsletter', $features_style_url, array(), PS_VERSION);
         wp_enqueue_style( 'post-snippets-newsletter' );
 
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'underscore' );
 
-        if(postsnippets_fs()->is__premium_only()){
+        if ( postsnippets_fs()->is__premium_only() ) {
             wp_enqueue_script( 'post-snippets-pro' );
         }
-        
+
         wp_enqueue_script( 'post-snippets' );
     }
 
@@ -351,7 +343,7 @@ class Admin {
             'tools'    => __( 'Import/Export', 'post-snippets' ),
         );
 
-        if( postsnippets_fs()->is_not_paying()){
+        if ( postsnippets_fs()->is_not_paying() ) {
             $tabs['features'] = __( 'Pro features', 'post-snippets' );
         }
 
@@ -709,14 +701,15 @@ class Admin {
             wp_send_json_error();
         }
         $updated_order = array();
-        foreach ( $orders as  $order ){
-            if(isset($snippets[$order])){
-                $updated_order[] = $snippets[$order];
+        foreach ( $orders as $order ) {
+            if ( isset( $snippets[ $order ] ) ) {
+                $updated_order[] = $snippets[ $order ];
             }
         }
-        update_option('post_snippets_options', $updated_order);
-        wp_send_json_success( );
+        update_option( 'post_snippets_options', $updated_order );
+        wp_send_json_success();
     }
+
     /**
      * Save Updated title
      */

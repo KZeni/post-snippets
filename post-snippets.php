@@ -75,6 +75,10 @@ if ( ! defined( 'PS_MAIN_FILE' ) ) {
 	define( 'PS_MAIN_FILE', basename(__FILE__) );
 }
 
+if ( ! defined( 'PS_VERSION' ) ) {
+    define( 'PS_VERSION', '2.5.4' );
+}
+
 if ( ! defined( 'PS_MAIN_FILE_PATH' ) ) {
 	define( 'PS_MAIN_FILE_PATH', __FILE__ );
 }
