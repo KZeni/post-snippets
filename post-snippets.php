@@ -22,12 +22,62 @@
  * Domain Path: /lang
  */
 
+// Create a helper function for easy SDK access.
+function postsnippets_fs() {
+	global $postsnippets_fs;
+
+	if ( ! isset( $postsnippets_fs ) ) {
+		// Include Freemius SDK.
+		require_once dirname(__FILE__) . '/freemius/start.php';
+
+		$postsnippets_fs = fs_dynamic_init( array(
+			'id'                  => '1576',
+			'slug'                => 'post-snippets',
+			'type'                => 'plugin',
+			'public_key'          => 'pk_58a2ec84c44485a459aae07bfaf5f',
+			'is_premium'          => true,
+			// If your plugin is a serviceware, set this option to false.
+			'has_premium_version' => true,
+			'has_addons'          => false,
+			'has_paid_plans'      => true,
+			'menu'                => array(
+				'slug'           => 'post-snippets',
+				'override_exact' => true,
+				'support'        => false,
+				'parent'         => array(
+					'slug' => 'options-general.php',
+				),
+			),
+		) );
+	}
+
+	return $postsnippets_fs;
+}
+
+// Init Freemius.
+postsnippets_fs();
+// Signal that SDK was initiated.
+do_action( 'postsnippets_fs_loaded' );
+
+function postsnippets_fs_settings_url() {
+	return admin_url( 'options-general.php?page=post-snippets%2Fpost-snippets.php&tab=options' );
+}
+
+postsnippets_fs()->add_filter( 'connect_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_skip_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_connect_url', 'postsnippets_fs_settings_url' );
+postsnippets_fs()->add_filter( 'after_pending_connect_url', 'postsnippets_fs_settings_url' );
+
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register('PostSnippets::autoload');
 
 if ( ! defined( 'PS_MAIN_FILE' ) ) {
 	define( 'PS_MAIN_FILE', basename(__FILE__) );
 }
+if ( ! defined( 'PS_VERSION' ) ) {
+    define( 'PS_VERSION', '2.5.4' );
+}
+
 if ( ! defined( 'PS_VERSION' ) ) {
     define( 'PS_VERSION', '2.5.4' );
 }
@@ -90,7 +140,6 @@ class PostSnippets
             false,
             dirname(plugin_basename(__FILE__)).'/lang/'
         );
-
         add_action('after_setup_theme', array(&$this, 'phpExecState'));
 
         new \PostSnippets\Admin;
@@ -256,5 +305,6 @@ class PostSnippets
         }
     }
 }
-
-add_action('plugins_loaded', array('PostSnippets', 'getInstance'));
+if ( ! function_exists( 'postsnippets_fs' ) ) {
+    add_action( 'plugins_loaded', array( 'PostSnippets', 'getInstance' ) );
+}

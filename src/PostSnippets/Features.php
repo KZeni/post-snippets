@@ -12,7 +12,6 @@ namespace PostSnippets;
 
 class Features {
 
-
 	public function showFeatures() {
 
 		// Get amount of snippets
@@ -232,8 +231,8 @@ ob_start();
         <!-- START: Post Snippets Feature voting -->
         <script type="text/javascript">
 
-            //localStorage.removeItem('PostSnippetsVotes');
-            //localStorage.setItem('PostSnippetsVotes', '0');
+            //localStorage.removeItem('PostSnippetsVotesV3');
+            //localStorage.setItem('PostSnippetsVotesV3', '0');
 
             jQuery(document).ready(function ($) {
 
