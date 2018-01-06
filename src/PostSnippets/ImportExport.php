@@ -9,8 +9,8 @@ namespace PostSnippets;
  */
 class ImportExport
 {
+    protected static $FILE_ZIP;
     const FILE_CFG = 'post-snippets-export.cfg';
-    const FILE_ZIP = 'post-snippets-export.zip';
 
     private $downloadUrl;
 
@@ -25,6 +25,7 @@ class ImportExport
      */
     public function exportSnippets()
     {
+        self::set_export_name();
         if (isset($_POST['postsnippets_export'])) {
             $url = $this->createExportFile();
             if ($url) {
@@ -42,8 +43,8 @@ class ImportExport
             $dir = wp_upload_dir();
             $upload_dir = $dir['basedir'] . '/';
             chdir($upload_dir);
-            if (file_exists('./'.self::FILE_ZIP)) {
-                unlink('./'.self::FILE_ZIP);
+            if (file_exists('./'.self::$FILE_ZIP)) {
+                unlink('./'.self::$FILE_ZIP);
             }
         }
     }
@@ -165,7 +166,7 @@ class ImportExport
         // Create a zip archive
         require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
         chdir($upload_dir);
-        $zip = new \PclZip('./'.self::FILE_ZIP);
+        $zip = new \PclZip('./'.self::$FILE_ZIP);
         $zipped = $zip->create('./'.self::FILE_CFG);
 
         // Delete the snippet file
@@ -175,7 +176,15 @@ class ImportExport
             return false;
         }
 
-        return $upload_url.'./'.self::FILE_ZIP;
+        return $upload_url.'./'.self::$FILE_ZIP;
+    }
+
+    /**
+     * Set export file name
+     */
+    public static function set_export_name(){
+        $date_part = date('Y-m-d');
+        self::$FILE_ZIP =  "post-snippets-export-{$date_part}.zip";
     }
 
     /**
